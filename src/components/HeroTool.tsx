@@ -20,7 +20,7 @@ export function HeroTool({ locale }: { locale: Locale }) {
 
         <div className="hero-stage" id="tool">
           <div className="hero-demo-card" aria-label="AI clothes changer before and after example">
-            <Image src={heroImages[0].src} alt={heroImages[0].alt} width={900} height={600} priority />
+            <Image src={'/85a52f41-3dad-4774-a469-b4ad5f324a7e.webp'} alt={heroImages[0].alt} width={900} height={600} priority />
           </div>
 
           <div className="hero-upload-card">

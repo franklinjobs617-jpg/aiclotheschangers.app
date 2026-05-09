@@ -33,24 +33,7 @@
     "useCasesText": "Use it for online shopping, outfit planning, plus size previews, men's styling, content creation, and product photos.",
     "faq": "AI clothes changer FAQs"
   },
-  "trustItems": {
-    "tryFirst": {
-      "title": "Try first, pay later",
-      "text": "Get 10 free credits to test realistic virtual try-on quality before committing to a paid plan."
-    },
-    "mobile": {
-      "title": "Mobile photos handled properly",
-      "text": "Phone uploads should keep the correct rotation, crop, and person framing before generation starts."
-    },
-    "encrypted": {
-      "title": "Encrypted, then deleted",
-      "text": "Photos are encrypted during processing and automatically deleted from our servers when the try-on is complete."
-    },
-    "inclusive": {
-      "title": "Inclusive model library",
-      "text": "Plus-size and men's fashion paths are prioritized so more users can find models that represent them."
-    }
-  },
+
   "howSteps": {
     "upload": {
       "title": "Upload a person photo",

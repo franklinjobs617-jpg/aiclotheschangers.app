@@ -33,22 +33,6 @@ export function ContentSections({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="trust-strip">
-        <div className="container trust-grid">
-          {trustItemKeys.map((key, i) => {
-            const Icon = trustItemIcons[i];
-            return (
-              <article key={key}>
-                <Icon size={22} />
-                <div>
-                  <h2>{trustT(`${key}.title`)}</h2>
-                  <p>{trustT(`${key}.text`)}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </section>
 
       <section className="section" id="how">
         <div className="container">

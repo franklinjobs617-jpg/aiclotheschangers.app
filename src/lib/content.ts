@@ -16,7 +16,7 @@ import type { PageSlug } from "@/lib/site";
 
 export const heroImages = [
   {
-    src: "https://images.insmind.com/market-operations/market/side/aee6edb4c465434a9116acb3976ee78e/1730889129372.jpg",
+    src: "/85a52f41-3dad-4774-a469-b4ad5f324a7e.webp",
     alt: "AI clothes changer before and after result"
   },
   {
