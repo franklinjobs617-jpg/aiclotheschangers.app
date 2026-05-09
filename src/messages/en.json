@@ -1,0 +1,305 @@
+{
+  "metadata": {
+    "title": "AI Clothes Changer - Virtual Try On Clothes Online for FREE",
+    "description": "Use the best AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men. No hard paywall, get 10 credits free.",
+    "ogImage": "/og-default.png"
+  },
+  "brand": "AIClothesChanger",
+  "nav": {
+    "tryOn": "Try On",
+    "plusSize": "Plus Size",
+    "men": "Men",
+    "pricing": "Pricing",
+    "about": "About",
+    "login": "Login",
+    "create": "Create"
+  },
+  "hero": {
+    "title": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall",
+    "subtitle": "Use the AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men, preview realistic fabric textures, and start free before choosing a plan.",
+    "upload": "Upload a photo",
+    "drop": "Or drop image here, paste image or URL",
+    "samples": "Try with one of these"
+  },
+  "sections": {
+    "trust": "Try a new outfit without the guesswork",
+    "examples": "Change clothes in photos for real shopping and styling decisions",
+    "examplesText": "Preview everyday outfits, professional looks, and creative styles while keeping the face, pose, and lighting believable.",
+    "why": "Built for the things people complain about in AI try-on tools",
+    "whyText": "The first version focuses on realistic fit, mobile photo stability, clear credits, and a free preview path before checkout.",
+    "how": "How to use the AI clothes changer",
+    "howText": "Start with one photo. You can upload clothing, use preset styles, or generate a new outfit from a prompt.",
+    "useCases": "Popular ways to use virtual try-on",
+    "useCasesText": "Use it for online shopping, outfit planning, plus size previews, men's styling, content creation, and product photos.",
+    "faq": "AI clothes changer FAQs"
+  },
+  "trustItems": {
+    "tryFirst": {
+      "title": "Try first, pay later",
+      "text": "Get 10 free credits to test realistic virtual try-on quality before committing to a paid plan."
+    },
+    "mobile": {
+      "title": "Mobile photos handled properly",
+      "text": "Phone uploads should keep the correct rotation, crop, and person framing before generation starts."
+    },
+    "encrypted": {
+      "title": "Encrypted, then deleted",
+      "text": "Photos are encrypted during processing and automatically deleted from our servers when the try-on is complete."
+    },
+    "inclusive": {
+      "title": "Inclusive model library",
+      "text": "Plus-size and men's fashion paths are prioritized so more users can find models that represent them."
+    }
+  },
+  "howSteps": {
+    "upload": {
+      "title": "Upload a person photo",
+      "text": "Use a clear selfie, portrait, or full-body image. Front-facing photos with visible clothing outlines work best."
+    },
+    "choose": {
+      "title": "Choose the outfit source",
+      "text": "Upload a clothing reference, pick a preset style, or describe the outfit you want to try on."
+    },
+    "generate": {
+      "title": "Generate and compare",
+      "text": "Preview the result, compare before and after, regenerate if needed, then download or unlock HD."
+    }
+  },
+  "exampleCards": {
+    "shopping": {
+      "title": "See if a jacket, shirt, or dress actually suits your photo",
+      "tag": "Online shopping"
+    },
+    "headshots": {
+      "title": "Turn a casual photo into a cleaner professional look",
+      "tag": "Headshots"
+    },
+    "creators": {
+      "title": "Test creative costumes and social content ideas fast",
+      "tag": "Creators"
+    }
+  },
+  "storySections": {
+    "headshot": {
+      "title": "Transform Casual Clothes into a Professional Headshot",
+      "before": "Enhance your look by transforming casual attire into ",
+      "highlight": "a sharp, professional outfit",
+      "after": ". Whether you are preparing for a business profile, resume photo, or formal passport-style image, the AI clothes changer helps you create a polished appearance without a new photoshoot.",
+      "cta": "Replace Clothes with AI"
+    },
+    "tryBefore": {
+      "title": "Try New Outfits Before You Buy",
+      "before": "Use virtual try-on to preview shirts, jackets, dresses, and streetwear with ",
+      "highlight": "realistic fabric drape and natural lighting",
+      "after": ". It is built for shoppers who want fewer wrong-size returns and creators who need outfit ideas before committing to a look.",
+      "cta": "Start Virtual Try-On"
+    },
+    "inclusive": {
+      "title": "Inclusive AI Try-On for More Body Types",
+      "before": "The model experience is designed to prioritize ",
+      "highlight": "plus-size and men's fashion",
+      "after": ", so users are not forced to judge fit from one narrow model library. Upload a photo, choose the path that fits you, and preview the result first.",
+      "cta": "Explore Try-On Models"
+    }
+  },
+  "whyItems": {
+    "realism": {
+      "title": "IDM-VTON realism",
+      "text": "We use state-of-the-art virtual try-on technology to render fabric texture, creases, drape, and natural lighting more realistically than generic image editors."
+    },
+    "noPaywall": {
+      "title": "No hard paywall",
+      "text": "Many tools demand payment before showing a single result. This flow gives users 10 free credits to judge quality first."
+    },
+    "mobile": {
+      "title": "Stable mobile uploads",
+      "text": "EXIF correction is part of the product foundation, reducing Android rotation and distorted upload issues."
+    },
+    "progress": {
+      "title": "Deterministic progress",
+      "text": "Instead of a frozen 30% progress bar, generation should show real steps like identifying garment details and balancing light."
+    }
+  },
+  "useCases": {
+    "plusSize": {
+      "title": "Plus Size Virtual Try-On",
+      "text": "Preview outfits on plus size body types instead of guessing from one narrow model set."
+    },
+    "men": {
+      "title": "Men's AI Clothes Changer",
+      "text": "Try shirts, suits, jackets, streetwear, and work outfits on a male photo."
+    },
+    "virtual": {
+      "title": "Virtual Try On Clothes",
+      "text": "Use AI fitting room style previews before online shopping, styling, or product shoots."
+    }
+  },
+  "faqs": {
+    "free": {
+      "question": "Is the AI clothes changer free?",
+      "answer": "Yes. New users get 10 free credits so they can test real virtual try-on quality before buying more credits or a paid plan."
+    },
+    "reference": {
+      "question": "Can I upload a clothing photo as a reference?",
+      "answer": "Yes. The intended workflow supports either uploading a clothing reference or using preset styles, so users can try a specific garment or explore a style idea."
+    },
+    "photos": {
+      "question": "What photos work best?",
+      "answer": "Clear person photos work best, especially front-facing portraits or full-body images with visible clothing edges. Avoid heavy blur, extreme poses, or blocked outfits."
+    },
+    "face": {
+      "question": "Will it keep my face and body shape?",
+      "answer": "The product goal is to preserve identity, pose, lighting, and body proportions while changing the outfit area. Results can still vary by photo quality."
+    },
+    "privacy": {
+      "question": "Do you save uploaded photos?",
+      "answer": "Your photos are encrypted during processing and automatically deleted from our servers after the try-on is complete."
+    }
+  },
+  "pricing": {
+    "eyebrow": "Pricing",
+    "title": "Plans & Credits",
+    "description": "Start free, buy small credit packs when needed, and understand exactly what renews or consumes credits.",
+    "body1": "Pricing should be easy to understand because users arrive after seeing try-on value, not before it.",
+    "body2": "Credits are for extra generations and HD workflows. Failed system generations should not quietly burn user trust.",
+    "free": {
+      "name": "Free Trial",
+      "price": "$0",
+      "period": "start",
+      "description": "Get 10 free credits after sign up to test realistic virtual try-on quality before choosing a plan.",
+      "cta": "Start free",
+      "credits": "10 free credits"
+    },
+    "starter": {
+      "name": "Pay As You Go",
+      "price": "$0.99",
+      "period": "one-time",
+      "description": "A low-risk credit pack for a few more outfit tests after the first useful result. No subscription.",
+      "cta": "Buy credits",
+      "credits": "10 credits"
+    },
+    "creator": {
+      "name": "Basic Monthly",
+      "price": "$7.99",
+      "period": "month",
+      "description": "A simple monthly subscription for regular try-on workflows with more credits per month.",
+      "cta": "Get Basic Plan",
+      "credits": "100 credits/month"
+    },
+    "pro": {
+      "name": "Pro Monthly",
+      "price": "$14.99",
+      "period": "month",
+      "description": "For power users who need high volume try-ons and HD downloads every month.",
+      "cta": "Upgrade to Pro",
+      "credits": "300 credits/month"
+    }
+  },
+  "topicPages": {
+    "virtual-try-on-clothes": {
+      "eyebrow": "Virtual try on clothes",
+      "title": "Virtual Try On Clothes Online Before You Buy",
+      "description": "Upload your photo and preview how outfits may look on you before shopping, styling, or reshooting.",
+      "body1": "Virtual try-on helps users answer a simple question: will this outfit look good on me or on my model photo?",
+      "body2": "Use it for online shopping decisions, creator styling, product previews, and quick outfit comparisons without changing clothes or booking a shoot.",
+      "bullet1": "Upload your own photo",
+      "bullet2": "Try a reference clothing image",
+      "bullet3": "Compare different outfit styles",
+      "bullet4": "Preview before paying for more credits"
+    },
+    "plus-size-virtual-try-on": {
+      "eyebrow": "Plus size virtual try-on",
+      "title": "Inclusive Plus Size Virtual Try On & AI Clothes Changer",
+      "description": "See how clothes fit on your body. Our AI plus size virtual try-on supports curvy models of all sizes with free preview and realistic fabric draping.",
+      "body1": "Many virtual fitting tools make users infer fit from a narrow model set. This plus size virtual try-on path is built for curvy models, body positivity, and realistic outfit previews.",
+      "body2": "For better results, upload a front-facing full-body photo in natural light. This gives the AI more reliable body mapping for fabric draping, sleeve length, and silhouette.",
+      "bullet1": "Realistic draping on curves",
+      "bullet2": "Size inclusivity from the main navigation",
+      "bullet3": "No body distortion promise",
+      "bullet4": "10 free credits before paid upgrades"
+    },
+    "mens-ai-clothes-changer": {
+      "eyebrow": "Men's AI clothes changer",
+      "title": "Men's AI Clothes Changer for Shirts, Suits, and Streetwear",
+      "description": "Upload a male photo and try new outfits online, from casual looks to professional headshots.",
+      "body1": "Men's outfit try-on intent is often different: shirts, suits, jackets, streetwear, profile photos, and clean workwear matter more than generic fashion effects.",
+      "body2": "This page gives men's searches a focused path while still sending users into the same simple AI clothes changer flow.",
+      "bullet1": "Try suits, jackets, shirts, and streetwear",
+      "bullet2": "Useful for profiles and shopping",
+      "bullet3": "Upload photo or clothing reference",
+      "bullet4": "Preview first, upgrade later"
+    },
+    "about-us": {
+      "eyebrow": "About",
+      "title": "Redefining the Virtual Fitting Room",
+      "description": "aiclotheschanger.me makes fashion technology more accessible, transparent, and realistic with true virtual try-on without the paywall.",
+      "body1": "At aiclotheschanger.me, we believe fashion technology should be accessible, transparent, and above all realistic. We saw a market full of apps that demand payment before showing a single result, so we decided to build a better way.",
+      "body2": "Our mission is quality first, trust always. We specialize in high-fidelity AI clothes changer technology that understands how a silk dress drapes, how a denim jacket fits different body types, and why users need to see quality before committing to a plan.",
+      "body3": "We keep the complexity for us and the simplicity for you. IDM-VTON helps render realistic fabric textures, creases, and natural lighting, while our product experience prioritizes plus-size and men's fashion, Android image rotation fixes, stable generation, and privacy-first processing.",
+      "bullet1": "Realistic AI Clothes Changer",
+      "bullet2": "10 free credits before upgrade",
+      "bullet3": "Plus-size and men's fashion first",
+      "bullet4": "Encrypted photos deleted after processing"
+    },
+    "privacy-policy": {
+      "eyebrow": "Privacy",
+      "title": "Privacy Policy",
+      "description": "Privacy-first principles for uploaded photos, generated results, login, credits, and billing.",
+      "body1": "Uploaded photos are encrypted during processing and automatically deleted from our servers when the try-on is complete.",
+      "body2": "Before calling Replicate or Fal.ai, the production system should run image and prompt safety checks to block NSFW, underwear, bikini, nude, or sensitive misuse requests.",
+      "body3": "",
+      "bullet1": "Encrypted processing",
+      "bullet2": "Automatic deletion after try-on",
+      "bullet3": "NSFW image and prompt filtering",
+      "bullet4": "Delete All My Data endpoint planned"
+    },
+    "terms-of-service": {
+      "eyebrow": "Terms",
+      "title": "Terms of Service",
+      "description": "Rules for lawful uploads, responsible AI use, payments, refunds, cancellation, and credits.",
+      "body1": "Users may only upload images they own or have legal permission to use. The service may not be used for commercial fraud, impersonation, explicit content, or copyright infringement.",
+      "body2": "To protect users and payment accounts, branded logo-heavy gallery images should be avoided, subscription cancellation must stay visible, and failed system generations should be eligible for credit refund.",
+      "body3": "",
+      "bullet1": "User owns or controls uploaded content",
+      "bullet2": "No fraud or explicit misuse",
+      "bullet3": "Clear renewal and cancellation terms",
+      "bullet4": "Failed system generations can be refunded"
+    }
+  },
+  "footer": {
+    "tryOn": "Try On",
+    "billing": "Billing",
+    "trust": "Trust",
+    "languages": "Languages",
+    "aiClothesChanger": "AI Clothes Changer",
+    "virtualTryOnClothes": "Virtual Try On Clothes",
+    "plusSizeVirtualTryOn": "Plus Size Virtual Try-On",
+    "mensAiClothesChanger": "Men's AI Clothes Changer",
+    "pricing": "Pricing",
+    "creditsExplained": "Credits explained",
+    "cancelAnytime": "Cancel anytime",
+    "aboutUs": "About Us",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "copyright": "@Copyright 2026 AIClothesChanger-All rights reserved."
+  },
+  "common": {
+    "howItWorks": "How it works",
+    "results": "Results",
+    "whyUs": "Why us",
+    "useCases": "Use cases",
+    "faq": "FAQ",
+    "startTryOn": "Start Try-On",
+    "openPath": "Open path",
+    "paymentUx": "Payment UX",
+    "clearCredits": "Clear credits, checkout, and recovery",
+    "clearCreditsText": "Pricing follows the project rule: users should see value first, then pay, then return to the original task.",
+    "pricingFaqs": "Pricing FAQs"
+  },
+  "auth": {
+    "loginTitle": "Sign in to continue",
+    "loginButton": "Sign in with Google",
+    "loginHint": "Get 10 Free Credits",
+    "logout": "Logout"
+  }
+}
