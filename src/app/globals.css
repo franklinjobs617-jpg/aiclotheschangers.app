@@ -200,6 +200,7 @@ img {
   padding: 0 12px;
   color: #303640;
   background: transparent;
+  border: 0;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
@@ -276,9 +277,17 @@ img {
 }
 
 .mobile-links a,
-.mobile-links summary {
+.mobile-links summary,
+.mobile-login {
   padding: 12px 0;
   color: #242936;
+}
+
+.mobile-login {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
 }
 
 .mobile-links details a {
@@ -349,8 +358,8 @@ img {
 .hero-stage {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: minmax(360px, 0.85fr) minmax(460px, 1fr);
-  gap: 18px;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 24px;
   align-items: stretch;
 }
 
@@ -364,10 +373,8 @@ img {
 
 .hero-demo-card img {
   width: 100%;
-  height: 100%;
-  min-height: 300px;
-  max-height: 360px;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .hero-upload-card {
@@ -390,6 +397,12 @@ img {
   text-align: center;
   padding: 22px;
   background: #fff;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.upload-dropzone.dragover {
+  border-color: var(--primary);
+  background: #f2fffb;
 }
 
 .upload-main-button {
@@ -465,6 +478,23 @@ img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Hero responsive breakpoints */
+@media (max-width: 1024px) {
+  .hero-stage {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .hero-upload-card { order: -1; }
+}
+
+@media (max-width: 760px) {
+  .hero-container { width: min(100%, calc(100% - 32px)); }
+  .hero-stage { margin-top: 22px; gap: 16px; }
+  .upload-dropzone { min-height: 240px; padding: 18px; }
+  .upload-dropzone > p { display: none; }
+  .sample-picker { max-width: 100%; }
 }
 
 .section {
@@ -995,6 +1025,137 @@ img {
 
 .reason-card svg {
   color: var(--primary);
+}
+
+.feedback-section {
+  background:
+    linear-gradient(180deg, #fff 0%, #f9fbfb 100%);
+}
+
+.feedback-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.feedback-featured,
+.feedback-card {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 14px 34px rgba(24, 31, 52, 0.05);
+}
+
+.feedback-featured {
+  min-height: 100%;
+  padding: 32px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.feedback-kicker {
+  display: inline-flex;
+  width: fit-content;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #eefaf7;
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feedback-quote,
+.feedback-card-quote {
+  margin: 0;
+  color: #1f2329;
+  letter-spacing: 0;
+}
+
+.feedback-quote {
+  margin-top: 26px;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.32;
+  font-weight: 500;
+}
+
+.feedback-side {
+  display: grid;
+  gap: 14px;
+}
+
+.feedback-card {
+  padding: 22px 22px 20px;
+  border-radius: 16px;
+}
+
+.feedback-card-quote {
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.feedback-person {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.feedback-person.compact {
+  margin-top: 18px;
+}
+
+.feedback-avatar {
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  text-align: center;
+  place-items: center;
+  border-radius: 999px;
+  background: #1f2329;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feedback-person strong,
+.feedback-person span {
+  display: block;
+}
+
+.feedback-person strong {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.feedback-person div span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.feedback-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: flex-start;
+  padding-top: 2px;
+}
+
+.feedback-tags span {
+  min-height: 34px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #dbe8e3;
+  border-radius: 999px;
+  background: #fff;
+  color: #4f5867;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .faq-list {
@@ -2251,6 +2412,7 @@ img {
   .usecase-grid,
   .reason-grid,
   .example-grid,
+  .feedback-shell,
   .about-principles-grid,
   .trust-grid,
   .why-list,
@@ -2380,6 +2542,15 @@ img {
     grid-template-columns: 1fr;
   }
 
+  .feedback-featured {
+    padding: 24px;
+  }
+
+  .feedback-quote {
+    margin-top: 20px;
+    font-size: 24px;
+  }
+
   .results-head h2,
   .results-shell .example-card.featured h3 {
     font-size: 28px;
@@ -2388,6 +2559,11 @@ img {
   .feature-image img {
     height: 300px;
   }
+}
+
+/* Editor Page — All styles now use Tailwind utility classes, see components/editor/ */
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* Language Switcher */
@@ -2432,69 +2608,34 @@ img {
   font-weight: 700;
 }
 
-/* Login Modal */
-.login-modal-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(12, 15, 24, 0.55);
-  display: grid;
-  place-items: center;
-  backdrop-filter: blur(4px);
+/* ========== Login Modal — Tailwind + minimal custom animations ========== */
+
+/* Modal panel: enter with scale + fade (200ms ease-out), respects reduced-motion */
+@keyframes login-modal-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
-.login-modal {
-  position: relative;
-  background: #fff;
-  border-radius: 18px;
-  padding: 40px 36px;
-  width: min(400px, 90vw);
-  text-align: center;
-  box-shadow: 0 32px 72px rgba(12, 15, 24, 0.28);
+.login-modal-animate {
+  animation: login-modal-in 200ms ease-out both;
 }
 
-.login-modal h2 {
-  margin: 0 0 8px;
-  font-size: 24px;
+@media (prefers-reduced-motion: reduce) {
+  .login-modal-animate {
+    animation: none;
+    opacity: 1;
+  }
 }
 
-.login-modal p {
-  color: var(--muted);
-  margin: 0 0 28px;
-}
-
-.login-modal-close {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  background: #f2f4f8;
-  border-radius: 8px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.google-login-button {
-  width: 100%;
-  min-height: 48px;
-  border: 1px solid var(--line);
-  background: #fff;
-  border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-.google-login-button:hover {
-  background: #f8f9fb;
+/* Google button subtle press feedback */
+.login-btn:active {
+  transition-duration: 80ms;
 }
 
 @media (max-width: 520px) {

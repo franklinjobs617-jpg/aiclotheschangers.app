@@ -54,8 +54,8 @@
       "tag": "Online shopping"
     },
     "headshots": {
-      "title": "Turn a casual photo into a cleaner professional look",
-      "tag": "Headshots"
+      "title": "Preview shirts, jackets, and polished everyday looks on your own photo",
+      "tag": "Men's styling"
     },
     "creators": {
       "title": "Test creative costumes and social content ideas fast",
@@ -64,11 +64,11 @@
   },
   "storySections": {
     "headshot": {
-      "title": "Transform Casual Clothes into a Professional Headshot",
-      "before": "Enhance your look by transforming casual attire into ",
-      "highlight": "a sharp, professional outfit",
-      "after": ". Whether you are preparing for a business profile, resume photo, or formal passport-style image, the AI clothes changer helps you create a polished appearance without a new photoshoot.",
-      "cta": "Replace Clothes with AI"
+      "title": "Try Men's Shirts, Jackets, and Smart Looks on Your Own Photo",
+      "before": "Use the men's AI clothes changer to preview ",
+      "highlight": "clean workwear, casual layers, and sharper outfit swaps",
+      "after": ". It is useful for profile photos, shopping decisions, and everyday styling when you want to see a more polished men's look before changing clothes or buying anything.",
+      "cta": "Explore Men's Try-On"
     },
     "tryBefore": {
       "title": "Try New Outfits Before You Buy",
@@ -87,8 +87,8 @@
   },
   "whyItems": {
     "realism": {
-      "title": "IDM-VTON realism",
-      "text": "We use state-of-the-art virtual try-on technology to render fabric texture, creases, drape, and natural lighting more realistically than generic image editors."
+      "title": "Realistic outfit rendering",
+      "text": "The try-on workflow focuses on believable fabric texture, drape, and lighting so outfit swaps look closer to real styling previews."
     },
     "noPaywall": {
       "title": "No hard paywall",
@@ -100,7 +100,7 @@
     },
     "progress": {
       "title": "Deterministic progress",
-      "text": "Instead of a frozen 30% progress bar, generation should show real steps like identifying garment details and balancing light."
+      "text": "The product experience is designed to feel clear and trackable instead of leaving users stuck on vague loading states."
     }
   },
   "useCases": {
@@ -137,6 +137,32 @@
     "privacy": {
       "question": "Do you save uploaded photos?",
       "answer": "Your photos are encrypted during processing and automatically deleted from our servers after the try-on is complete."
+    }
+  },
+  "feedbackSection": {
+    "eyebrow": "User feedback",
+    "title": "The kind of feedback people leave after a useful try-on",
+    "description": "Users usually care about the same three things: whether the outfit still looks like them, whether the styling feels believable, and whether they can make a decision before paying.",
+    "featuredLabel": "Most repeated theme",
+    "featuredQuote": "I only needed one clear preview to decide whether the jacket style was worth trying in real life.",
+    "featuredName": "Nina",
+    "featuredRole": "Shopping preview",
+    "secondary": {
+      "shopping": {
+        "quote": "The face stayed consistent, so it felt more like a styling test than a random image edit.",
+        "name": "Chris",
+        "role": "Men's outfit check"
+      },
+      "fit": {
+        "quote": "It helped me compare silhouettes quickly without guessing from one model body type.",
+        "name": "Maya",
+        "role": "Plus-size styling"
+      }
+    },
+    "highlights": {
+      "1": "Useful before shopping",
+      "2": "Better outfit comparison",
+      "3": "More believable fabric feel"
     }
   },
   "pricing": {
@@ -178,6 +204,185 @@
       "credits": "300 credits/month"
     }
   },
+  "pricingPage": {
+    "heroTitle": "Plans & Pricing",
+    "heroBody": "Start with 10 free credits, then choose a small credit top-up or a monthly plan when you are ready.",
+    "heroHighlight": "No hard paywall before the first useful preview.",
+    "yearlyLabel": "One-time credits",
+    "monthlyLabel": "Monthly plans",
+    "featuredBadge": "Best for regular use",
+    "topupLabel": "Or top up credits",
+    "topupFootnote": "1 AI try-on costs 1 credit.",
+    "planBenefits": {
+      "free": {
+        "1": "10 free credits after sign up",
+        "2": "Mobile upload auto-fix",
+        "3": "10+ models including plus size and men",
+        "4": "Standard download"
+      },
+      "creator": {
+        "1": "100 credits per month",
+        "2": "HD unlock available",
+        "3": "Regenerate and try another model",
+        "4": "Cancel anytime"
+      },
+      "pro": {
+        "1": "300 credits per month",
+        "2": "HD downloads included",
+        "3": "More room for repeat outfit testing",
+        "4": "Built for frequent try-on use"
+      }
+    },
+    "trustNotes": {
+      "freeCredits": {
+        "title": "10 free credits",
+        "text": "New users can test quality before choosing a paid plan."
+      },
+      "refunds": {
+        "title": "Failed jobs refunded",
+        "text": "System failures should return credits instead of burning trust."
+      },
+      "privacy": {
+        "title": "Privacy-first uploads",
+        "text": "Uploaded photos are encrypted during processing and deleted after try-on."
+      }
+    },
+    "security": {
+      "stripeFirst": {
+        "title": "Stripe checkout",
+        "text": "Payments run through Stripe for a familiar checkout flow and clearer billing records."
+      },
+      "paymentRecovery": {
+        "title": "Return to what you were doing",
+        "text": "The purchase flow keeps context so users can get back to the try-on or credit action they started from."
+      },
+      "creditsRefresh": {
+        "title": "Simple credit logic",
+        "text": "Credit packs and monthly plans are presented with straightforward usage so users can see what each purchase is for."
+      },
+      "hdAfterValue": {
+        "title": "Preview before HD",
+        "text": "The flow is built so users can judge a result before deciding whether they need a higher-quality download."
+      },
+      "riskControl": {
+        "title": "Clear usage rules",
+        "text": "Uploads, prompts, and account use are expected to follow the site's safety and billing rules."
+      }
+    },
+    "faqs": {
+      "freeCredits": {
+        "question": "How many credits do I get for free?",
+        "answer": "New users get 10 free credits after sign up to test real virtual try-on quality before buying more."
+      },
+      "hdExtra": {
+        "question": "Is HD download extra?",
+        "answer": "HD downloads are included in the Pro Monthly plan. Other plans use credits for HD unlock."
+      },
+      "failedJobs": {
+        "question": "Do failed generations consume credits?",
+        "answer": "System failures are refunded automatically. You will not lose credits when the product cannot deliver a usable result."
+      },
+      "renewal": {
+        "question": "Will the monthly plan renew automatically?",
+        "answer": "Yes, Basic and Pro Monthly renew automatically. You can cancel anytime from your account."
+      },
+      "cancel": {
+        "question": "Can I cancel anytime?",
+        "answer": "Yes. Cancellation is easy to find and takes effect at the end of the current billing period."
+      }
+    }
+  },
+  "specialtyPages": {
+    "plus-size-virtual-try-on": {
+      "eyebrow": "Plus Size First",
+      "stat": "Curvy model path",
+      "cta": "Try free",
+      "featureTitle": "AI styling for every body shape",
+      "featureText": "This page turns the project strategy into a focused path for users who cannot judge fit from narrow model libraries. It keeps the free preview, privacy, and realistic fabric details visible before conversion.",
+      "proofLabel": "Trust path",
+      "proofTitle": "What makes the plus size path different",
+      "proofItems": {
+        "1": "Curve-aware outfit previews",
+        "2": "Front-facing full-body guidance",
+        "3": "No forced checkout before judging quality"
+      },
+      "related": {
+        "1": "Men's AI Clothes Changer",
+        "2": "Virtual Try On Clothes"
+      }
+    },
+    "mens-ai-clothes-changer": {
+      "eyebrow": "Men's Fashion",
+      "stat": "Suits and streetwear",
+      "cta": "Try free",
+      "featureTitle": "A try-on path for men's shirts, suits, and everyday looks",
+      "featureText": "Men's intent is often practical: profile photos, workwear, shopping decisions, jackets, and clean outfit swaps. This page gives those searches a direct path into the same simple AI clothes changer flow.",
+      "proofLabel": "Trust path",
+      "proofTitle": "Built for overlooked men's try-on needs",
+      "proofItems": {
+        "1": "Shirts, jackets, and workwear previews",
+        "2": "Casual and streetwear previews",
+        "3": "Upload photo or clothing reference"
+      },
+      "related": {
+        "1": "Plus Size Virtual Try-On",
+        "2": "Virtual Try On Clothes"
+      }
+    }
+  },
+  "aboutPage": {
+    "sloganLabel": "Brand Slogan",
+    "slogan": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall.",
+    "aboutLabel": "About Us: aiclotheschanger.me",
+    "sidebar": {
+      "redefining": "Redefining",
+      "mission": "Mission",
+      "technology": "Technology",
+      "privacy": "Privacy",
+      "join": "Join us"
+    },
+    "sections": {
+      "redefining": {
+        "title": "Redefining the Virtual Fitting Room",
+        "body": "At aiclotheschanger.me, we believe that fashion technology should be accessible, transparent, and, above all, realistic. We observed a market filled with applications that demand payment before showing a single result. We decided to build a better way."
+      },
+      "mission": {
+        "label": "Our Mission",
+        "title": "Quality First, Trust Always",
+        "body1": "We specialize in high-fidelity AI Clothes Changer technology. Our platform is not just about swapping pixels; it is about understanding how a silk dress drapes or how a denim jacket fits different body types.",
+        "body2": "We are committed to solving the trust gap in the industry by offering a Try First, Pay Later model, giving every user 10 free credits to witness our quality before committing to a plan."
+      },
+      "technology": {
+        "label": "The Technology Behind the Result",
+        "title": "Keeping the complexity for us, and the simplicity for you"
+      },
+      "privacy": {
+        "label": "Your Privacy is Non-Negotiable",
+        "title": "Encrypted during processing, deleted after try-on",
+        "body": "We strictly follow global data protection standards. Every image you upload is encrypted during processing and automatically deleted from our servers the moment your try-on is complete."
+      },
+      "join": {
+        "label": "Join the Fashion Revolution",
+        "title": "Your personal, digital wardrobe",
+        "body": "Whether you are a shopper trying to avoid wrong-size returns or a fashion enthusiast exploring new styles, aiclotheschanger.me is your personal, digital wardrobe.",
+        "cta": "Start Try-On"
+      }
+    },
+    "technology": {
+      "realism": {
+        "title": "True-to-Life Realism",
+        "text": "We focus on realistic fabric texture, drape, and lighting so the result feels closer to a true outfit preview than a generic image edit."
+      },
+      "inclusive": {
+        "title": "Inclusivity by Design",
+        "text": "We give extra attention to plus-size and men's styling paths so users are not forced into one narrow idea of who virtual try-on is for."
+      },
+      "stability": {
+        "title": "Technical Stability",
+        "text": "We keep working on the frustrating basics too, including mobile upload handling, clearer progress, and a simpler generation experience."
+      }
+    }
+  },
   "topicPages": {
     "virtual-try-on-clothes": {
       "eyebrow": "Virtual try on clothes",
@@ -198,19 +403,19 @@
       "body2": "For better results, upload a front-facing full-body photo in natural light. This gives the AI more reliable body mapping for fabric draping, sleeve length, and silhouette.",
       "bullet1": "Realistic draping on curves",
       "bullet2": "Size inclusivity from the main navigation",
-      "bullet3": "No body distortion promise",
+      "bullet3": "More natural silhouette previews",
       "bullet4": "10 free credits before paid upgrades"
     },
     "mens-ai-clothes-changer": {
       "eyebrow": "Men's AI clothes changer",
       "title": "Men's AI Clothes Changer for Shirts, Suits, and Streetwear",
-      "description": "Upload a male photo and try new outfits online, from casual looks to professional headshots.",
+      "description": "Upload a male photo and try new outfits online, from casual looks to sharper shirts, jackets, and workwear.",
       "body1": "Men's outfit try-on intent is often different: shirts, suits, jackets, streetwear, profile photos, and clean workwear matter more than generic fashion effects.",
       "body2": "This page gives men's searches a focused path while still sending users into the same simple AI clothes changer flow.",
       "bullet1": "Try suits, jackets, shirts, and streetwear",
       "bullet2": "Useful for profiles and shopping",
       "bullet3": "Upload photo or clothing reference",
-      "bullet4": "Preview first, upgrade later"
+      "bullet4": "Start free before buying credits"
     },
     "about-us": {
       "eyebrow": "About",
@@ -218,7 +423,7 @@
       "description": "aiclotheschanger.me makes fashion technology more accessible, transparent, and realistic with true virtual try-on without the paywall.",
       "body1": "At aiclotheschanger.me, we believe fashion technology should be accessible, transparent, and above all realistic. We saw a market full of apps that demand payment before showing a single result, so we decided to build a better way.",
       "body2": "Our mission is quality first, trust always. We specialize in high-fidelity AI clothes changer technology that understands how a silk dress drapes, how a denim jacket fits different body types, and why users need to see quality before committing to a plan.",
-      "body3": "We keep the complexity for us and the simplicity for you. IDM-VTON helps render realistic fabric textures, creases, and natural lighting, while our product experience prioritizes plus-size and men's fashion, Android image rotation fixes, stable generation, and privacy-first processing.",
+      "body3": "We keep the complexity for us and the simplicity for you. The product experience focuses on realistic outfit previews, clearer credit flow, plus-size and men's styling paths, and privacy-first processing.",
       "bullet1": "Realistic AI Clothes Changer",
       "bullet2": "10 free credits before upgrade",
       "bullet3": "Plus-size and men's fashion first",
@@ -229,19 +434,19 @@
       "title": "Privacy Policy",
       "description": "Privacy-first principles for uploaded photos, generated results, login, credits, and billing.",
       "body1": "Uploaded photos are encrypted during processing and automatically deleted from our servers when the try-on is complete.",
-      "body2": "Before calling Replicate or Fal.ai, the production system should run image and prompt safety checks to block NSFW, underwear, bikini, nude, or sensitive misuse requests.",
+      "body2": "We also maintain content and usage rules to reduce explicit, unsafe, or abusive requests across uploads, prompts, and account activity.",
       "body3": "",
       "bullet1": "Encrypted processing",
       "bullet2": "Automatic deletion after try-on",
-      "bullet3": "NSFW image and prompt filtering",
-      "bullet4": "Delete All My Data endpoint planned"
+      "bullet3": "Usage rules for unsafe requests",
+      "bullet4": "Privacy and billing handled from one account flow"
     },
     "terms-of-service": {
       "eyebrow": "Terms",
       "title": "Terms of Service",
       "description": "Rules for lawful uploads, responsible AI use, payments, refunds, cancellation, and credits.",
       "body1": "Users may only upload images they own or have legal permission to use. The service may not be used for commercial fraud, impersonation, explicit content, or copyright infringement.",
-      "body2": "To protect users and payment accounts, branded logo-heavy gallery images should be avoided, subscription cancellation must stay visible, and failed system generations should be eligible for credit refund.",
+      "body2": "Payments, renewals, cancellations, and credit use are expected to stay clear to the user, and failed system generations can be reviewed for credit adjustment.",
       "body3": "",
       "bullet1": "User owns or controls uploaded content",
       "bullet2": "No fraud or explicit misuse",
@@ -273,6 +478,7 @@
     "useCases": "Use cases",
     "faq": "FAQ",
     "startTryOn": "Start Try-On",
+    "previewFirst": "Preview first, upgrade later",
     "openPath": "Open path",
     "paymentUx": "Payment UX",
     "clearCredits": "Clear credits, checkout, and recovery",
@@ -284,5 +490,59 @@
     "loginButton": "Sign in with Google",
     "loginHint": "Get 10 Free Credits",
     "logout": "Logout"
+  },
+  "editor": {
+    "step1": "Choose Model",
+    "step2": "Choose Outfit",
+    "step3": "Generate",
+    "step1Desc": "Who is wearing",
+    "step2Desc": "What to wear",
+    "step3Desc": "See the result",
+    "selectModel": "Select a model to start your try-on",
+    "selectOutfit": "Now choose an outfit to visualize",
+    "readyGenerate": "Ready to generate your try-on",
+    "generate": "Generate Try-on",
+    "generating": "Generating realistic try-on...",
+    "resultPlaceholder": "Your try-on result will appear here",
+    "resultSubtext": "Select a model and outfit, then click generate",
+    "upload": "Upload",
+    "library": "Library",
+    "recent": "Recent",
+    "dropClothing": "Drop your clothing image here",
+    "orClickUpload": "or click to upload",
+    "filters": {
+      "all": "All",
+      "plusSize": "Plus Size",
+      "men": "Men",
+      "slim": "Slim",
+      "athletic": "Athletic"
+    },
+    "tags": {
+      "plusSize": "Plus Size",
+      "casual": "Casual",
+      "streetwear": "Streetwear",
+      "elegant": "Elegant",
+      "slim": "Slim",
+      "athletic": "Athletic",
+      "men": "Men",
+      "women": "Women"
+    },
+    "trust": {
+      "fabric": "Realistic fabric simulation",
+      "body": "No body reshaping",
+      "face": "Face and identity preserved"
+    },
+    "continue": "Continue",
+    "back": "Back",
+    "selected": "Selected",
+    "modelSelected": "Model selected",
+    "outfitSelected": "Outfit selected",
+    "singleClothes": "Single clothes",
+    "topBottom": "Top & bottom",
+    "addTop": "Add top",
+    "addBottom": "Add bottom",
+    "demo": "Demo",
+    "ourModels": "Our models",
+    "yourModels": "Your models"
   }
 }

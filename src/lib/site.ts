@@ -7,8 +7,8 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
 export const localeLabels: Record<Locale, string> = {
-  en: "English",
-  zh: "简体中文"
+  en: "EN",
+  zh: "ZH"
 };
 
 export const pageSlugs = [
@@ -19,7 +19,8 @@ export const pageSlugs = [
   "pricing",
   "about-us",
   "privacy-policy",
-  "terms-of-service"
+  "terms-of-service",
+  "editor"
 ] as const;
 
 export type PageSlug = (typeof pageSlugs)[number];
@@ -33,13 +34,25 @@ export function isPageSlug(value: string): value is PageSlug {
 }
 
 export function localizedPath(locale: Locale, slug: PageSlug = "") {
-  return slug ? `/${locale}/${slug}/` : `/${locale}/`;
+  const localePrefix = locale === defaultLocale ? "" : `/${locale}`;
+  return slug ? `${localePrefix}/${slug}/` : `${localePrefix || "/"}`;
 }
 
 export function absoluteLocalizedUrl(locale: Locale, slug: PageSlug = "") {
   return `${baseUrl}${localizedPath(locale, slug)}`;
 }
 
-export function alternatesFor(slug: PageSlug = "") {
-  return Object.fromEntries(locales.map((locale) => [locale, absoluteLocalizedUrl(locale, slug)]));
+export function alternatesFor(slug: PageSlug = "", isMultilingual = slug === "") {
+  const languages: Record<string, string> = {
+    en: absoluteLocalizedUrl("en", slug),
+    "x-default": absoluteLocalizedUrl("en", slug)
+  };
+
+  if (isMultilingual) {
+    for (const locale of locales) {
+      languages[locale] = absoluteLocalizedUrl(locale, slug);
+    }
+  }
+
+  return languages;
 }

@@ -297,5 +297,59 @@
     "loginButton": "使用 Google 登录",
     "loginHint": "获取 10 次免费额度",
     "logout": "退出登录"
+  },
+  "editor": {
+    "step1": "选择模特",
+    "step2": "选择服装",
+    "step3": "生成",
+    "step1Desc": "谁来穿",
+    "step2Desc": "穿什么",
+    "step3Desc": "查看效果",
+    "selectModel": "请选择一个模特开始试穿",
+    "selectOutfit": "现在选择一件服装来预览",
+    "readyGenerate": "准备好生成试穿效果了",
+    "generate": "生成试穿",
+    "generating": "正在生成逼真的试穿效果...",
+    "resultPlaceholder": "试穿效果将在这里显示",
+    "resultSubtext": "选择模特和服装后点击生成",
+    "upload": "上传",
+    "library": "图库",
+    "recent": "最近",
+    "dropClothing": "拖拽服装图片到这里",
+    "orClickUpload": "或点击上传",
+    "filters": {
+      "all": "全部",
+      "plusSize": "大码",
+      "men": "男装",
+      "slim": "纤细",
+      "athletic": "运动"
+    },
+    "tags": {
+      "plusSize": "大码",
+      "casual": "休闲",
+      "streetwear": "街头",
+      "elegant": "优雅",
+      "slim": "纤细",
+      "athletic": "运动",
+      "men": "男装",
+      "women": "女装"
+    },
+    "trust": {
+      "fabric": "逼真面料模拟",
+      "body": "不变形",
+      "face": "保留面部和身份"
+    },
+    "continue": "继续",
+    "back": "返回",
+    "selected": "已选择",
+    "modelSelected": "模特已选择",
+    "outfitSelected": "服装已选择",
+    "singleClothes": "单件服装",
+    "topBottom": "上装 & 下装",
+    "addTop": "添加上装",
+    "addBottom": "添加下装",
+    "demo": "演示",
+    "ourModels": "我们的模特",
+    "yourModels": "我的模特"
   }
 }

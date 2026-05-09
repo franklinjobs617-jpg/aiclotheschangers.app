@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { NextIntlClientProvider, useMessages } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { AuthProvider } from "@/context/AuthContext";
+import { GlobalAuthModal } from "@/components/GlobalAuthModal";
 import { isLocale, type Locale } from "@/lib/site";
 
 const geistSans = Geist({
@@ -48,7 +50,10 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
+          <AuthProvider>
+            {children}
+            <GlobalAuthModal />
+          </AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

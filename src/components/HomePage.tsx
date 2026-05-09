@@ -1,6 +1,6 @@
 import { ContentSections } from "@/components/ContentSections";
 import { HeroTool } from "@/components/HeroTool";
-import { faqs, howSteps } from "@/lib/content";
+import { faqs, howSteps } from "@/lib/homeContent";
 import { absoluteLocalizedUrl, type Locale } from "@/lib/site";
 
 export function HomePage({ locale }: { locale: Locale }) {
@@ -18,12 +18,7 @@ export function HomePage({ locale }: { locale: Locale }) {
         priceCurrency: "USD"
       },
       featureList:
-        "Virtual Try-On, AI Outfit Changer, Plus Size Models, Men's Fashion Try-On, Upload Clothing Reference, AI Clothes Changer",
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: "4.9",
-        reviewCount: "1200"
-      }
+        "Virtual Try-On, AI Outfit Changer, Plus Size Models, Men's Fashion Try-On, Upload Clothing Reference, AI Clothes Changer"
     },
     {
       "@context": "https://schema.org",

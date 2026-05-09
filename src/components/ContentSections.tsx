@@ -5,31 +5,43 @@ import Link from "next/link";
 import { Check, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {
-  exampleCardImages,
   exampleCardKeys,
   faqKeys,
   howStepIcons,
   howStepKeys,
-  storySectionImages,
   storySectionKeys,
   trustItemIcons,
   trustItemKeys,
   useCaseKeys,
   useCaseSlugs,
   whyItemKeys
-} from "@/lib/content";
+} from "@/lib/homeContent";
 import { localizedPath, type Locale } from "@/lib/site";
+
+const exampleCardImages = [
+  "https://images.insmind.com/market-operations/market/side/21551ac66006432b9759facb4fdf771d/1730889665936.jpg",
+  "https://images.insmind.com/market-operations/market/side/ce79b59be1d84e9788fcc4491ae13da4/1730889563222.jpg",
+  "https://images.insmind.com/market-operations/market/side/d8ddda7f875c43fa9f20bf0c8b6548d2/1730889600007.jpg"
+] as const;
+
+const storySectionImages = [
+  "/88147673-f5b7-473b-9d57-aef4b2857b5b.png",
+  "/AI换装对比_纯人物无文字-转换自.webp",
+  "/file_00000000d594720ca5615959f86e6a8c.png"
+] as const;
 
 export function ContentSections({ locale }: { locale: Locale }) {
   const t = useTranslations("sections");
   const trustT = useTranslations("trustItems");
   const howT = useTranslations("howSteps");
   const exampleT = useTranslations("exampleCards");
+  const feedbackT = useTranslations("feedbackSection");
   const storyT = useTranslations("storySections");
   const whyT = useTranslations("whyItems");
   const useCaseT = useTranslations("useCases");
   const faqT = useTranslations("faqs");
   const commonT = useTranslations("common");
+  const feedbackHighlights = ["1", "2", "3"] as const;
 
   return (
     <>
@@ -143,6 +155,59 @@ export function ContentSections({ locale }: { locale: Locale }) {
                 <span>{commonT("openPath")}</span>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section feedback-section">
+        <div className="container">
+          <div className="section-head">
+            <span>{feedbackT("eyebrow")}</span>
+            <h2>{feedbackT("title")}</h2>
+            <p>{feedbackT("description")}</p>
+          </div>
+          <div className="feedback-shell">
+            <article className="feedback-featured">
+              <span className="feedback-kicker">{feedbackT("featuredLabel")}</span>
+              <p className="feedback-quote">"{feedbackT("featuredQuote")}"</p>
+              <div className="feedback-person">
+                <span className="feedback-avatar">N</span>
+                <div>
+                  <strong>{feedbackT("featuredName")}</strong>
+                  <span>{feedbackT("featuredRole")}</span>
+                </div>
+              </div>
+            </article>
+
+            <div className="feedback-side">
+              <article className="feedback-card">
+                <p className="feedback-card-quote">"{feedbackT("secondary.shopping.quote")}"</p>
+                <div className="feedback-person compact">
+                  <span className="feedback-avatar">C</span>
+                  <div>
+                    <strong>{feedbackT("secondary.shopping.name")}</strong>
+                    <span>{feedbackT("secondary.shopping.role")}</span>
+                  </div>
+                </div>
+              </article>
+
+              <article className="feedback-card">
+                <p className="feedback-card-quote">"{feedbackT("secondary.fit.quote")}"</p>
+                <div className="feedback-person compact">
+                  <span className="feedback-avatar">M</span>
+                  <div>
+                    <strong>{feedbackT("secondary.fit.name")}</strong>
+                    <span>{feedbackT("secondary.fit.role")}</span>
+                  </div>
+                </div>
+              </article>
+
+              <div className="feedback-tags" aria-label="Feedback highlights">
+                {feedbackHighlights.map((key) => (
+                  <span key={key}>{feedbackT(`highlights.${key}`)}</span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

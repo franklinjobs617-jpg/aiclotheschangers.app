@@ -15,6 +15,9 @@ interface AuthContextType {
   user: User | null;
   token: string | null;
   isLoading: boolean;
+  isLoginModalOpen: boolean;
+  openLoginModal: () => void;
+  closeLoginModal: () => void;
   login: () => void;
   logout: () => void;
   refreshUser: () => Promise<void>;
@@ -23,11 +26,13 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 const API_BASE = "https://api.aiclotheschanger.me/prod-api";
+const API_ORIGIN = "https://api.aiclotheschanger.me";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("auth_token");
@@ -44,6 +49,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false);
   }, []);
 
+  const openLoginModal = useCallback(() => {
+    setIsLoginModalOpen(true);
+  }, []);
+
+  const closeLoginModal = useCallback(() => {
+    setIsLoginModalOpen(false);
+  }, []);
+
   const refreshUser = useCallback(async () => {
     const currentToken = localStorage.getItem("auth_token");
     if (!currentToken) return;
@@ -53,9 +66,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       });
       if (res.ok) {
         const data = await res.json();
-        if (data?.user) {
-          setUser(data.user);
-          localStorage.setItem("loggedInUser", JSON.stringify(data.user));
+        const freshUser = data?.data ?? data?.user;
+        if (freshUser) {
+          setUser(freshUser);
+          localStorage.setItem("loggedInUser", JSON.stringify(freshUser));
         }
       }
     } catch {
@@ -71,11 +85,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     );
 
     function handleMessage(event: MessageEvent) {
-      if (event.data?.user && event.data?.token) {
-        setUser(event.data.user);
-        setToken(event.data.token);
-        localStorage.setItem("auth_token", event.data.token);
-        localStorage.setItem("loggedInUser", JSON.stringify(event.data.user));
+      if (event.origin !== API_ORIGIN) return;
+
+      const payload = parseLoginPayload(event.data);
+      if (payload?.user && payload?.token) {
+        setUser(payload.user);
+        setToken(payload.token);
+        localStorage.setItem("auth_token", payload.token);
+        localStorage.setItem("loggedInUser", JSON.stringify(payload.user));
         window.removeEventListener("message", handleMessage);
         popup?.close();
       }
@@ -92,7 +109,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, token, isLoading, login, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, token, isLoading, isLoginModalOpen, openLoginModal, closeLoginModal, login, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );
@@ -102,4 +119,26 @@ export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error("useAuth must be used within AuthProvider");
   return ctx;
+}
+
+function parseLoginPayload(data: unknown): { user: User; token: string } | null {
+  if (!data || typeof data !== "object") return null;
+  const direct = data as { user?: User; token?: string };
+
+  if (direct.user && typeof direct.token === "string") {
+    return { user: direct.user, token: direct.token };
+  }
+
+  if ("token" in direct && typeof direct.token === "string") {
+    try {
+      const parsed = JSON.parse(direct.token) as { user?: User; token?: string };
+      if (parsed.user && typeof parsed.token === "string") {
+        return { user: parsed.user, token: parsed.token };
+      }
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
 }

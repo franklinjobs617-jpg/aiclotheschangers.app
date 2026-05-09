@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Menu, Shirt, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { localizedPath, type Locale } from "@/lib/site";
+import { useAuth } from "@/context/AuthContext";
 
 export function SiteHeader({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("nav");
   const brand = useTranslations()("brand");
+  const { openLoginModal } = useAuth();
   const navItems = [
     [t("tryOn"), localizedPath(locale)],
     [t("plusSize"), localizedPath(locale, "plus-size-virtual-try-on")],
@@ -23,7 +25,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <div className="header-inner">
         <Link href={localizedPath(locale)} className="brand" aria-label="AI clothes changer home">
           <span className="brand-mark">
-            <Sparkles size={18} />
+            <Shirt size={18} />
           </span>
           <span>{brand}</span>
         </Link>
@@ -37,10 +39,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </nav>
 
         <div className="header-actions">
-          <Link href="#" className="login-link">
+          <button type="button" className="login-link" onClick={openLoginModal}>
             {t("login")}
-          </Link>
-          <Link href="#tool" className="create-link">
+          </button>
+          <Link href={localizedPath(locale, "editor")} className="create-link">
             {t("create")}
           </Link>
           <button type="button" className="menu-button" aria-label="Open menu" onClick={() => setOpen(true)}>
@@ -55,7 +57,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <div className="drawer-head">
               <span className="brand">
                 <span className="brand-mark">
-                  <Sparkles size={18} />
+                  <Shirt size={18} />
                 </span>
                 <span>{brand}</span>
               </span>
@@ -69,7 +71,17 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                   {label}
                 </Link>
               ))}
-              <Link href="#tool" className="mobile-create" onClick={() => setOpen(false)}>
+              <button
+                type="button"
+                className="mobile-login"
+                onClick={() => {
+                  setOpen(false);
+                  openLoginModal();
+                }}
+              >
+                {t("login")}
+              </button>
+              <Link href={localizedPath(locale, "editor")} className="mobile-create" onClick={() => setOpen(false)}>
                 {t("create")}
               </Link>
             </div>

@@ -4,60 +4,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, CheckCircle2, RotateCcw, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
-import {
-  exampleCardImages,
-  heroImages,
-  pricingFaqKeys,
-  pricingPlanBenefits,
-  pricingSecurity,
-  storySectionImages
-} from "@/lib/content";
 import { localizedPath, type Locale, type PageSlug } from "@/lib/site";
 
-const specialtyPageData = {
-  "plus-size-virtual-try-on": {
-    image: storySectionImages[2],
-    accentImage: heroImages[2].src,
-    eyebrow: "Plus Size First",
-    stats: ["Curvy model path", "Realistic drape", "Free preview"],
-    featureTitle: "AI styling for every body shape",
-    featureText:
-      "This page turns the project strategy into a focused path for users who cannot judge fit from narrow model libraries. It keeps the free preview, privacy, and realistic fabric details visible before conversion.",
-    proofTitle: "What makes the plus size path different",
-    proofItems: ["Curve-aware outfit previews", "Front-facing full-body guidance", "No forced checkout before judging quality"],
-    related: [
-      ["Men's AI Clothes Changer", "mens-ai-clothes-changer" as const],
-      ["Virtual Try On Clothes", "virtual-try-on-clothes" as const]
-    ]
+const heroImages = [
+  {
+    src: "/85a52f41-3dad-4774-a469-b4ad5f324a7e.webp",
+    alt: "AI clothes changer before and after result"
   },
-  "mens-ai-clothes-changer": {
-    image: storySectionImages[0],
-    accentImage: exampleCardImages[1],
-    eyebrow: "Men's Fashion",
-    stats: ["Suits", "Streetwear", "Profile photos"],
-    featureTitle: "A try-on path for men's shirts, suits, and everyday looks",
-    featureText:
-      "Men's intent is often practical: profile photos, workwear, shopping decisions, jackets, and clean outfit swaps. This page gives those searches a direct path into the same simple AI clothes changer flow.",
-    proofTitle: "Built for overlooked men's try-on needs",
-    proofItems: ["Professional headshot outfit swaps", "Casual and streetwear previews", "Upload photo or clothing reference"],
-    related: [
-      ["Plus Size Virtual Try-On", "plus-size-virtual-try-on" as const],
-      ["Virtual Try On Clothes", "virtual-try-on-clothes" as const]
-    ]
+  {
+    src: "https://images.insmind.com/market-operations/market/side/f2f8a4a8cf184daf8d01b04c117d82fe/1730889159329.jpg",
+    alt: "AI clothing style sample"
+  },
+  {
+    src: "https://images.insmind.com/market-operations/market/side/3b42fc5d7ade49b3b7df539ba3c0b7c4/1730889163517.jpg",
+    alt: "Virtual try on sample model"
+  },
+  {
+    src: "https://images.insmind.com/market-operations/market/side/2eb9275d461341fb9775a5158005a0bd/1730889167016.jpg",
+    alt: "AI outfit changer example"
+  },
+  {
+    src: "https://images.insmind.com/market-operations/market/side/b6d53a681d3644259dcb70bc0ee5e4e6/1730889171190.jpg",
+    alt: "AI clothes changer sample portrait"
   }
-} as const;
+] as const;
 
-const trustNotes = [
-  { icon: BadgeCheck, title: "10 free credits", text: "New users can test quality before choosing a paid plan." },
-  { icon: RotateCcw, title: "Failed jobs refunded", text: "System failures should return credits instead of burning trust." },
-  { icon: ShieldCheck, title: "Privacy-first uploads", text: "Uploaded photos are encrypted during processing and deleted after try-on." }
-];
+const exampleCardImages = [
+  "https://images.insmind.com/market-operations/market/side/21551ac66006432b9759facb4fdf771d/1730889665936.jpg",
+  "https://images.insmind.com/market-operations/market/side/ce79b59be1d84e9788fcc4491ae13da4/1730889563222.jpg",
+  "https://images.insmind.com/market-operations/market/side/d8ddda7f875c43fa9f20bf0c8b6548d2/1730889600007.jpg"
+] as const;
+
+const storySectionImages = [
+  "/88147673-f5b7-473b-9d57-aef4b2857b5b.png",
+  "https://images.insmind.com/market-operations/market/side/21551ac66006432b9759facb4fdf771d/1730889665936.jpg",
+  "https://images.insmind.com/market-operations/market/side/d8ddda7f875c43fa9f20bf0c8b6548d2/1730889600007.jpg"
+] as const;
 
 export function TopicPage({ locale, slug }: { locale: Locale; slug: Exclude<PageSlug, ""> }) {
   const isPricing = slug === "pricing";
   const isAbout = slug === "about-us";
   const isSpecialty = slug === "plus-size-virtual-try-on" || slug === "mens-ai-clothes-changer";
   const commonT = useTranslations("common");
+  const pricingPageT = useTranslations("pricingPage");
 
   if (isPricing) return <PricingPage locale={locale} />;
   if (isAbout) return <AboutPageContent locale={locale} />;
@@ -72,7 +61,7 @@ export function TopicPage({ locale, slug }: { locale: Locale; slug: Exclude<Page
               <Link className="primary-button" href={`${localizedPath(locale)}#tool`}>
                 {commonT("startTryOn")}
               </Link>
-              <span>Preview first, upgrade later</span>
+              <span>{commonT("previewFirst")}</span>
             </div>
           </div>
 
@@ -90,75 +79,53 @@ export function TopicPage({ locale, slug }: { locale: Locale; slug: Exclude<Page
 }
 
 function AboutPageContent({ locale }: { locale: Locale }) {
-  const technology = [
-    [
-      "True-to-Life Realism",
-      "Utilizing the state-of-the-art IDM-VTON model, we render realistic fabric textures, creases, and natural lighting that generic AI models often miss."
-    ],
-    [
-      "Inclusivity by Design",
-      "We noticed the industry lacked diversity. Our model library is the first to prioritize Plus-size and Men's fashion, ensuring every user finds a model that represents them."
-    ],
-    [
-      "Technical Stability",
-      "We've engineered our Web App to eliminate common industry bugs, such as the Android image rotation error and 30% loading freeze, providing a stable 15-second generation cycle."
-    ]
-  ];
+  const t = useTranslations("aboutPage");
+  const technologyKeys = ["realism", "inclusive", "stability"] as const;
+  const sectionKeys = ["redefining", "mission", "technology", "privacy", "join"] as const;
 
   return (
     <article className="about-page">
       <section className="about-editorial-hero">
         <div className="container narrow">
-          <span>Brand Slogan</span>
-          <h1>Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall.</h1>
+          <span>{t("sloganLabel")}</span>
+          <h1>{t("slogan")}</h1>
         </div>
       </section>
 
       <section className="section about-editorial-body">
         <div className="container about-article-grid">
           <aside className="about-sidebar" aria-label="About page sections">
-            <a href="#redefining">Redefining</a>
-            <a href="#mission">Mission</a>
-            <a href="#technology">Technology</a>
-            <a href="#privacy">Privacy</a>
-            <a href="#join">Join us</a>
+            {sectionKeys.map((key) => (
+              <a href={`#${key}`} key={key}>
+                {t(`sidebar.${key}`)}
+              </a>
+            ))}
           </aside>
 
           <div className="about-article">
             <section id="redefining" className="about-copy-block lead">
-              <span>About Us: aiclotheschanger.me</span>
-              <h2>Redefining the Virtual Fitting Room</h2>
-              <p>
-                At aiclotheschanger.me, we believe that fashion technology should be accessible, transparent, and,
-                above all, realistic. We observed a market filled with applications that demand payment before showing a
-                single result. We decided to build a better way.
-              </p>
+              <span>{t("aboutLabel")}</span>
+              <h2>{t("sections.redefining.title")}</h2>
+              <p>{t("sections.redefining.body")}</p>
             </section>
 
             <section id="mission" className="about-copy-block">
-              <span>Our Mission</span>
-              <h2>Quality First, Trust Always</h2>
-              <p>
-                We specialize in high-fidelity AI Clothes Changer technology. Our platform is not just about swapping
-                pixels; it is about understanding how a silk dress drapes or how a denim jacket fits different body
-                types.
-              </p>
-              <p>
-                We are committed to solving the trust gap in the industry by offering a Try First, Pay Later model,
-                giving every user 10 free credits to witness our quality before committing to a plan.
-              </p>
+              <span>{t("sections.mission.label")}</span>
+              <h2>{t("sections.mission.title")}</h2>
+              <p>{t("sections.mission.body1")}</p>
+              <p>{t("sections.mission.body2")}</p>
             </section>
 
             <section id="technology" className="about-copy-block">
-              <span>The Technology Behind the Result</span>
-              <h2>Keeping the complexity for us, and the simplicity for you</h2>
+              <span>{t("sections.technology.label")}</span>
+              <h2>{t("sections.technology.title")}</h2>
               <div className="about-tech-list">
-                {technology.map(([title, text], index) => (
-                  <article key={title}>
+                {technologyKeys.map((key, index) => (
+                  <article key={key}>
                     <span>{String(index + 1).padStart(2, "0")}</span>
                     <div>
-                      <h3>{title}</h3>
-                      <p>{text}</p>
+                      <h3>{t(`technology.${key}.title`)}</h3>
+                      <p>{t(`technology.${key}.text`)}</p>
                     </div>
                   </article>
                 ))}
@@ -166,25 +133,19 @@ function AboutPageContent({ locale }: { locale: Locale }) {
             </section>
 
             <section id="privacy" className="about-copy-block privacy">
-              <span>Your Privacy is Non-Negotiable</span>
-              <h2>Encrypted during processing, deleted after try-on</h2>
-              <p>
-                We strictly follow global data protection standards. Every image you upload is encrypted during
-                processing and automatically deleted from our servers the moment your try-on is complete.
-              </p>
+              <span>{t("sections.privacy.label")}</span>
+              <h2>{t("sections.privacy.title")}</h2>
+              <p>{t("sections.privacy.body")}</p>
             </section>
 
             <section id="join" className="about-join-card">
               <div>
-                <span>Join the Fashion Revolution</span>
-                <h2>Your personal, digital wardrobe</h2>
-                <p>
-                  Whether you are a shopper trying to avoid wrong-size returns or a fashion enthusiast exploring new
-                  styles, aiclotheschanger.me is your personal, digital wardrobe.
-                </p>
+                <span>{t("sections.join.label")}</span>
+                <h2>{t("sections.join.title")}</h2>
+                <p>{t("sections.join.body")}</p>
               </div>
               <Link className="primary-button" href={`${localizedPath(locale)}#tool`}>
-                Start Try-On
+                {t("sections.join.cta")}
               </Link>
             </section>
           </div>
@@ -208,26 +169,25 @@ function TopicHero({ slug }: { slug: Exclude<PageSlug, "" | "pricing"> }) {
 function PricingPage({ locale }: { locale: Locale }) {
   const t = useTranslations("pricing");
   const commonT = useTranslations("common");
+  const pricingPageT = useTranslations("pricingPage");
   const planKeys = ["free", "creator", "pro"] as const;
-  const feedback = [
-    ["No paywall surprise", "I could test the first result before thinking about credits."],
-    ["Clear credit math", "The plan tells me exactly how many try-ons I can run."],
-    ["Refund logic matters", "Failed generations should not consume credits silently."]
-  ];
+  const trustNoteKeys = ["freeCredits", "refunds", "privacy"] as const;
+  const securityKeys = ["stripeFirst", "paymentRecovery", "creditsRefresh", "hdAfterValue", "riskControl"] as const;
+  const faqKeys = ["freeCredits", "hdExtra", "failedJobs", "renewal", "cancel"] as const;
 
   return (
     <div className="pricing-page">
       <section className="pricing-hero">
         <div className="container pricing-hero-inner">
           <span>{t("eyebrow")}</span>
-          <h1>Plans & Pricing</h1>
+          <h1>{pricingPageT("heroTitle")}</h1>
           <p>
-            Start with 10 free credits, then choose a small credit top-up or a monthly plan when you are ready.
-            <strong> No hard paywall before the first useful preview.</strong>
+            {pricingPageT("heroBody")}
+            <strong> {pricingPageT("heroHighlight")}</strong>
           </p>
           <div className="billing-toggle" aria-label="Billing cycle">
-            <button type="button">Yearly - Save 20%</button>
-            <button type="button" className="active">Monthly</button>
+            <button type="button">{pricingPageT("yearlyLabel")}</button>
+            <button type="button" className="active">{pricingPageT("monthlyLabel")}</button>
           </div>
         </div>
       </section>
@@ -236,7 +196,7 @@ function PricingPage({ locale }: { locale: Locale }) {
         <div className="container pricing-plans-grid">
           {planKeys.map((key) => (
             <article className={key === "creator" ? "price-card featured" : "price-card"} key={key}>
-              {key === "creator" ? <span className="plan-badge">Most practical</span> : null}
+              {key === "creator" ? <span className="plan-badge">{pricingPageT("featuredBadge")}</span> : null}
               <h2>{t(`${key}.name`)}</h2>
               <p>{t(`${key}.description`)}</p>
               <div className="price">
@@ -248,10 +208,10 @@ function PricingPage({ locale }: { locale: Locale }) {
               </Link>
               <div className="credits">{t(`${key}.credits`)}</div>
               <ul>
-                {pricingPlanBenefits[key].map((benefit) => (
-                  <li key={benefit}>
+                {[1, 2, 3, 4].map((benefitIndex) => (
+                  <li key={benefitIndex}>
                     <CheckCircle2 size={16} />
-                    {benefit}
+                    {pricingPageT(`planBenefits.${key}.${benefitIndex}`)}
                   </li>
                 ))}
               </ul>
@@ -261,9 +221,9 @@ function PricingPage({ locale }: { locale: Locale }) {
 
         <div className="container topup-panel">
           <div>
-            <span>Or top up credits</span>
+            <span>{pricingPageT("topupLabel")}</span>
             <h2>{t("starter.name")}: {t("starter.price")}</h2>
-            <p>{t("starter.description")} 1 AI try-on costs 1 credit.</p>
+            <p>{t("starter.description")} {pricingPageT("topupFootnote")}</p>
           </div>
           <Link className="primary-button" href="#">
             {t("starter.cta")}
@@ -273,14 +233,14 @@ function PricingPage({ locale }: { locale: Locale }) {
 
       <section className="pricing-trust-strip">
         <div className="container pricing-trust-grid">
-          {trustNotes.map((item) => {
-            const Icon = item.icon;
+          {trustNoteKeys.map((key) => {
+            const Icon = trustNoteIconMap[key];
             return (
-              <article key={item.title}>
+              <article key={key}>
                 <Icon size={18} />
                 <div>
-                  <h2>{item.title}</h2>
-                  <p>{item.text}</p>
+                  <h2>{pricingPageT(`trustNotes.${key}.title`)}</h2>
+                  <p>{pricingPageT(`trustNotes.${key}.text`)}</p>
                 </div>
               </article>
             );
@@ -296,13 +256,13 @@ function PricingPage({ locale }: { locale: Locale }) {
             <p>{commonT("clearCreditsText")}</p>
           </div>
           <div className="reason-grid">
-            {pricingSecurity.map((item) => {
-              const Icon = item.icon;
+            {securityKeys.map((key) => {
+              const Icon = pricingSecurityIconMap[key];
               return (
-                <article className="reason-card" key={item.titleKey}>
+                <article className="reason-card" key={key}>
                   <Icon size={28} />
-                  <h3>{item.titleKey}</h3>
-                  <p>{item.textKey}</p>
+                  <h3>{pricingPageT(`security.${key}.title`)}</h3>
+                  <p>{pricingPageT(`security.${key}.text`)}</p>
                 </article>
               );
             })}
@@ -317,10 +277,10 @@ function PricingPage({ locale }: { locale: Locale }) {
             <h2>{commonT("pricingFaqs")}</h2>
           </div>
           <div className="faq-list">
-            {pricingFaqKeys.map((item) => (
-              <details key={item.q}>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
+            {faqKeys.map((key) => (
+              <details key={key}>
+                <summary>{pricingPageT(`faqs.${key}.question`)}</summary>
+                <p>{pricingPageT(`faqs.${key}.answer`)}</p>
               </details>
             ))}
           </div>
@@ -359,17 +319,18 @@ function StandardContent({ slug }: { slug: Exclude<PageSlug, "" | "pricing"> }) 
 }
 
 function TopicHeroPanel({ locale, slug }: { locale: Locale; slug: keyof typeof specialtyPageData }) {
+  const t = useTranslations(`specialtyPages.${slug}`);
   const data = specialtyPageData[slug];
   return (
     <div className="topic-visual-panel">
       <Image src={data.image} alt="" width={820} height={560} />
       <div className="topic-floating-card">
-        <span>{data.eyebrow}</span>
-        <strong>{data.stats[0]}</strong>
+        <span>{t("eyebrow")}</span>
+        <strong>{t("stat")}</strong>
       </div>
       <div className="topic-mini-stack">
         <Image src={data.accentImage} alt="" width={84} height={84} />
-        <Link href={`${localizedPath(locale)}#tool`}>Try free</Link>
+        <Link href={`${localizedPath(locale)}#tool`}>{t("cta")}</Link>
       </div>
     </div>
   );
@@ -377,19 +338,22 @@ function TopicHeroPanel({ locale, slug }: { locale: Locale; slug: keyof typeof s
 
 function SpecialtyContent({ locale, slug }: { locale: Locale; slug: keyof typeof specialtyPageData }) {
   const t = useTranslations(`topicPages.${slug}`);
+  const specialtyT = useTranslations(`specialtyPages.${slug}`);
   const data = specialtyPageData[slug];
   const bullets = [t("bullet1"), t("bullet2"), t("bullet3"), t("bullet4")];
+  const proofKeys = ["1", "2", "3"] as const;
+  const relatedKeys = ["1", "2"] as const;
 
   return (
     <>
       <section className="section topic-feature-section">
         <div className="container topic-feature-grid">
           <div className="topic-copy">
-            <span className="topic-kicker">{data.eyebrow}</span>
-            <h2>{data.featureTitle}</h2>
+            <span className="topic-kicker">{specialtyT("eyebrow")}</span>
+            <h2>{specialtyT("featureTitle")}</h2>
             <p>{t("body1")}</p>
             <p>{t("body2")}</p>
-            <p>{data.featureText}</p>
+            <p>{specialtyT("featureText")}</p>
           </div>
           <div className="topic-list topic-list-cards">
             {bullets.map((item) => (
@@ -408,20 +372,20 @@ function SpecialtyContent({ locale, slug }: { locale: Locale; slug: keyof typeof
             <Image src={data.image} alt="" width={820} height={560} />
           </div>
           <div className="topic-copy">
-            <span className="topic-kicker">Trust path</span>
-            <h2>{data.proofTitle}</h2>
+            <span className="topic-kicker">{specialtyT("proofLabel")}</span>
+            <h2>{specialtyT("proofTitle")}</h2>
             <div className="topic-proof-list">
-              {data.proofItems.map((item) => (
-                <p key={item}>
+              {proofKeys.map((key) => (
+                <p key={key}>
                   <span />
-                  {item}
+                  {specialtyT(`proofItems.${key}`)}
                 </p>
               ))}
             </div>
             <div className="topic-related-row">
-              {data.related.map(([label, path]) => (
-                <Link href={localizedPath(locale, path)} key={path}>
-                  {label}
+              {relatedKeys.map((key, index) => (
+                <Link href={localizedPath(locale, data.related[index][1])} key={key}>
+                  {specialtyT(`related.${key}`)}
                 </Link>
               ))}
             </div>
@@ -431,3 +395,36 @@ function SpecialtyContent({ locale, slug }: { locale: Locale; slug: keyof typeof
     </>
   );
 }
+
+const specialtyPageData = {
+  "plus-size-virtual-try-on": {
+    image: storySectionImages[2],
+    accentImage: heroImages[2].src,
+    related: [
+      ["Men's AI Clothes Changer", "mens-ai-clothes-changer" as const],
+      ["Virtual Try On Clothes", "virtual-try-on-clothes" as const]
+    ]
+  },
+  "mens-ai-clothes-changer": {
+    image: storySectionImages[0],
+    accentImage: exampleCardImages[1],
+    related: [
+      ["Plus Size Virtual Try-On", "plus-size-virtual-try-on" as const],
+      ["Virtual Try On Clothes", "virtual-try-on-clothes" as const]
+    ]
+  }
+} as const;
+
+const trustNoteIconMap = {
+  freeCredits: BadgeCheck,
+  refunds: RotateCcw,
+  privacy: ShieldCheck
+} as const;
+
+const pricingSecurityIconMap = {
+  stripeFirst: BadgeCheck,
+  paymentRecovery: RotateCcw,
+  creditsRefresh: CheckCircle2,
+  hdAfterValue: CheckCircle2,
+  riskControl: ShieldCheck
+} as const;
