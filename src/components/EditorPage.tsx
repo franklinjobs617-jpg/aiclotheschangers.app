@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Loader2, ArrowRight,Sparkles } from "lucide-react";
+import { Loader2, Home, Sparkles, Image as ImageIcon, Shirt, User, Clock } from "lucide-react";
 import { OutfitSelector } from "./editor/OutfitSelector";
 import { ModelSelector } from "./editor/ModelSelector";
 import { ResultPreview } from "./editor/ResultPreview";
@@ -14,15 +14,7 @@ interface EditorPageProps {
 
 export function EditorPage({ locale }: EditorPageProps) {
   const t = useTranslations("editor");
-  const [initialPhoto, setInitialPhoto] = useState<string | null>(null);
-
-  useEffect(() => {
-    const stored = sessionStorage.getItem("editor-upload-photo");
-    if (stored) {
-      setInitialPhoto(stored);
-      sessionStorage.removeItem("editor-upload-photo");
-    }
-  }, []);
+  const [activeNav, setActiveNav] = useState("ai-tryon");
 
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [selectedOutfit, setSelectedOutfit] = useState<string | null>(null);
@@ -47,91 +39,178 @@ export function EditorPage({ locale }: EditorPageProps) {
 
   const ready = selectedModel && selectedOutfit;
 
+  // Navigation items based on locale, default to English
+  const isZh = locale === "zh";
+  const navItems = [
+    { id: "home", label: isZh ? "开始" : "Home", icon: Home },
+    { id: "ai-tryon", label: isZh ? "AI试穿" : "AI Try-On", icon: Sparkles, section: isZh ? "创建" : "Create" },
+    { id: "ai-create", label: isZh ? "AI服装创建辅助" : "AI Outfit Creator", icon: ImageIcon, section: isZh ? "创建" : "Create" },
+    { id: "my-clothes", label: isZh ? "我的衣柜" : "My Wardrobe", icon: Shirt, section: isZh ? "图片" : "Images" },
+    { id: "my-models", label: isZh ? "我的模型" : "My Models", icon: User, section: isZh ? "图片" : "Images" },
+    { id: "history", label: isZh ? "历史" : "History", icon: Clock },
+  ];
+
   return (
-    <div className="bg-white">
-      <div className="mx-auto flex w-[min(1400px,calc(100%-32px))] gap-0 py-6 lg:gap-8 lg:py-8">
-        {/* ===== Left Sidebar ===== */}
-        <aside className="flex w-full shrink-0 flex-col gap-7 lg:w-[360px] lg:border-r lg:border-gray-100 lg:pr-8">
-          {/* ===== Select Clothes ===== */}
-          <section>
-            <h3 className="mb-3 text-[15px] font-bold text-gray-900">Select clothes</h3>
-            <OutfitSelector
-              selected={selectedOutfit}
-              onSelect={setSelectedOutfit}
-              labels={{
-                singleClothes: t("singleClothes"),
-                topBottom: t("topBottom"),
-                dropClothing: t("dropClothing"),
-                orClickUpload: t("orClickUpload"),
-                addTop: t("addTop"),
-                addBottom: t("addBottom"),
-                recent: t("recent"),
-                demo: t("demo"),
-              }}
-            />
-          </section>
-
-          <section>
-            <h3 className="mb-3 text-[15px] font-bold text-gray-900">Select a model</h3>
-            <p className="mb-3 text-[12px] leading-relaxed text-gray-500">
-              Select our model or upload your model to try on
-            </p>
-            <ModelSelector
-              selected={selectedModel}
-              onSelect={setSelectedModel}
-              labels={{
-                ourModels: t("ourModels"),
-                yourModels: t("yourModels"),
-                upload: t("upload"),
-              }}
-            />
-          </section>
-
-          {/* ===== Bottom: Quality + Generate ===== */}
-          <div className="space-y-4 border-t border-gray-100 pt-5">
-            {/* High quality mode toggle */}
-            <div className="flex items-center justify-between">
-              <span className="text-[13px] font-medium text-gray-700">High quality mode</span>
-              <button
-                type="button"
-                onClick={() => setHighQuality(!highQuality)}
-                className={`relative inline-flex h-6 w-10 items-center rounded-full transition-colors ${
-                  highQuality ? "bg-gray-900" : "bg-gray-200"
-                }`}
-              >
-                <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform ${
-                    highQuality ? "translate-x-5" : "translate-x-1"
-                  }`}
-                />
-              </button>
-            </div>
-
-            {/* Generate button — green per reference */}
-            <button
-              type="button"
-              disabled={!ready || isGenerating}
-              onClick={handleGenerate}
-              className={`flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-2xl text-[15px] font-semibold transition-all duration-200 ${
-                isGenerating
-                  ? "cursor-wait bg-gradient-to-r from-green-500 to-emerald-500 text-white"
-                  : ready
-                    ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md hover:shadow-lg active:scale-[0.98]"
-                    : "cursor-not-allowed bg-gray-100 text-gray-400"
-              }`}
-            >
-              {isGenerating ? (
-                <Loader2 size={18} className="animate-spin" />
-              ) : (
-                <ArrowRight size={17} />
-              )}
-              {isGenerating ? "Generating..." : "Generate"}
-            </button>
-          </div>
+    <div className="editor-page">
+      <div className="editor-container">
+        {/* Left Sidebar Navigation */}
+        <aside className="editor-sidebar">
+          <nav className="editor-nav">
+            {navItems.map((item, idx) => {
+              const showSection = item.section && (idx === 0 || navItems[idx - 1]?.section !== item.section);
+              const IconComponent = item.icon;
+              return (
+                <div key={item.id}>
+                  {showSection && (
+                    <span className="editor-nav-label">{item.section}</span>
+                  )}
+                  <button
+                    type="button"
+                    className={`editor-nav-item ${activeNav === item.id ? "active" : ""}`}
+                    onClick={() => setActiveNav(item.id)}
+                  >
+                    <IconComponent size={16} className="mr-2" />
+                    {item.label}
+                  </button>
+                </div>
+              );
+            })}
+          </nav>
         </aside>
 
-        {/* ===== Right Main Area ===== */}
-        <main className="flex min-w-0 flex-1 flex-col pl-0 lg:pl-4">
+        {/* Main Content Area */}
+        <main className="editor-main">
+          <div className="editor-workspace">
+            {/* Select Clothes Section */}
+            <section className="editor-section">
+              <h3 className="editor-section-title">
+                {isZh ? "选择衣服" : "Select Clothes"}
+              </h3>
+              <OutfitSelector
+                selected={selectedOutfit}
+                onSelect={setSelectedOutfit}
+                labels={{
+                  singleClothes: t("singleClothes"),
+                  topBottom: t("topBottom"),
+                  dropClothing: t("dropClothing"),
+                  orClickUpload: t("orClickUpload"),
+                  addTop: t("addTop"),
+                  addBottom: t("addBottom"),
+                  recent: t("recent"),
+                  demo: t("demo"),
+                }}
+              />
+            </section>
+
+            {/* Select Model Section */}
+            <section className="editor-section">
+              <h3 className="editor-section-title">
+                {isZh ? "选择模特" : "Select Model"}
+              </h3>
+              <p className="editor-section-desc">
+                {isZh 
+                  ? "选择我们的模特或上传你的模特进行试穿" 
+                  : "Select our model or upload your model to try on"}
+              </p>
+              <ModelSelector
+                selected={selectedModel}
+                onSelect={setSelectedModel}
+                labels={{
+                  ourModels: t("ourModels"),
+                  yourModels: t("yourModels"),
+                  upload: t("upload"),
+                }}
+              />
+            </section>
+
+            {/* Quality Toggle & Generate Button */}
+            <div className="editor-actions">
+              <div className="editor-quality-toggle">
+                <div className="flex items-center gap-2">
+                  <span className="editor-quality-label">
+                    {isZh ? "高清模式" : "High Quality Mode"}
+                  </span>
+                  <span className="inline-flex items-center rounded bg-gradient-to-r from-blue-500 to-purple-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
+                    HD
+                  </span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setHighQuality(!highQuality)}
+                  className={`editor-toggle ${highQuality ? "active" : ""}`}
+                >
+                  <span className="editor-toggle-thumb" />
+                </button>
+              </div>
+
+              <button
+                type="button"
+                disabled={!ready || isGenerating}
+                onClick={handleGenerate}
+                className={`editor-generate-button ${!ready ? "disabled" : ""} ${isGenerating ? "loading" : ""}`}
+              >
+                {isGenerating ? (
+                  <>
+                    <Loader2 size={18} className="animate-spin" />
+                    {isZh ? "生成中..." : "Generating..."}
+                  </>
+                ) : (
+                  <>
+                    <span className="flex-1 text-center">{isZh ? "生成" : "Generate"}</span>
+                    <span className="text-[12px] font-normal opacity-90">
+                      {isZh ? "快速-1积分" : "Fast-1 Credit"}
+                    </span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </main>
+
+        {/* Right Sidebar - Steps Guide */}
+        <aside className="editor-guide">
+          <div className="editor-guide-card">
+            <div className="editor-guide-step">
+              <div className="editor-guide-number">1</div>
+              <div>
+                <h4 className="editor-guide-title">
+                  {isZh ? "选择衣服" : "Select Clothes"}
+                </h4>
+                <p className="editor-guide-text">
+                  {isZh 
+                    ? "请选择单件或双件衣服，拖拽图片或点击上传" 
+                    : "Choose single or multiple items, drag or click to upload"}
+                </p>
+              </div>
+            </div>
+            <div className="editor-guide-step">
+              <div className="editor-guide-number">2</div>
+              <div>
+                <h4 className="editor-guide-title">
+                  {isZh ? "选择或上传模特" : "Select or Upload Model"}
+                </h4>
+                <p className="editor-guide-text">
+                  {isZh 
+                    ? "选择我们的模特或上传你的模特进行试穿" 
+                    : "Pick from our models or upload your own"}
+                </p>
+              </div>
+            </div>
+            <div className="editor-guide-step">
+              <div className="editor-guide-number">3</div>
+              <div>
+                <h4 className="editor-guide-title">
+                  {isZh ? "设定完毕！" : "All Set!"}
+                </h4>
+                <p className="editor-guide-text">
+                  {isZh 
+                    ? "点击生成，让我们把衣服穿上吧！" 
+                    : "Click Generate and see the magic happen!"}
+                </p>
+              </div>
+            </div>
+          </div>
+
           <ResultPreview
             state={resultState}
             resultSrc={resultImage}
@@ -144,7 +223,7 @@ export function EditorPage({ locale }: EditorPageProps) {
               face: t("trust.face"),
             }}
           />
-        </main>
+        </aside>
       </div>
     </div>
   );

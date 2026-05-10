@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -7,14 +7,10 @@ import { AuthProvider } from "@/context/AuthContext";
 import { GlobalAuthModal } from "@/components/GlobalAuthModal";
 import { isLocale, type Locale } from "@/lib/site";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"]
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"]
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"]
 });
 
 export function generateStaticParams() {
@@ -47,8 +43,8 @@ export default async function LocaleLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>
+    <html lang={locale} className={plusJakartaSans.variable}>
+      <body className={plusJakartaSans.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AuthProvider>
             {children}

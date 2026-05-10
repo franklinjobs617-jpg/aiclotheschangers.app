@@ -51,27 +51,27 @@ export function ModelSelector({ selected, onSelect, labels }: ModelSelectorProps
       {/* Our models — grid */}
       {tab === "our" && (
         <div>
-          {/* Upload button */}
-          <button
-            type="button"
-            onClick={() => inputRef.current?.click()}
-            className="mb-3 flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-dashed border-gray-300 py-2 text-[12px] font-medium text-gray-500 transition-colors hover:border-gray-400 hover:text-gray-700"
-          >
-            <Plus size={14} />
-            {labels.upload}
-          </button>
-          <input ref={inputRef} type="file" accept="image/*" hidden />
+          {/* Model grid with upload button — 4 columns */}
+          <div className="grid grid-cols-4 gap-2">
+            {/* Upload button as first item */}
+            <button
+              type="button"
+              onClick={() => inputRef.current?.click()}
+              className="flex aspect-[3/4] cursor-pointer flex-col items-center justify-center rounded-lg border-2 border-dashed border-[#d8d8db] bg-gray-50/60 transition-colors hover:border-gray-400"
+            >
+              <Plus size={28} className="mb-2 text-gray-400" />
+              <span className="text-[12px] font-medium text-gray-500">{labels.upload}</span>
+            </button>
+            <input ref={inputRef} type="file" accept="image/*" hidden />
 
-          {/* Model grid — 3 columns */}
-          <div className="grid grid-cols-3 gap-2.5">
-            {OUR_MODELS.map((model) => {
+            {OUR_MODELS.slice(0, 7).map((model) => {
               const isSelected = selected === model.id;
               return (
                 <button
                   key={model.id}
                   type="button"
                   onClick={() => onSelect(model.id)}
-                  className={`group relative cursor-pointer overflow-hidden rounded-xl border-2 transition-all ${
+                  className={`group relative cursor-pointer overflow-hidden rounded-lg border-2 transition-all ${
                     isSelected
                       ? "border-gray-900 ring-1 ring-gray-900/10"
                       : "border-transparent hover:border-gray-300"
@@ -82,11 +82,8 @@ export function ModelSelector({ selected, onSelect, labels }: ModelSelectorProps
                     alt={model.name}
                     className="aspect-[3/4] w-full object-cover"
                   />
-                  <p className="truncate bg-white px-1.5 py-1 text-center text-[10px] font-medium text-gray-600">
-                    {model.name}
-                  </p>
                   {isSelected && (
-                    <div className="absolute right-1.5 top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white shadow-sm">
+                    <div className="absolute right-1 top-1 flex h-5 w-5 items-center justify-center rounded-full bg-gray-900 text-white shadow-sm">
                       <Check size={12} />
                     </div>
                   )}

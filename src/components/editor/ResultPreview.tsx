@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, Share2, RotateCcw, Shirt, User } from "lucide-react";
+import { Download, Share2, RotateCcw } from "lucide-react";
 
 interface ResultPreviewProps {
   state: "empty" | "loading" | "result";
@@ -19,10 +19,9 @@ interface ResultPreviewProps {
 function EmptyState({ label }: { label: string }) {
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-8 py-20 text-center">
-      {/* Illustration — person figure */}
-      <div className="relative mb-6">
-        {/* Person outline */}
-        <div className="flex h-[140px] w-[100px] items-center justify-center rounded-2xl bg-gray-100">
+      {/* Simple illustration */}
+      <div className="relative mb-8">
+        <div className="flex h-[140px] w-[100px] items-center justify-center rounded-2xl border-2 border-gray-200 bg-gray-50">
           <div className="flex flex-col items-center">
             {/* Head */}
             <div className="mb-1 h-9 w-9 rounded-full border-2 border-gray-300" />
@@ -35,36 +34,12 @@ function EmptyState({ label }: { label: string }) {
             </div>
           </div>
         </div>
-        {/* Floating shirt icon */}
-        <div className="absolute -right-3 -top-1 flex h-9 w-9 items-center justify-center rounded-full bg-amber-100 text-amber-600 shadow-sm">
-          <Shirt size={17} />
-        </div>
-        {/* Floating user icon */}
-        <div className="absolute -left-3 -bottom-1 flex h-9 w-9 items-center justify-center rounded-full bg-blue-100 text-blue-600 shadow-sm">
-          <User size={17} />
-        </div>
       </div>
 
-      {/* Step guide */}
-      <div className="mb-6 flex flex-col items-center gap-4">
-        <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-900 text-[11px] font-bold text-white">1</span>
-          <span className="text-[14px] font-semibold text-gray-800">Select clothes</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-200 text-[11px] font-bold text-gray-500">2</span>
-          <span className="text-[14px] font-semibold text-gray-800">Pick or upload a model</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-200 text-[11px] font-bold text-gray-500">3</span>
-          <span className="text-[14px] font-semibold text-gray-800">Try it on!</span>
-        </div>
-      </div>
-
-      <p className="mb-3 text-[13px] text-gray-400">
-        Select clothes and a model to generate your try-on
+      <p className="mb-3 text-[14px] font-medium text-gray-600">
+        {label}
       </p>
-      <p className="text-xs text-gray-300">{label}</p>
+      <p className="text-xs text-gray-400">Select clothes and model to start</p>
     </div>
   );
 }
@@ -81,7 +56,7 @@ function LoadingState({ label }: { label: string }) {
 }
 
 /* Result display — main image with floating actions */
-function ResultDisplay({ src }: { src: string }) {
+function ResultDisplay({ src, labels }: { src: string; labels: { fabric: string; body: string; face: string } }) {
   return (
     <div className="flex flex-1 flex-col">
       {/* Main result image */}
@@ -112,13 +87,6 @@ function ResultDisplay({ src }: { src: string }) {
           </button>
         </div>
       </div>
-
-      {/* Trust notes */}
-      <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[11px] text-gray-400">
-        <span>{labels.fabric}</span>
-        <span>{labels.body}</span>
-        <span>{labels.face}</span>
-      </div>
     </div>
   );
 }
@@ -126,7 +94,7 @@ function ResultDisplay({ src }: { src: string }) {
 export function ResultPreview({ state, resultSrc, labels }: ResultPreviewProps) {
   if (state === "empty") return <EmptyState label={labels.placeholder} />;
   if (state === "loading") return <LoadingState label={labels.generating} />;
-  if (state === "result" && resultSrc) return <ResultDisplay src={resultSrc} />;
+  if (state === "result" && resultSrc) return <ResultDisplay src={resultSrc} labels={{ fabric: labels.fabric, body: labels.body, face: labels.face }} />;
 
   return null;
 }
