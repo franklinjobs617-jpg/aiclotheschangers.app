@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { Menu, Shirt, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { localizedPath, type Locale } from "@/lib/site";
@@ -25,7 +26,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       <div className="header-inner">
         <Link href={localizedPath(locale)} className="brand" aria-label="AI clothes changer home">
           <span className="brand-mark">
-            <Shirt size={18} />
+            <Image src="/brand/icon.svg" alt="" width={30} height={30} priority />
           </span>
           <span>{brand}</span>
         </Link>
@@ -57,7 +58,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
             <div className="drawer-head">
               <span className="brand">
                 <span className="brand-mark">
-                  <Shirt size={18} />
+                  <Image src="/brand/icon.svg" alt="" width={30} height={30} />
                 </span>
                 <span>{brand}</span>
               </span>

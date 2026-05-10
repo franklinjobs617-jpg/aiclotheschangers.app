@@ -32,6 +32,35 @@
 - Plus Size 用户：在竞品中找不到合适模特的群体
 - 男性用户：被竞品忽视的试穿需求
 
+### 1.5 2026-05-10 前端与 SEO 优化记录
+
+本轮重点是把首页、Editor、Pricing、Plus Size Spoke、Men Spoke 统一推进到 Tailwind CSS 主导的页面结构，并补齐用户能直接感知的图片、对比、FAQ、模型选择和转化路径。
+
+#### 已完成
+
+- 首页首屏工具区已改为 Before/After 滑块展示，使用图片 `public/seo-assets/hero-mirror-before-after.png`。目标是让用户第一眼看到“同一人物、同一动作、换装前后”的真实差异，而不是只看到静态双图。
+- 首页右侧上传区保留上传按钮、拖拽上传提示和 model 示例；底部重复 CTA 与额外提示块已移除，页面更轻。
+- 首页 model 示例与 Editor 打通：用户在首页选择 model 后进入 Editor，会通过 `sessionStorage` 传递选中项，Editor 左侧 model 列表会把该 model 提到第一位，右侧空状态也会显示同一个 model。
+- 新增共享 model 数据文件 `src/lib/editorModels.ts`，减少首页和 Editor 的 model 数据重复。
+- Editor 侧边栏、Model、Outfit、Result 区域已从旧 global CSS 视觉向 Tailwind 风格收敛，补充 hover tooltip、折叠态提示、移动端适配和更轻的字体层级。
+- Pricing 页面去掉 Free plan 展示，突出 `$0.99 Pay As You Go` 入口；按钮文字对比度已修复，当前目标是提高低门槛付费 CTR。
+- Spoke 页面不再完全复用同一套模板。Plus Size 与 Men 页面分别加入更具体的视觉区块、对比图片、FAQ 和 FAQ Schema，内容不只停留在文档话术。
+- 新增品牌资源：`public/brand/icon.svg`、`public/brand/logo.svg`、`public/brand/og-card.svg`。站点 header、metadata icon、默认 OG 图已接入。
+- 新增 SEO/内容图片：`public/seo-assets/plus-size-try-on-comparison.png`、`public/seo-assets/mens-try-on-comparison.png`、`public/seo-assets/hero-mirror-before-after.png`。
+
+#### 当前验证
+
+- `npm run build` 已通过，Next.js 编译、TypeScript 检查、24 个静态/动态页面生成均成功。
+- 已确认路由包含：首页、Editor、Pricing、Plus Size、Men、Virtual Try-On、About、Privacy、Terms、Stripe Payment、robots、sitemap。
+
+#### 下次优先继续优化
+
+- 首页 Before/After 滑块需要继续做视觉复查，重点确认桌面端和移动端都能清楚看到人物脸部，且滑块区域不显得过大或裁切不自然。
+- Spoke 页还可以继续增强 E-E-A-T：补充更贴近用户问题的段落，例如适合什么身材/场景、图片上传建议、隐私处理、失败结果如何重试。
+- Pricing 页下一步建议继续做移动端转化优化：检查价格卡片高度、CTA 首屏位置、套餐对比信息密度，以及按钮是否在深浅背景上始终清晰。
+- Editor 页下一步建议继续细调右侧结果区：空状态、生成中、失败、成功后的 before/after slider 四种状态都需要保持同一套精致视觉。
+- 需要继续检查非首页与非 Editor 页面是否仍有旧 global CSS 依赖；新增/重构页面应优先使用 Tailwind CSS。
+
 ---
 
 ## 二、技术架构

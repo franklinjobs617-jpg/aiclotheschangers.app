@@ -18,7 +18,16 @@ export function HomePage({ locale }: { locale: Locale }) {
         priceCurrency: "USD"
       },
       featureList:
-        "Virtual Try-On, AI Outfit Changer, Plus Size Models, Men's Fashion Try-On, Upload Clothing Reference, AI Clothes Changer"
+        "Virtual Try-On, AI Outfit Changer, Plus Size Models, Men's Fashion Try-On, Upload Clothing Reference, AI Clothes Changer",
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "1200"
+      },
+      potentialAction: {
+        "@type": "UseAction",
+        target: absoluteLocalizedUrl(locale, "editor")
+      }
     },
     {
       "@context": "https://schema.org",

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">AIClothesChanger icon</title>
+  <desc id="desc">A polished shirt icon with a subtle try-on sparkle.</desc>
+  <rect width="512" height="512" rx="112" fill="#1F2329"/>
+  <path d="M158 136 213 116c8 28 26 42 43 42s35-14 43-42l55 20c18 7 30 24 27 43l-13 78c-2 11-11 19-22 19h-35v107c0 20-16 36-36 36h-38c-4 0-8-3-8-8V270h-32v141c0 5-4 8-8 8h-38c-20 0-36-16-36-36V276H80c-11 0-20-8-22-19l-13-78c-3-19 9-36 27-43l55-20c8 28 26 42 43 42s35-14 43-42" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M337 107l9 21 22 9-22 9-9 22-9-22-22-9 22-9 9-21Z" fill="#23A7A0"/>
+  <path d="M381 317l6 15 15 6-15 6-6 15-6-15-15-6 15-6 6-15Z" fill="#23A7A0"/>
+</svg>

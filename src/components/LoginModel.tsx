@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useCallback, useRef, useState } from "react";
-import { X, Mail } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
 import { useAuth } from "@/context/AuthContext";
 
@@ -20,19 +20,22 @@ function FeatureItem({ text }: { text: string }) {
   );
 }
 
-/* ── Social login button (Google / Apple) ── */
+/* ── Google login button ── */
 function SocialButton({
   icon,
   label,
   onClick,
+  dataModalLast,
 }: {
   icon: React.ReactNode;
   label: string;
   onClick: () => void;
+  dataModalLast?: boolean;
 }) {
   return (
     <button
       type="button"
+      data-modal-last={dataModalLast ? true : undefined}
       className="flex h-11 w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border border-gray-200 bg-white text-[14px] font-medium text-gray-700 transition-all duration-150 hover:border-gray-300 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-1 active:scale-[0.98]"
       onClick={onClick}
     >
@@ -44,7 +47,6 @@ function SocialButton({
 
 export function LoginModal({ open, onClose }: LoginModalProps) {
   const { login } = useAuth();
-  const [isSignUp, setIsSignUp] = useState(false);
   const [imgError, setImgError] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const prevActiveElement = useRef<HTMLElement | null>(null);
@@ -171,20 +173,20 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
             id="login-title"
             className="mt-1 mb-5 text-[22px] font-semibold leading-snug tracking-tight text-gray-900"
           >
-            {isSignUp ? "Create Your Account" : "Sign Up or Log in to Get Started"}
+            Sign in to continue
           </h2>
 
           {/* Features list */}
           <ul className="mb-8 flex flex-col gap-2.5">
-            <FeatureItem text="Free AI-powered Creative Generation" />
-            <FeatureItem text="Free AI-powered Editing Tools" />
-            <FeatureItem text="Free Downloads Anytime" />
+            <FeatureItem text="Get 10 free try-on credits" />
+            <FeatureItem text="Save your try-on history after login" />
+            <FeatureItem text="Use one secure Google account" />
           </ul>
 
-          {/* Social buttons */}
+          {/* Google login */}
           <div className="flex flex-col gap-3">
-            {/* Google */}
             <SocialButton
+              dataModalLast
               icon={
                 <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
@@ -193,66 +195,10 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
               }
-              label={isSignUp ? "Sign up with Google" : "Continue with Google"}
+              label="Continue with Google"
               onClick={login}
             />
-
-            {/* Apple */}
-            <SocialButton
-              icon={
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M17.05 20.28c-.98.95-2.05.88-3.08.4-1.09-.5-2.08-.48-3.24 0-1.44.62-2.2.44-3.06-.4C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-                </svg>
-              }
-              label={isSignUp ? "Sign up with Apple" : "Continue with Apple"}
-              onClick={login}
-            />
-
-            {/* Divider */}
-            <div className="relative my-1 flex items-center gap-3">
-              <div className="h-px flex-1 bg-gray-200" />
-              <span className="text-xs text-gray-400">Or</span>
-              <div className="h-px flex-1 bg-gray-200" />
-            </div>
-
-            {/* Email — primary CTA */}
-            <button
-              type="button"
-              data-modal-last
-              className="flex h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-gray-900 text-[14px] font-semibold text-white shadow-sm transition-all duration-150 hover:bg-gray-800 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-1 active:scale-[0.98]"
-              onClick={login}
-            >
-              <Mail size={15} strokeWidth={2} />
-              {isSignUp ? "Sign Up with Email" : "Continue with Email"}
-            </button>
           </div>
-
-          {/* Sign up link */}
-          <p className="mt-6 text-center text-[13px] text-gray-500">
-            {isSignUp ? (
-              <>
-                Already have an account?{" "}
-                <button
-                  type="button"
-                  className="font-semibold text-gray-900 underline-offset-2 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 rounded"
-                  onClick={() => setIsSignUp(false)}
-                >
-                  Log In
-                </button>
-              </>
-            ) : (
-              <>
-                Not registered yet?{" "}
-                <button
-                  type="button"
-                  className="font-semibold text-gray-900 underline-offset-2 transition-colors duration-150 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 rounded"
-                  onClick={() => setIsSignUp(true)}
-                >
-                  Sign Up
-                </button>
-              </>
-            )}
-          </p>
 
           {/* Terms */}
           <p className="mt-auto pt-4 text-center text-[11px] leading-normal text-gray-400">

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">AIClothesChanger social preview</title>
+  <desc id="desc">AI clothes changer brand preview with before and after virtual try-on panels.</desc>
+  <rect width="1200" height="630" fill="#F7F8FA"/>
+  <rect x="72" y="64" width="1056" height="502" rx="44" fill="#FFFFFF" stroke="#E5E7EB"/>
+  <rect x="112" y="104" width="86" height="86" rx="22" fill="#1F2329"/>
+  <path d="M139 132 151 128c3 9 8 13 13 13s10-4 13-13l12 4c6 2 10 8 9 15l-3 16c-1 4-5 7-9 7h-7v21c0 7-5 12-12 12h-20c-7 0-12-5-12-12v-21h-7c-4 0-8-3-9-7l-3-16c-1-7 3-13 9-15l12-4c3 9 8 13 13 13s10-4 13-13" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="226" y="139" fill="#222529" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="36" font-weight="700">AIClothesChanger</text>
+  <text x="226" y="178" fill="#69717F" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="20" font-weight="500">Realistic virtual try-on before you buy</text>
+  <text x="112" y="300" fill="#222529" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="64" font-weight="700">Try outfits on real photos</text>
+  <text x="112" y="360" fill="#47505F" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="28" font-weight="500">Plus size, men's styling, clear credits, and privacy-first uploads.</text>
+  <rect x="112" y="430" width="244" height="58" rx="14" fill="#1F2329"/>
+  <text x="154" y="468" fill="#FFFFFF" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="22" font-weight="700">Start Try-On</text>
+  <rect x="728" y="120" width="168" height="374" rx="28" fill="#F2F4F7"/>
+  <rect x="912" y="120" width="168" height="374" rx="28" fill="#EFFFFB"/>
+  <path d="M896 307h40" stroke="#23A7A0" stroke-width="12" stroke-linecap="round"/>
+  <path d="m924 283 28 24-28 24" fill="none" stroke="#23A7A0" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="765" y="534" fill="#69717F" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="20" font-weight="600">Before</text>
+  <text x="957" y="534" fill="#1D8A84" font-family="Plus Jakarta Sans, Inter, Arial, sans-serif" font-size="20" font-weight="700">After</text>
+</svg>

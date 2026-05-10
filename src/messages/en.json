@@ -17,9 +17,16 @@
   "hero": {
     "title": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall",
     "subtitle": "Use the AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men, preview realistic fabric textures, and start free before choosing a plan.",
-    "upload": "Upload a photo",
+    "upload": "Upload and continue in editor",
     "drop": "Or drop image here, paste image or URL",
-    "samples": "Try with one of these"
+    "samples": "Try with one of these",
+    "editorNote": "Uploads open the editor so you can pick clothes, choose a model, and generate there.",
+    "openEditor": "Start Try-On in editor",
+    "trust": {
+      "free": "10 free credits",
+      "privacy": "Encrypted processing",
+      "models": "Plus size and men"
+    }
   },
   "sections": {
     "trust": "Try a new outfit without the guesswork",
@@ -32,6 +39,24 @@
     "useCases": "Popular ways to use virtual try-on",
     "useCasesText": "Use it for online shopping, outfit planning, plus size previews, men's styling, content creation, and product photos.",
     "faq": "AI clothes changer FAQs"
+  },
+  "trustItems": {
+    "tryFirst": {
+      "title": "Try first, pay later",
+      "text": "New users get 10 free credits to judge realistic virtual try-on quality before upgrading."
+    },
+    "mobile": {
+      "title": "Mobile upload stability",
+      "text": "EXIF correction is part of the product foundation to reduce Android rotation and distorted uploads."
+    },
+    "encrypted": {
+      "title": "Encrypted processing",
+      "text": "Uploaded photos are handled with privacy-first processing and clear deletion rules."
+    },
+    "inclusive": {
+      "title": "Inclusive model paths",
+      "text": "Plus-size and men's try-on paths are treated as first-class product flows, not afterthoughts."
+    }
   },
 
   "howSteps": {
@@ -103,6 +128,34 @@
       "text": "The product experience is designed to feel clear and trackable instead of leaving users stuck on vague loading states."
     }
   },
+  "comparison": {
+    "eyebrow": "Expert comparison",
+    "title": "IDM-VTON realism, without a confusing workflow",
+    "description": "Compare the details that make a try-on result useful: fabric texture, body mapping, progress clarity, and privacy before checkout.",
+    "cta": "Open the editor",
+    "generic": "Generic image AI",
+    "ours": "AI Clothes Changer",
+    "fabric": {
+      "title": "Fabric texture",
+      "generic": "Often paints over clothing with flat colors or inconsistent seams.",
+      "ours": "Designed around realistic drape, folds, lighting, and garment edges."
+    },
+    "body": {
+      "title": "Body fit",
+      "generic": "May reshape the person or force one narrow model type.",
+      "ours": "Prioritizes plus-size and men's paths while preserving body proportions."
+    },
+    "progress": {
+      "title": "Generation feedback",
+      "generic": "A vague percent bar can feel frozen during long processing.",
+      "ours": "Shows deterministic steps like garment detection and light balancing."
+    },
+    "trust": {
+      "title": "Payment and privacy",
+      "generic": "Often hides quality behind a hard paywall.",
+      "ours": "Preview the workflow first, with encrypted processing and clear deletion rules."
+    }
+  },
   "useCases": {
     "plusSize": {
       "title": "Plus Size Virtual Try-On",
@@ -168,7 +221,7 @@
   "pricing": {
     "eyebrow": "Pricing",
     "title": "Plans & Credits",
-    "description": "Start free, buy small credit packs when needed, and understand exactly what renews or consumes credits.",
+    "description": "Choose a small credit pack or monthly plan and understand exactly what renews or consumes credits.",
     "body1": "Pricing should be easy to understand because users arrive after seeing try-on value, not before it.",
     "body2": "Credits are for extra generations and HD workflows. Failed system generations should not quietly burn user trust.",
     "free": {
@@ -205,12 +258,12 @@
     }
   },
   "pricingPage": {
-    "heroTitle": "Plans & Pricing",
-    "heroBody": "Start with 10 free credits, then choose a small credit top-up or a monthly plan when you are ready.",
-    "heroHighlight": "No hard paywall before the first useful preview.",
+    "heroTitle": "Simple Pricing for Real Outfit Tests",
+    "heroBody": "Start with the lightweight $0.99 credit pack for extra outfit tests, then move to monthly only when you use try-on regularly.",
+    "heroHighlight": "Pay as you go is the safest starting point.",
     "yearlyLabel": "One-time credits",
     "monthlyLabel": "Monthly plans",
-    "featuredBadge": "Best for regular use",
+    "featuredBadge": "Best starter",
     "topupLabel": "Or top up credits",
     "topupFootnote": "1 AI try-on costs 1 credit.",
     "planBenefits": {
@@ -219,6 +272,12 @@
         "2": "Mobile upload auto-fix",
         "3": "10+ models including plus size and men",
         "4": "Standard download"
+      },
+      "starter": {
+        "1": "10 one-time credits",
+        "2": "No subscription renewal",
+        "3": "Use after the free preview",
+        "4": "Good for occasional tests"
       },
       "creator": {
         "1": "100 credits per month",
@@ -235,8 +294,8 @@
     },
     "trustNotes": {
       "freeCredits": {
-        "title": "10 free credits",
-        "text": "New users can test quality before choosing a paid plan."
+        "title": "Preview before upgrade",
+        "text": "Use credits for extra useful results instead of paying before you know what you need."
       },
       "refunds": {
         "title": "Failed jobs refunded",
@@ -298,7 +357,7 @@
       "stat": "Curvy model path",
       "cta": "Try free",
       "featureTitle": "AI styling for every body shape",
-      "featureText": "This page turns the project strategy into a focused path for users who cannot judge fit from narrow model libraries. It keeps the free preview, privacy, and realistic fabric details visible before conversion.",
+      "featureText": "Use it to compare real styling questions before buying: where the waist sits, how sleeves fall, whether the dress shape feels balanced, and whether the outfit still looks like you.",
       "proofLabel": "Trust path",
       "proofTitle": "What makes the plus size path different",
       "proofItems": {
@@ -316,7 +375,7 @@
       "stat": "Suits and streetwear",
       "cta": "Try free",
       "featureTitle": "A try-on path for men's shirts, suits, and everyday looks",
-      "featureText": "Men's intent is often practical: profile photos, workwear, shopping decisions, jackets, and clean outfit swaps. This page gives those searches a direct path into the same simple AI clothes changer flow.",
+      "featureText": "Use it for practical decisions: a cleaner profile photo, a sharper workwear look, a casual streetwear check, or a quick comparison before buying a shirt, jacket, or suit.",
       "proofLabel": "Trust path",
       "proofTitle": "Built for overlooked men's try-on needs",
       "proofItems": {
@@ -398,11 +457,11 @@
     "plus-size-virtual-try-on": {
       "eyebrow": "Plus size virtual try-on",
       "title": "Inclusive Plus Size Virtual Try On & AI Clothes Changer",
-      "description": "See how clothes fit on your body. Our AI plus size virtual try-on supports curvy models of all sizes with free preview and realistic fabric draping.",
-      "body1": "Many virtual fitting tools make users infer fit from a narrow model set. This plus size virtual try-on path is built for curvy models, body positivity, and realistic outfit previews.",
-      "body2": "For better results, upload a front-facing full-body photo in natural light. This gives the AI more reliable body mapping for fabric draping, sleeve length, and silhouette.",
+      "description": "Preview outfits on curvy and plus size body types before shopping, styling, or creating content.",
+      "body1": "Many virtual fitting tools make users infer fit from a narrow model set. This plus size virtual try-on path focuses on curvy body representation, realistic outfit previews, and practical photo guidance.",
+      "body2": "For better results, upload a front-facing full-body photo in natural light. This gives the AI more reliable body mapping for fabric drape, sleeve length, waist placement, and silhouette.",
       "bullet1": "Realistic draping on curves",
-      "bullet2": "Size inclusivity from the main navigation",
+      "bullet2": "Plus size model examples",
       "bullet3": "More natural silhouette previews",
       "bullet4": "10 free credits before paid upgrades"
     },
@@ -482,7 +541,7 @@
     "openPath": "Open path",
     "paymentUx": "Payment UX",
     "clearCredits": "Clear credits, checkout, and recovery",
-    "clearCreditsText": "Pricing follows the project rule: users should see value first, then pay, then return to the original task.",
+    "clearCreditsText": "Start with a real preview, choose credits only when you need more results, and return to the same try-on flow after checkout.",
     "pricingFaqs": "Pricing FAQs"
   },
   "auth": {
@@ -567,5 +626,22 @@
     "regenerate": "Regenerate",
     "feedback": "Feedback",
     "delete": "Delete"
+    ,"progress": {
+      "identify": "Identifying garment details...",
+      "light": "Balancing light and shadows...",
+      "fabric": "Optimizing fabric texture...",
+      "finish": "Almost ready..."
+    },
+    "loginRequired": "Sign in to use your free credits and generate a try-on.",
+    "comingSoon": "This workspace area is planned. The AI Try-On flow is ready here.",
+    "privacyNote": "Use images you have rights to upload. Photos are processed securely; server-side deletion happens after API integration is complete.",
+    "pickClothesCta": "Pick clothes first",
+    "pickModelCta": "Pick a model first",
+    "signInGenerate": "Sign in to generate",
+    "before": "Before",
+    "after": "After",
+    "previewOnly": "Preview layout using local demo result until the generation API is connected.",
+    "localDelete": "Preview cleared locally.",
+    "feedbackThanks": "Thanks. Feedback collection will be connected with the production workflow."
   }
 }

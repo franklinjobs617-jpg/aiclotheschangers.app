@@ -5,30 +5,56 @@ import { Upload } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { EDITOR_MODELS } from "@/lib/editorModels";
 import { localizedPath, type Locale } from "@/lib/site";
 
-const heroImages = [
-  {
-    src: "/85a52f41-3dad-4774-a469-b4ad5f324a7e.webp",
-    alt: "AI clothes changer before and after result"
-  },
-  {
-    src: "https://images.insmind.com/market-operations/market/side/f2f8a4a8cf184daf8d01b04c117d82fe/1730889159329.jpg",
-    alt: "AI clothing style sample"
-  },
-  {
-    src: "https://images.insmind.com/market-operations/market/side/3b42fc5d7ade49b3b7df539ba3c0b7c4/1730889163517.jpg",
-    alt: "Virtual try on sample model"
-  },
-  {
-    src: "https://images.insmind.com/market-operations/market/side/2eb9275d461341fb9775a5158005a0bd/1730889167016.jpg",
-    alt: "AI outfit changer example"
-  },
-  {
-    src: "https://images.insmind.com/market-operations/market/side/b6d53a681d3644259dcb70bc0ee5e4e6/1730889171190.jpg",
-    alt: "AI clothes changer sample portrait"
-  }
-] as const;
+const heroComparisonImage = "/seo-assets/hero-mirror-before-after.png";
+
+function HeroBeforeAfterSlider() {
+  const [sliderValue, setSliderValue] = useState(50);
+  const splitPosition = `${sliderValue}%`;
+
+  return (
+    <div className="relative h-full min-h-[430px] overflow-hidden rounded-2xl bg-[#f2f4f7] max-[760px]:min-h-[360px]">
+      <div className="absolute inset-y-0 left-0 w-full overflow-hidden bg-[#f7f4ef]">
+        <Image
+          src={heroComparisonImage}
+          alt="Before virtual try-on mirror selfie"
+          width={1792}
+          height={1024}
+          priority
+          className="h-full w-full object-cover object-left"
+        />
+      </div>
+      <div className="absolute inset-y-0 right-0 w-full overflow-hidden bg-[#f7f4ef]" style={{ clipPath: `inset(0 0 0 ${splitPosition})` }}>
+        <Image
+          src={heroComparisonImage}
+          alt="After virtual try-on mirror selfie with new blouse"
+          width={1792}
+          height={1024}
+          priority
+          className="h-full w-full object-cover object-right"
+        />
+      </div>
+      <span className="absolute left-4 top-4 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white">Before</span>
+      <span className="absolute right-4 top-4 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white">After</span>
+      <div className="pointer-events-none absolute bottom-0 top-0 z-[2] w-px bg-white shadow-[0_0_0_1px_rgba(15,23,42,0.18)]" style={{ left: splitPosition }}>
+        <span className="absolute left-1/2 top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-white text-[15px] font-semibold text-[#344054] shadow-[0_8px_24px_rgba(15,23,42,0.22)]">
+          <span className="-mt-px tracking-[-2px]">‹›</span>
+        </span>
+      </div>
+      <input
+        type="range"
+        min="8"
+        max="92"
+        value={sliderValue}
+        aria-label="Before and after clothes changer slider"
+        onChange={(event) => setSliderValue(Number(event.target.value))}
+        className="absolute inset-0 z-[3] h-full w-full cursor-ew-resize opacity-0"
+      />
+    </div>
+  );
+}
 
 export function HeroTool({ locale }: { locale: Locale }) {
   const t = useTranslations("hero");
@@ -38,6 +64,11 @@ export function HeroTool({ locale }: { locale: Locale }) {
 
   const navigateToEditor = () => {
     router.push(localizedPath(locale, "editor"));
+  };
+
+  const selectModelAndOpenEditor = (src: string) => {
+    sessionStorage.setItem("editor-selected-model", src);
+    navigateToEditor();
   };
 
   const handleFile = (file: File) => {
@@ -62,9 +93,9 @@ export function HeroTool({ locale }: { locale: Locale }) {
           <p>{t("subtitle")}</p>
         </div>
 
-        <div className="hero-stage" id="tool">
+          <div className="hero-stage" id="tool">
           <div className="hero-demo-card" aria-label="AI clothes changer before and after example">
-            <Image src={'/cf2c28fe-55c4-4ddd-b1ca-574628d82657.png'} alt={heroImages[0].alt} width={900} height={600} priority />
+            <HeroBeforeAfterSlider />
           </div>
 
           <div
@@ -98,24 +129,25 @@ export function HeroTool({ locale }: { locale: Locale }) {
                   if (file) handleFile(file);
                 }}
               />
-              <div className="sample-picker">
-                <div className="sample-title">
-                  <span />
+              <div className="mt-7 w-full max-w-[34rem] overflow-hidden">
+                <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-[13px] font-medium text-[#9aa3b2]">
+                  <span className="h-px bg-gray-200" />
                   {t("samples")}
-                  <span />
+                  <span className="h-px bg-gray-200" />
                 </div>
-                <div className="sample-row" aria-label="Try with a sample image">
-                  {heroImages.map((image) => (
+                <div className="mt-4 grid grid-flow-col auto-cols-[72px] justify-center gap-2 overflow-x-auto pb-1 sm:grid-flow-row sm:grid-cols-5 sm:gap-3 sm:overflow-visible" aria-label="Try with an editor model">
+                  {EDITOR_MODELS.slice(10, 15).map((model) => (
                     <button
                       type="button"
-                      key={image.src}
-                      aria-label={image.alt}
-                      onClick={() => {
-                        sessionStorage.setItem("editor-upload-photo", image.src);
-                        navigateToEditor();
-                      }}
+                      key={model.id}
+                      aria-label={`Try ${model.name} in editor`}
+                      className="group relative aspect-square overflow-hidden rounded-xl border border-gray-200 bg-[#eceef1] transition-all hover:-translate-y-0.5 hover:border-[#23a7a0] hover:shadow-[0_12px_28px_rgba(15,23,42,0.12)]"
+                      onClick={() => selectModelAndOpenEditor(model.src)}
                     >
-                      <Image src={image.src} alt="" width={72} height={72} />
+                      <Image src={model.src} alt="" width={96} height={96} className="h-full w-full object-cover object-top" />
+                      <span className="absolute inset-x-1 bottom-1 translate-y-1 rounded-md bg-gray-950/85 px-1.5 py-1 text-[10px] font-semibold text-white opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                        {model.name}
+                      </span>
                     </button>
                   ))}
                 </div>

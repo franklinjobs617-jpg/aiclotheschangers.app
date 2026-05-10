@@ -41,10 +41,30 @@ export function ContentSections({ locale }: { locale: Locale }) {
   const useCaseT = useTranslations("useCases");
   const faqT = useTranslations("faqs");
   const commonT = useTranslations("common");
+  const comparisonT = useTranslations("comparison");
   const feedbackHighlights = ["1", "2", "3"] as const;
+  const editorHref = localizedPath(locale, "editor");
 
   return (
     <>
+      <section className="trust-strip" aria-label={t("trust")}>
+        <div className="container">
+          <div className="trust-grid">
+            {trustItemKeys.map((key, index) => {
+              const Icon = trustItemIcons[index];
+              return (
+                <article key={key}>
+                  <Icon size={18} />
+                  <div>
+                    <h2>{trustT(`${key}.title`)}</h2>
+                    <p>{trustT(`${key}.text`)}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <section className="section" id="how">
         <div className="container">
@@ -109,7 +129,7 @@ export function ContentSections({ locale }: { locale: Locale }) {
                     <strong>{storyT(`${key}.highlight`)}</strong>
                     {storyT(`${key}.after`)}
                   </p>
-                  <Link className="story-cta" href="#tool">
+                  <Link className="story-cta" href={editorHref}>
                     {storyT(`${key}.cta`)}
                   </Link>
                 </div>
@@ -136,6 +156,38 @@ export function ContentSections({ locale }: { locale: Locale }) {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section comparison-section">
+        <div className="container">
+          <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-12">
+            <div className="lg:sticky lg:top-24">
+              <span className="text-sm font-semibold text-[#1d8a84]">{comparisonT("eyebrow")}</span>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#222529] sm:text-4xl">{comparisonT("title")}</h2>
+              <p className="mt-4 text-base leading-7 text-[#69717f]">{comparisonT("description")}</p>
+              <Link className="mt-6 inline-flex min-h-11 items-center justify-center rounded-lg bg-[#222529] px-5 text-sm font-semibold !text-white transition-colors hover:bg-[#353b44]" href={editorHref}>
+                {comparisonT("cta")}
+              </Link>
+            </div>
+            <div className="grid gap-3" aria-label={comparisonT("title")}>
+              {(["fabric", "body", "progress", "trust"] as const).map((key) => (
+                <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_10px_24px_rgba(24,31,52,0.035)]" key={key}>
+                  <h3 className="text-base font-semibold text-[#222529]">{comparisonT(`${key}.title`)}</h3>
+                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <div className="rounded-xl bg-[#f7f8fa] p-4">
+                      <span className="text-xs font-semibold uppercase tracking-normal text-[#7a8391]">{comparisonT("generic")}</span>
+                      <p className="mt-2 text-sm leading-6 text-[#69717f]">{comparisonT(`${key}.generic`)}</p>
+                    </div>
+                    <div className="rounded-xl border border-[#23a7a0]/25 bg-[#f2fffb] p-4">
+                      <span className="text-xs font-semibold uppercase tracking-normal text-[#1d8a84]">{comparisonT("ours")}</span>
+                      <p className="mt-2 text-sm leading-6 text-[#47505f]">{comparisonT(`${key}.ours`)}</p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>

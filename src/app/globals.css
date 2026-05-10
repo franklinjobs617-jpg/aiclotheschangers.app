@@ -17,10 +17,12 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "WenQuanYi Micro Hei", Arial, sans-serif;
@@ -371,7 +373,7 @@ img {
   box-shadow: 0 4px 14px rgba(29, 35, 52, 0.08);
 }
 
-.hero-demo-card img {
+.hero-demo-card > img {
   width: 100%;
   height: auto;
   display: block;
@@ -486,14 +488,15 @@ img {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .hero-upload-card { order: -1; }
+  .hero-upload-card { order: 0; }
+  .hero-demo-card { order: 1; }
 }
 
 @media (max-width: 760px) {
   .hero-container { width: min(100%, calc(100% - 32px)); }
   .hero-stage { margin-top: 22px; gap: 16px; }
-  .upload-dropzone { min-height: 240px; padding: 18px; }
-  .upload-dropzone > p { display: none; }
+  .upload-dropzone { min-height: 300px; padding: 18px; }
+  .upload-dropzone > p { display: block; margin-bottom: 16px; }
   .sample-picker { max-width: 100%; }
 }
 
@@ -1817,6 +1820,71 @@ img {
   padding-top: 76px;
 }
 
+.pricing-credit-section {
+  padding: 64px 0;
+  background: #fbfcfd;
+}
+
+.pricing-credit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+}
+
+.pricing-credit-grid .section-head {
+  margin-bottom: 0;
+}
+
+.credit-rule-list {
+  display: grid;
+  gap: 12px;
+}
+
+.credit-rule-list article {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(24, 31, 52, 0.035);
+}
+
+.credit-rule-list strong {
+  min-width: 92px;
+  padding: 7px 9px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: #effbf8;
+  font-size: 13px;
+  text-align: center;
+}
+
+.credit-rule-list h3,
+.intent-card-grid h3,
+.seo-signal-grid h3,
+.legal-section-list h2,
+.legal-note-card h2,
+.legal-callout h2 {
+  margin: 0 0 7px;
+  color: var(--foreground);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.credit-rule-list p,
+.intent-card-grid p,
+.seo-signal-grid p,
+.legal-section-list p,
+.legal-note-card p,
+.legal-callout p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
 .pricing-feedback-section {
   overflow: hidden;
 }
@@ -2180,6 +2248,181 @@ img {
   flex: 0 0 auto;
 }
 
+.topic-comparison-visual {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: #f5f6f8;
+  box-shadow: 0 18px 48px rgba(24, 31, 52, 0.07);
+}
+
+.topic-comparison-visual img {
+  width: 100%;
+  height: 430px;
+  object-fit: cover;
+}
+
+.topic-comparison-visual div {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  left: 18px;
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(24, 31, 52, 0.12);
+  backdrop-filter: blur(14px);
+}
+
+.topic-comparison-visual span,
+.legal-hero span {
+  display: block;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.topic-comparison-visual strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--foreground);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.topic-intent-section {
+  padding-top: 0;
+}
+
+.intent-card-grid,
+.seo-signal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.intent-card-grid article,
+.seo-signal-grid article {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(24, 31, 52, 0.035);
+}
+
+.intent-card-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  background: #eceef1;
+}
+
+.intent-card-grid h3,
+.intent-card-grid p,
+.seo-signal-grid h3,
+.seo-signal-grid p {
+  padding-right: 18px;
+  padding-left: 18px;
+}
+
+.intent-card-grid h3,
+.seo-signal-grid h3 {
+  padding-top: 18px;
+}
+
+.intent-card-grid p,
+.seo-signal-grid p {
+  padding-bottom: 18px;
+}
+
+.seo-signal-grid article {
+  padding-top: 0;
+}
+
+.legal-page {
+  background: #fff;
+}
+
+.legal-hero {
+  padding: 72px 0 44px;
+  text-align: center;
+  background: linear-gradient(180deg, #f8fafb, #fff);
+}
+
+.legal-hero h1 {
+  margin: 12px 0;
+  font-size: clamp(38px, 5vw, 54px);
+  line-height: 1.08;
+  font-weight: 600;
+}
+
+.legal-hero p {
+  margin: 0 auto;
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.legal-body-section {
+  padding-top: 34px;
+}
+
+.legal-grid {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 820px);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+.legal-note-card {
+  position: sticky;
+  top: 92px;
+  padding: 22px;
+  border: 1px solid rgba(0, 205, 176, 0.24);
+  border-radius: 18px;
+  background: #f2fffb;
+}
+
+.legal-note-card svg {
+  color: var(--primary-dark);
+}
+
+.legal-section-list {
+  display: grid;
+  gap: 14px;
+}
+
+.legal-section-list article {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.legal-section-list article > span {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: #effbf8;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.legal-callout {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fbfcfd;
+}
+
 @media (max-width: 1040px) {
   .desktop-nav,
   .login-link,
@@ -2199,6 +2442,8 @@ img {
   .about-hero-grid,
   .about-story-grid,
   .about-flow-grid,
+  .legal-grid,
+  .pricing-credit-grid,
   .story-row,
   .story-row.reverse,
   .feature-row,
@@ -2248,7 +2493,9 @@ img {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .topic-grid {
+  .topic-grid,
+  .topic-feature-grid,
+  .topic-proof-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -2272,7 +2519,7 @@ img {
 
   .hero-copy h1 {
     max-width: 520px;
-    font-size: clamp(29px, 7vw, 34px);
+    font-size: 27px;
     line-height: 1.16;
   }
 
@@ -2294,7 +2541,7 @@ img {
   }
 
   .upload-dropzone {
-    min-height: 220px;
+    min-height: 300px;
     padding: 22px 16px 16px;
     justify-content: flex-start;
   }
@@ -2307,7 +2554,8 @@ img {
   }
 
   .upload-dropzone > p {
-    display: none;
+    display: block;
+    margin-bottom: 16px;
   }
 
   .sample-picker {
@@ -2334,7 +2582,7 @@ img {
     border-radius: 18px;
   }
 
-  .hero-demo-card img {
+  .hero-demo-card > img {
     min-height: 0;
     height: auto;
   }
@@ -2420,6 +2668,9 @@ img {
   .pricing-trust-grid,
   .pricing-feedback-grid,
   .pricing-grid,
+  .pricing-credit-grid,
+  .intent-card-grid,
+  .seo-signal-grid,
   .footer-columns {
     grid-template-columns: 1fr;
   }
@@ -2459,6 +2710,38 @@ img {
 
   .topup-panel .primary-button {
     width: 100%;
+  }
+
+  .credit-rule-list article {
+    flex-direction: column;
+  }
+
+  .credit-rule-list strong {
+    min-width: 0;
+  }
+
+  .topic-comparison-visual img {
+    height: auto;
+  }
+
+  .intent-card-grid img {
+    height: 230px;
+  }
+
+  .legal-hero {
+    padding: 52px 0 34px;
+  }
+
+  .legal-hero h1 {
+    font-size: 34px;
+  }
+
+  .legal-note-card {
+    position: static;
+  }
+
+  .legal-section-list article {
+    padding: 17px;
   }
 
   .about-hero {
@@ -2562,6 +2845,21 @@ img {
 }
 
 /* Editor Page — All styles now use Tailwind utility classes, see components/editor/ */
+.editor-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+
+.editor-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.editor-scroll::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 999px;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -2644,7 +2942,7 @@ img {
   }
 
   .hero-copy h1 {
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .hero-copy p {
@@ -2660,7 +2958,7 @@ img {
   }
 
   .upload-dropzone {
-    min-height: 206px;
+    min-height: 292px;
     padding: 20px 14px 14px;
   }
 

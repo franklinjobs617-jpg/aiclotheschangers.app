@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { absoluteLocalizedUrl, alternatesFor, type Locale, type PageSlug } from "./site";
 
 const SITE_NAME = "AIClothesChanger";
-const DEFAULT_OG_IMAGE = "/og-default.png";
+const DEFAULT_OG_IMAGE = "/brand/og-card.svg";
 
 interface BuildMetadataOpts {
   title: string;
