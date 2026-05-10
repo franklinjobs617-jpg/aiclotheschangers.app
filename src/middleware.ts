@@ -27,6 +27,12 @@ export default function middleware(request: NextRequest) {
   }
 
   const { pathname } = request.nextUrl;
+  if (pathname === "/zh-CN/editor" || pathname.startsWith("/zh-CN/editor/")) {
+    const url = request.nextUrl.clone();
+    url.pathname = pathname.replace(/^\/zh-CN/, "/zh");
+    return NextResponse.redirect(url, 307);
+  }
+
   const localePrefixMatch = pathname.match(/^\/(en|zh)(\/.*)?$/);
   if (localePrefixMatch) {
     const locale = localePrefixMatch[1];
@@ -38,7 +44,7 @@ export default function middleware(request: NextRequest) {
       return NextResponse.redirect(url, 301);
     }
 
-    if (locale !== routing.defaultLocale && restPath && restPath !== "/") {
+    if (locale !== routing.defaultLocale && restPath && restPath !== "/" && restPath !== "/editor") {
       const url = request.nextUrl.clone();
       url.pathname = restPath;
       return NextResponse.redirect(url, 307);

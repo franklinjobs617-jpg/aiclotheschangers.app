@@ -2,7 +2,23 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Loader2, Home, Sparkles, Image as ImageIcon, Shirt, User, Clock } from "lucide-react";
+import {
+  AlertCircle,
+  Clock,
+  CreditCard,
+  Download,
+  HelpCircle,
+  Home,
+  Image as ImageIcon,
+  Layers,
+  Loader2,
+  MessageSquare,
+  PanelLeftClose,
+  RotateCcw,
+  Shirt,
+  Trash2,
+  User,
+} from "lucide-react";
 import { OutfitSelector } from "./editor/OutfitSelector";
 import { ModelSelector } from "./editor/ModelSelector";
 import { ResultPreview } from "./editor/ResultPreview";
@@ -15,80 +31,107 @@ interface EditorPageProps {
 export function EditorPage({ locale }: EditorPageProps) {
   const t = useTranslations("editor");
   const [activeNav, setActiveNav] = useState("ai-tryon");
-
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [selectedOutfit, setSelectedOutfit] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState(false);
-  const [resultImage, setResultImage] = useState<string | null>(null);
+  const [hasResult, setHasResult] = useState(false);
   const [highQuality, setHighQuality] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+
+  const isZh = locale === "zh";
+  const ready = Boolean(selectedModel && selectedOutfit);
 
   const handleGenerate = () => {
-    if (!selectedModel || !selectedOutfit) return;
+    if (!selectedOutfit || !selectedModel) {
+      setNotice(!selectedOutfit ? t("requiredClothes") : t("requiredModel"));
+      return;
+    }
+
+    setNotice(null);
+    setHasResult(false);
     setIsGenerating(true);
-    setTimeout(() => {
-      setResultImage(selectedOutfit);
+
+    window.setTimeout(() => {
+      setHasResult(true);
       setIsGenerating(false);
-    }, 3000);
+    }, 2200);
   };
 
-  const resultState: "empty" | "loading" | "result" = isGenerating
-    ? "loading"
-    : resultImage
-      ? "result"
-      : "empty";
-
-  const ready = selectedModel && selectedOutfit;
-
-  // Navigation items based on locale, default to English
-  const isZh = locale === "zh";
   const navItems = [
-    { id: "home", label: isZh ? "开始" : "Home", icon: Home },
-    { id: "ai-tryon", label: isZh ? "AI试穿" : "AI Try-On", icon: Sparkles, section: isZh ? "创建" : "Create" },
-    { id: "ai-create", label: isZh ? "AI服装创建辅助" : "AI Outfit Creator", icon: ImageIcon, section: isZh ? "创建" : "Create" },
-    { id: "my-clothes", label: isZh ? "我的衣柜" : "My Wardrobe", icon: Shirt, section: isZh ? "图片" : "Images" },
-    { id: "my-models", label: isZh ? "我的模型" : "My Models", icon: User, section: isZh ? "图片" : "Images" },
+    { id: "home", label: isZh ? "开始" : "Start", icon: Home },
+    { id: "ai-tryon", label: isZh ? "AI 试穿" : "AI Try on", icon: Shirt, section: isZh ? "创建" : "Create" },
+    { id: "ai-create", label: isZh ? "AI模型创建器" : "AI model creator", icon: ImageIcon, section: isZh ? "创建" : "Create" },
+    { id: "my-clothes", label: isZh ? "我的衣柜" : "My wardrobe", icon: Layers, section: isZh ? "资产" : "Assets" },
+    { id: "my-models", label: isZh ? "我的模型" : "My models", icon: User, section: isZh ? "资产" : "Assets" },
     { id: "history", label: isZh ? "历史" : "History", icon: Clock },
   ];
+
+  const accountItems = [
+    { label: isZh ? "我的账户" : "My account", icon: User },
+    { label: isZh ? "我的套餐" : "My plan", icon: CreditCard },
+    { label: isZh ? "支持" : "Support", icon: HelpCircle },
+  ];
+
+  const resultState: "empty" | "loading" | "result" = isGenerating ? "loading" : hasResult ? "result" : "empty";
 
   return (
     <div className="editor-page">
       <div className="editor-container">
-        {/* Left Sidebar Navigation */}
         <aside className="editor-sidebar">
+          <button type="button" className="editor-collapse-button" aria-label="Collapse sidebar">
+            <PanelLeftClose size={14} />
+          </button>
+
           <nav className="editor-nav">
-            {navItems.map((item, idx) => {
-              const showSection = item.section && (idx === 0 || navItems[idx - 1]?.section !== item.section);
-              const IconComponent = item.icon;
+            {navItems.map((item, index) => {
+              const showSection = item.section && (index === 0 || navItems[index - 1]?.section !== item.section);
+              const Icon = item.icon;
+
               return (
                 <div key={item.id}>
-                  {showSection && (
-                    <span className="editor-nav-label">{item.section}</span>
-                  )}
+                  {showSection && <span className="editor-nav-label">{item.section}</span>}
                   <button
                     type="button"
                     className={`editor-nav-item ${activeNav === item.id ? "active" : ""}`}
                     onClick={() => setActiveNav(item.id)}
                   >
-                    <IconComponent size={16} className="mr-2" />
+                    <Icon size={16} />
                     {item.label}
                   </button>
                 </div>
               );
             })}
           </nav>
+
+          <div className="editor-sidebar-footer">
+            {accountItems.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button type="button" className="editor-nav-item muted" key={item.label}>
+                  <Icon size={16} />
+                  {item.label}
+                </button>
+              );
+            })}
+          </div>
         </aside>
 
-        {/* Main Content Area */}
-        <main className="editor-main">
+        <main className="editor-control-panel">
           <div className="editor-workspace">
-            {/* Select Clothes Section */}
             <section className="editor-section">
-              <h3 className="editor-section-title">
-                {isZh ? "选择衣服" : "Select Clothes"}
-              </h3>
+              <div className="editor-section-head">
+                <h3 className="editor-section-title">{isZh ? "选择衣服" : "Select clothes"}</h3>
+                <button type="button" className="editor-tip-button">
+                  <HelpCircle size={14} />
+                  {isZh ? "提示" : "Tips"}
+                </button>
+              </div>
               <OutfitSelector
                 selected={selectedOutfit}
-                onSelect={setSelectedOutfit}
+                onSelect={(src) => {
+                  setSelectedOutfit(src || null);
+                  setHasResult(false);
+                }}
                 labels={{
                   singleClothes: t("singleClothes"),
                   topBottom: t("topBottom"),
@@ -98,23 +141,36 @@ export function EditorPage({ locale }: EditorPageProps) {
                   addBottom: t("addBottom"),
                   recent: t("recent"),
                   demo: t("demo"),
+                  seeAll: t("seeAll"),
+                  addItem: t("addItem"),
+                  allClothes: t("allClothes"),
+                  regularFit: t("regularFit"),
+                  looseFit: t("looseFit"),
+                  top: t("top"),
+                  bottom: t("bottom"),
+                  full: t("full"),
+                  all: t("all"),
                 }}
               />
             </section>
 
-            {/* Select Model Section */}
             <section className="editor-section">
-              <h3 className="editor-section-title">
-                {isZh ? "选择模特" : "Select Model"}
-              </h3>
+              <div className="editor-section-head">
+                <h3 className="editor-section-title">{isZh ? "选择或上传模型" : "Pick or upload a model"}</h3>
+                <button type="button" className="editor-tip-button">
+                  <HelpCircle size={14} />
+                  {isZh ? "提示" : "Tips"}
+                </button>
+              </div>
               <p className="editor-section-desc">
-                {isZh 
-                  ? "选择我们的模特或上传你的模特进行试穿" 
-                  : "Select our model or upload your model to try on"}
+                {isZh ? "选择我们的模型或上传您的模型进行尝试" : "Choose a model or upload your own to try on"}
               </p>
               <ModelSelector
                 selected={selectedModel}
-                onSelect={setSelectedModel}
+                onSelect={(src) => {
+                  setSelectedModel(src);
+                  setHasResult(false);
+                }}
                 labels={{
                   ourModels: t("ourModels"),
                   yourModels: t("yourModels"),
@@ -123,107 +179,91 @@ export function EditorPage({ locale }: EditorPageProps) {
               />
             </section>
 
-            {/* Quality Toggle & Generate Button */}
-            <div className="editor-actions">
-              <div className="editor-quality-toggle">
-                <div className="flex items-center gap-2">
-                  <span className="editor-quality-label">
-                    {isZh ? "高清模式" : "High Quality Mode"}
-                  </span>
-                  <span className="inline-flex items-center rounded bg-gradient-to-r from-blue-500 to-purple-500 px-1.5 py-0.5 text-[10px] font-bold text-white">
-                    HD
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setHighQuality(!highQuality)}
-                  className={`editor-toggle ${highQuality ? "active" : ""}`}
-                >
-                  <span className="editor-toggle-thumb" />
-                </button>
+            {notice && (
+              <div className="editor-notice" role="alert">
+                <AlertCircle size={15} />
+                {notice}
               </div>
+            )}
+          </div>
 
+          <div className="editor-actions">
+            <div className="editor-quality-toggle">
+              <div className="flex items-center gap-2">
+                <span className="editor-quality-label">{isZh ? "高清模式" : "High quality mode"}</span>
+                <span className="editor-hd-badge">HD</span>
+              </div>
               <button
                 type="button"
-                disabled={!ready || isGenerating}
-                onClick={handleGenerate}
-                className={`editor-generate-button ${!ready ? "disabled" : ""} ${isGenerating ? "loading" : ""}`}
+                onClick={() => setHighQuality(!highQuality)}
+                role="switch"
+                aria-checked={highQuality}
+                className={`editor-toggle ${highQuality ? "active" : ""}`}
               >
-                {isGenerating ? (
-                  <>
-                    <Loader2 size={18} className="animate-spin" />
-                    {isZh ? "生成中..." : "Generating..."}
-                  </>
-                ) : (
-                  <>
-                    <span className="flex-1 text-center">{isZh ? "生成" : "Generate"}</span>
-                    <span className="text-[12px] font-normal opacity-90">
-                      {isZh ? "快速-1积分" : "Fast-1 Credit"}
-                    </span>
-                  </>
-                )}
+                <span className="editor-toggle-thumb" />
               </button>
             </div>
+
+            <button
+              type="button"
+              disabled={isGenerating}
+              onClick={handleGenerate}
+              className={`editor-generate-button ${!ready ? "not-ready" : ""} ${isGenerating ? "loading" : ""}`}
+            >
+              {isGenerating ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  {isZh ? "正在为您穿衣..." : "Dressing your model..."}
+                </>
+              ) : (
+                <>
+                  <span className="flex-1 text-center">{isZh ? "生成" : "Generate"}</span>
+                  <span className="editor-credit-tag">{highQuality ? (isZh ? "质量 - 2 积分" : "Quality - 2 credits") : (isZh ? "快速 - 1 积分" : "Fast - 1 credit")}</span>
+                </>
+              )}
+            </button>
           </div>
         </main>
 
-        {/* Right Sidebar - Steps Guide */}
-        <aside className="editor-guide">
-          <div className="editor-guide-card">
-            <div className="editor-guide-step">
-              <div className="editor-guide-number">1</div>
-              <div>
-                <h4 className="editor-guide-title">
-                  {isZh ? "选择衣服" : "Select Clothes"}
-                </h4>
-                <p className="editor-guide-text">
-                  {isZh 
-                    ? "请选择单件或双件衣服，拖拽图片或点击上传" 
-                    : "Choose single or multiple items, drag or click to upload"}
-                </p>
-              </div>
-            </div>
-            <div className="editor-guide-step">
-              <div className="editor-guide-number">2</div>
-              <div>
-                <h4 className="editor-guide-title">
-                  {isZh ? "选择或上传模特" : "Select or Upload Model"}
-                </h4>
-                <p className="editor-guide-text">
-                  {isZh 
-                    ? "选择我们的模特或上传你的模特进行试穿" 
-                    : "Pick from our models or upload your own"}
-                </p>
-              </div>
-            </div>
-            <div className="editor-guide-step">
-              <div className="editor-guide-number">3</div>
-              <div>
-                <h4 className="editor-guide-title">
-                  {isZh ? "设定完毕！" : "All Set!"}
-                </h4>
-                <p className="editor-guide-text">
-                  {isZh 
-                    ? "点击生成，让我们把衣服穿上吧！" 
-                    : "Click Generate and see the magic happen!"}
-                </p>
-              </div>
-            </div>
-          </div>
-
+        <section className="editor-canvas">
           <ResultPreview
             state={resultState}
-            resultSrc={resultImage}
+            modelSrc={selectedModel}
+            outfitSrc={selectedOutfit}
+            onReset={() => {
+              setHasResult(false);
+              setSelectedOutfit(null);
+            }}
+            onRegenerate={handleGenerate}
             labels={{
               placeholder: t("resultPlaceholder"),
               subtext: t("resultSubtext"),
               generating: t("generating"),
+              blank: t("blank"),
+              stepOneTitle: t("selectClothesTitle"),
+              stepOneDesc: t("selectClothesDesc"),
+              stepTwoTitle: t("pickUploadTitle"),
+              stepTwoDesc: t("pickUploadDesc"),
+              stepThreeTitle: t("tryItTitle"),
+              stepThreeDesc: t("tryItDesc"),
+              download: t("download"),
+              newOutfit: t("newOutfit"),
+              regenerate: t("regenerate"),
+              feedback: t("feedback"),
+              delete: t("delete"),
               fabric: t("trust.fabric"),
               body: t("trust.body"),
               face: t("trust.face"),
             }}
+            actions={{
+              download: <Download size={17} />,
+              newOutfit: <Shirt size={17} />,
+              regenerate: <RotateCcw size={17} />,
+              feedback: <MessageSquare size={17} />,
+              delete: <Trash2 size={17} />,
+            }}
           />
-        </aside>
+        </section>
       </div>
     </div>
   );
