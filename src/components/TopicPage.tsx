@@ -273,7 +273,7 @@ function PricingPage({ locale }: { locale: Locale }) {
       </section>
 
       <section className="w-full max-w-full overflow-hidden px-4 pb-12 sm:px-6 lg:px-8">
-        <div className="mx-auto grid w-full max-w-[22rem] grid-cols-1 gap-4 sm:max-w-6xl md:grid-cols-3">
+        <div className="mx-auto grid w-full max-w-[22rem] grid-cols-1 gap-4 sm:max-w-6xl md:grid-cols-3 p-6">
           {planKeys.map((key) => (
             <article
               className={`relative mx-auto flex w-full max-w-[22rem] min-w-0 flex-col rounded-2xl border bg-white p-5 sm:max-w-none sm:p-6 ${
