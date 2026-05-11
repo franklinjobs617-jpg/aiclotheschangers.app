@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "static.xsbapp.com"
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.aiclotheschangers.app"
       }
     ]
   }

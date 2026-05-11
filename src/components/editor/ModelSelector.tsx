@@ -9,7 +9,8 @@ type ModelFilter = "all" | "plusSize" | "men" | "women";
 
 interface ModelSelectorProps {
   selected: string | null;
-  onSelect: (src: string) => void;
+  onSelect: (src: string, previewSrc?: string) => void;
+  onUploadError?: (message: string) => void;
   labels: {
     ourModels: string;
     yourModels: string;
@@ -21,7 +22,7 @@ interface ModelSelectorProps {
   };
 }
 
-export function ModelSelector({ selected, onSelect, labels }: ModelSelectorProps) {
+export function ModelSelector({ selected, onSelect, onUploadError, labels }: ModelSelectorProps) {
   const [tab, setTab] = useState<Tab>("our");
   const [filter, setFilter] = useState<ModelFilter>("all");
   const [hoverPreview, setHoverPreview] = useState<{
@@ -54,9 +55,25 @@ export function ModelSelector({ selected, onSelect, labels }: ModelSelectorProps
   const handleUpload = (file?: File) => {
     if (!file) return;
     const reader = new FileReader();
-    reader.onload = (event) => {
+    reader.onload = async (event) => {
       const result = event.target?.result;
-      if (typeof result === "string") onSelect(result);
+      if (typeof result === "string") {
+        onSelect(result, result);
+        try {
+          const response = await fetch("/api/uploads/r2", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ image: result, kind: "model" }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || typeof data?.url !== "string") {
+            throw new Error(data?.error || "Image upload failed");
+          }
+          onSelect(data.url, result);
+        } catch (error) {
+          onUploadError?.(error instanceof Error ? error.message : "Image upload failed");
+        }
+      }
     };
     reader.readAsDataURL(file);
   };

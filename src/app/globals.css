@@ -618,8 +618,9 @@ img {
 .step-image img,
 .example-card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: 236px;
+  object-fit: contain;
+  background: #f7f8fa;
 }
 
 .step-content {
@@ -2486,6 +2487,10 @@ img {
     height: 190px;
   }
 
+  .example-card img {
+    height: 220px;
+  }
+
   .steps-grid,
   .trust-grid,
   .pricing-plans-grid,
@@ -2823,6 +2828,10 @@ img {
 
   .results-shell .example-grid {
     grid-template-columns: 1fr;
+  }
+
+  .example-card img {
+    height: 260px;
   }
 
   .feedback-featured {
@@ -4010,5 +4019,147 @@ img {
 
   .editor-result-toolbar {
     flex-wrap: wrap;
+  }
+}
+
+/* Mobile layout guardrails: keep shared pages inside the viewport. */
+@media (max-width: 760px) {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container,
+  .hero-container,
+  .header-inner {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .hero-stage,
+  .hero-upload-card,
+  .hero-demo-card,
+  .upload-dropzone,
+  .section,
+  .trust-grid,
+  .steps-grid,
+  .example-grid,
+  .story-stack,
+  .story-row,
+  .why-list,
+  .usecase-grid,
+  .feedback-shell,
+  .faq-list,
+  .pricing-plans-grid,
+  .pricing-trust-grid,
+  .pricing-feedback-grid,
+  .pricing-grid,
+  .pricing-credit-grid,
+  .topic-grid,
+  .topic-feature-grid,
+  .topic-proof-grid,
+  .footer-grid {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero-stage {
+    grid-template-columns: minmax(0, 1fr);
+    overflow: hidden;
+  }
+
+  .hero-upload-card {
+    order: 1;
+    padding: 12px;
+  }
+
+  .hero-demo-card {
+    order: 2;
+  }
+
+  .upload-dropzone {
+    min-height: 0;
+    padding: 18px 12px 14px;
+    overflow: hidden;
+  }
+
+  .upload-dropzone > p {
+    margin: 10px 0 14px;
+  }
+
+  .hero-demo-card img,
+  .story-image img,
+  .example-card img,
+  .topic-visual-panel img,
+  .pricing-hero-panel img,
+  .intent-card-grid img {
+    max-width: 100%;
+  }
+
+  .topic-hero-grid,
+  .pricing-topic-hero .topic-hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .topic-hero-actions,
+  .editor-result-toolbar {
+    align-items: stretch;
+  }
+
+  .topic-hero-actions a,
+  .topic-hero-actions button,
+  .editor-result-toolbar button {
+    max-width: 100%;
+  }
+
+  .editor-result-wrap {
+    width: min(100% - 24px, 680px);
+  }
+
+  .editor-result-stage {
+    min-height: min(58vh, 560px);
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-container,
+  .header-inner,
+  .container {
+    width: min(100% - 20px, 1200px);
+  }
+
+  .hero-section {
+    padding-top: 20px;
+  }
+
+  .hero-upload-card {
+    padding: 10px;
+  }
+
+  .upload-main-button {
+    width: 100%;
+  }
+
+  .mobile-drawer {
+    width: min(100% - 24px, 360px);
+  }
+
+  .section-head h2,
+  .story-copy h2,
+  .pricing-hero h1,
+  .topic-hero h1 {
+    overflow-wrap: anywhere;
+  }
+}
+
+@keyframes editor-loading-bar {
+  0% {
+    transform: translateX(-120%);
+  }
+  50% {
+    transform: translateX(65%);
+  }
+  100% {
+    transform: translateX(220%);
   }
 }

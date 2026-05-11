@@ -19,9 +19,18 @@ import {
 import { localizedPath, type Locale } from "@/lib/site";
 
 const exampleCardImages = [
-  "https://images.insmind.com/market-operations/market/side/21551ac66006432b9759facb4fdf771d/1730889665936.jpg",
-  "https://images.insmind.com/market-operations/market/side/ce79b59be1d84e9788fcc4491ae13da4/1730889563222.jpg",
-  "https://images.insmind.com/market-operations/market/side/d8ddda7f875c43fa9f20bf0c8b6548d2/1730889600007.jpg"
+  {
+    src: "/seo-assets/examples/ai-clothes-changer-online-shopping-before-after.webp",
+    alt: "AI clothes changer online shopping before and after outfit preview"
+  },
+  {
+    src: "/seo-assets/examples/mens-ai-clothes-changer-shirt-jacket-preview.webp",
+    alt: "Men's AI clothes changer shirt and jacket virtual try on preview"
+  },
+  {
+    src: "/seo-assets/examples/ai-outfit-changer-creator-costume-content.webp",
+    alt: "AI outfit changer creator costume and social content preview"
+  }
 ] as const;
 
 const storySectionImages = [
@@ -103,7 +112,7 @@ export function ContentSections({ locale }: { locale: Locale }) {
           <div className="example-grid">
             {exampleCardKeys.map((key, i) => (
               <article className="example-card" key={key}>
-                <Image src={exampleCardImages[i]} alt={exampleT(`${key}.title`)} width={720} height={520} />
+                <Image src={exampleCardImages[i].src} alt={exampleCardImages[i].alt} width={720} height={1000} />
                 <div>
                   <span>{exampleT(`${key}.tag`)}</span>
                   <h3>{exampleT(`${key}.title`)}</h3>

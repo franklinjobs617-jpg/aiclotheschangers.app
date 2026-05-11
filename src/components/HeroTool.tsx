@@ -15,7 +15,7 @@ function HeroBeforeAfterSlider() {
   const splitPosition = `${sliderValue}%`;
 
   return (
-    <div className="relative h-full min-h-[430px] overflow-hidden rounded-2xl bg-[#f2f4f7] max-[760px]:min-h-[360px]">
+    <div className="relative h-full min-h-[430px] overflow-hidden rounded-2xl bg-[#f2f4f7] max-[760px]:aspect-[4/3] max-[760px]:h-auto max-[760px]:min-h-0 max-[520px]:aspect-[1/1]">
       <div className="absolute inset-y-0 left-0 w-full overflow-hidden bg-[#f7f4ef]">
         <Image
           src={heroComparisonImage}
@@ -23,7 +23,7 @@ function HeroBeforeAfterSlider() {
           width={1792}
           height={1024}
           priority
-          className="h-full w-full object-cover object-left"
+          className="h-full w-full object-cover object-left max-[760px]:object-contain"
         />
       </div>
       <div className="absolute inset-y-0 right-0 w-full overflow-hidden bg-[#f7f4ef]" style={{ clipPath: `inset(0 0 0 ${splitPosition})` }}>
@@ -33,14 +33,14 @@ function HeroBeforeAfterSlider() {
           width={1792}
           height={1024}
           priority
-          className="h-full w-full object-cover object-right"
+          className="h-full w-full object-cover object-right max-[760px]:object-contain"
         />
       </div>
-      <span className="absolute left-4 top-4 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white">Before</span>
-      <span className="absolute right-4 top-4 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white">After</span>
+      <span className="absolute left-3 top-3 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white max-[420px]:left-2 max-[420px]:top-2">Before</span>
+      <span className="absolute right-3 top-3 rounded-full bg-gray-950/75 px-3 py-1 text-xs font-bold text-white max-[420px]:right-2 max-[420px]:top-2">After</span>
       <div className="pointer-events-none absolute bottom-0 top-0 z-[2] w-px bg-white shadow-[0_0_0_1px_rgba(15,23,42,0.18)]" style={{ left: splitPosition }}>
         <span className="absolute left-1/2 top-1/2 grid size-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/80 bg-white text-[15px] font-semibold text-[#344054] shadow-[0_8px_24px_rgba(15,23,42,0.22)]">
-          <span className="-mt-px tracking-[-2px]">‹›</span>
+          <span className="-mt-px tracking-normal">&lt;&gt;</span>
         </span>
       </div>
       <input
@@ -72,12 +72,24 @@ export function HeroTool({ locale }: { locale: Locale }) {
   };
 
   const handleFile = (file: File) => {
-    // Store file reference in sessionStorage for the editor to pick up
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const result = e.target?.result;
       if (typeof result === "string") {
         sessionStorage.setItem("editor-upload-photo", result);
+        try {
+          const response = await fetch("/api/uploads/r2", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ image: result, kind: "model" }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (response.ok && typeof data?.url === "string") {
+            sessionStorage.setItem("editor-upload-photo", data.url);
+          }
+        } catch {
+          // The editor can still show the local preview and upload again before generation.
+        }
         navigateToEditor();
       }
     };
@@ -93,7 +105,7 @@ export function HeroTool({ locale }: { locale: Locale }) {
           <p>{t("subtitle")}</p>
         </div>
 
-          <div className="hero-stage" id="tool">
+        <div className="hero-stage" id="tool">
           <div className="hero-demo-card" aria-label="AI clothes changer before and after example">
             <HeroBeforeAfterSlider />
           </div>
@@ -129,13 +141,13 @@ export function HeroTool({ locale }: { locale: Locale }) {
                   if (file) handleFile(file);
                 }}
               />
-              <div className="mt-7 w-full max-w-[34rem] overflow-hidden">
+              <div className="mt-7 w-full max-w-[34rem] overflow-hidden max-[520px]:mt-5">
                 <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-[13px] font-medium text-[#9aa3b2]">
                   <span className="h-px bg-gray-200" />
                   {t("samples")}
                   <span className="h-px bg-gray-200" />
                 </div>
-                <div className="mt-4 grid grid-flow-col auto-cols-[72px] justify-center gap-2 overflow-x-auto pb-1 sm:grid-flow-row sm:grid-cols-5 sm:gap-3 sm:overflow-visible" aria-label="Try with an editor model">
+                <div className="editor-scroll mt-4 grid w-full grid-flow-col auto-cols-[72px] justify-start gap-2 overflow-x-auto pb-1 sm:grid-flow-row sm:grid-cols-5 sm:justify-center sm:gap-3 sm:overflow-visible" aria-label="Try with an editor model">
                   {EDITOR_MODELS.slice(10, 15).map((model) => (
                     <button
                       type="button"
