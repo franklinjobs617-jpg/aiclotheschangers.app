@@ -47,6 +47,8 @@ const darkCtaClass =
 const outlineLinkClass =
   "inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-4 text-sm font-semibold !text-[#1d8a84] transition-colors hover:border-[#23a7a0]/40 hover:bg-[#effbf8]";
 
+const pageShellClass = "overflow-x-hidden bg-white";
+
 export function TopicPage({ locale, slug }: { locale: Locale; slug: Exclude<PageSlug, ""> }) {
   const isPricing = slug === "pricing";
   const isAbout = slug === "about-us";
@@ -62,7 +64,8 @@ export function TopicPage({ locale, slug }: { locale: Locale; slug: Exclude<Page
   if (isVirtual) return <VirtualTryOnContent locale={locale} />;
 
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className={pageShellClass}>
+      <VisibleBreadcrumb locale={locale} slug={slug} currentSlug={slug} />
       <section className="bg-gradient-to-b from-[#f8fafb] to-white px-4 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
           <div className="min-w-0 max-w-2xl">
@@ -93,10 +96,14 @@ function AboutPageContent({ locale }: { locale: Locale }) {
   const technologyKeys = ["realism", "inclusive", "stability"] as const;
   const sectionKeys = ["redefining", "mission", "technology", "privacy", "join"] as const;
   const isZh = locale === "zh";
-  const schema = buildPageSchema(locale, "about-us", t("slogan"), t("sections.redefining.body"));
+  const schema = [
+    buildBreadcrumbSchema(locale, "about-us", t("slogan")),
+    buildPageSchema(locale, "about-us", t("slogan"), t("sections.redefining.body"))
+  ];
 
   return (
-    <article className="overflow-x-hidden bg-white">
+    <article className={pageShellClass}>
+      <VisibleBreadcrumb locale={locale} slug="about-us" current={t("slogan")} />
       <section className="bg-gradient-to-b from-[#f8fafb] to-white px-4 py-14 text-center sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-4xl">
           <span className="text-sm font-semibold text-[#1d8a84]">{t("sloganLabel")}</span>
@@ -211,11 +218,20 @@ function PricingPage({ locale }: { locale: Locale }) {
   const t = useTranslations("pricing");
   const commonT = useTranslations("common");
   const pricingPageT = useTranslations("pricingPage");
+  const geoT = useTranslations("geo");
   const isZh = locale === "zh";
   const planKeys = ["starter", "creator", "pro"] as const;
   const trustNoteKeys = ["freeCredits", "refunds", "privacy"] as const;
   const securityKeys = ["stripeFirst", "paymentRecovery", "creditsRefresh", "hdAfterValue", "riskControl"] as const;
   const faqKeys = ["freeCredits", "hdExtra", "failedJobs", "renewal", "cancel"] as const;
+  const pricingFaqs = faqKeys.map((key) => [pricingPageT(`faqs.${key}.question`), pricingPageT(`faqs.${key}.answer`)] as const);
+  const pricingRows = planKeys.map((key) => ({
+    key,
+    plan: t(`${key}.name`),
+    price: `${t(`${key}.price`)}/${t(`${key}.period`)}`,
+    credits: t(`${key}.credits`),
+    bestFor: pricingPageT(`planBenefits.${key}.4`)
+  }));
   const chooseCards = isZh
     ? [
         ["只是想测试效果", "先用免费额度。用同一张清晰正面照测试 2-3 套衣服，重点看脸部保留、肩线、腰线和服装边缘。"],
@@ -240,6 +256,7 @@ function PricingPage({ locale }: { locale: Locale }) {
       ];
   const schema = [
     buildBreadcrumbSchema(locale, "pricing", t("title")),
+    buildPageSchema(locale, "pricing", pricingPageT("heroTitle"), t("description")),
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -252,11 +269,13 @@ function PricingPage({ locale }: { locale: Locale }) {
         { "@type": "Offer", name: t("creator.name"), price: "7.99", priceCurrency: "USD", description: t("creator.description") },
         { "@type": "Offer", name: t("pro.name"), price: "14.99", priceCurrency: "USD", description: t("pro.description") }
       ]
-    }
+    },
+    buildFaqSchema(pricingFaqs)
   ];
 
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className={pageShellClass}>
+      <VisibleBreadcrumb locale={locale} slug="pricing" current={t("title")} />
       <section className="w-full max-w-full overflow-hidden px-4 pb-8 pt-14 text-center sm:px-6 lg:px-8 lg:pt-16">
         <div className="mx-auto w-full max-w-[22rem] sm:max-w-4xl">
           <span className="text-sm font-semibold text-[#1d8a84]">{t("eyebrow")}</span>
@@ -309,6 +328,37 @@ function PricingPage({ locale }: { locale: Locale }) {
           ))}
         </div>
 
+      </section>
+
+      <section className="px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="mb-5">
+            <span className="text-sm font-semibold text-[#1d8a84]">{geoT("pricingComparison.eyebrow")}</span>
+            <h2 className="mt-2 text-2xl font-semibold leading-tight text-[#222529] sm:text-3xl">{geoT("pricingComparison.title")}</h2>
+          </div>
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-[0_10px_24px_rgba(24,31,52,0.035)]">
+            <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+              <thead className="bg-[#fbfcfd] text-[#222529]">
+                <tr>
+                  <th scope="col" className="px-5 py-4 font-semibold">{geoT("pricingComparison.plan")}</th>
+                  <th scope="col" className="px-5 py-4 font-semibold">{geoT("pricingComparison.price")}</th>
+                  <th scope="col" className="px-5 py-4 font-semibold">{geoT("pricingComparison.credits")}</th>
+                  <th scope="col" className="px-5 py-4 font-semibold">{geoT("pricingComparison.bestFor")}</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200 text-[#47505f]">
+                {pricingRows.map((row) => (
+                  <tr key={row.key}>
+                    <th scope="row" className="px-5 py-4 font-semibold text-[#222529]">{row.plan}</th>
+                    <td className="px-5 py-4">{row.price}</td>
+                    <td className="px-5 py-4">{row.credits}</td>
+                    <td className="px-5 py-4">{row.bestFor}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </section>
 
       <section className="bg-[#fbfcfd] px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
@@ -405,10 +455,10 @@ function PricingPage({ locale }: { locale: Locale }) {
           </div>
           <div className="grid gap-3">
             {faqKeys.map((key) => (
-              <details className="rounded-2xl border border-gray-200 bg-white p-5" key={key}>
-                <summary className="cursor-pointer text-base font-semibold text-[#222529]">{pricingPageT(`faqs.${key}.question`)}</summary>
+              <article className="rounded-2xl border border-gray-200 bg-white p-5" key={key}>
+                <h3 className="text-base font-semibold text-[#222529]">{geoT("faq.questionPrefix")} {pricingPageT(`faqs.${key}.question`)}</h3>
                 <p className="mt-3 text-sm leading-6 text-[#69717f]">{pricingPageT(`faqs.${key}.answer`)}</p>
-              </details>
+              </article>
             ))}
           </div>
         </div>
@@ -473,6 +523,7 @@ function VirtualTryOnContent({ locale }: { locale: Locale }) {
       ];
   const schema = [
     buildBreadcrumbSchema(locale, "virtual-try-on-clothes", t("title")),
+    buildPageSchema(locale, "virtual-try-on-clothes", t("title"), t("description")),
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
@@ -486,7 +537,8 @@ function VirtualTryOnContent({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className={pageShellClass}>
+      <VisibleBreadcrumb locale={locale} slug="virtual-try-on-clothes" current={t("title")} />
       <section className="bg-gradient-to-b from-[#f8fafb] to-white px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
           <div className="min-w-0 max-w-2xl">
@@ -607,10 +659,14 @@ function LegalPageContent({ locale, slug }: { locale: Locale; slug: "privacy-pol
             ["Credits and failed jobs", "System failures may be refunded; user cancellation or policy-violating requests may not be refundable."],
             ["Subscription cancellation", "Monthly plans should provide a clearly visible cancellation path."]
           ]);
-  const schema = buildPageSchema(locale, slug, t("title"), t("description"));
+  const schema = [
+    buildBreadcrumbSchema(locale, slug, t("title")),
+    buildPageSchema(locale, slug, t("title"), t("description"))
+  ];
 
   return (
-    <article className="overflow-x-hidden bg-white">
+    <article className={pageShellClass}>
+      <VisibleBreadcrumb locale={locale} slug={slug} current={t("title")} />
       <section className="bg-gradient-to-b from-[#f8fafb] to-white px-4 py-14 text-center sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto max-w-4xl">
           <span className="text-sm font-semibold text-[#1d8a84]">{t("eyebrow")}</span>
@@ -921,22 +977,21 @@ function MensSpecialtyContent({ locale }: { locale: Locale }) {
 }
 
 function SpecialtyFaqSection({ eyebrow, title, faqs }: { eyebrow: string; title: string; faqs: readonly (readonly [string, string])[] }) {
+  const geoT = useTranslations("geo");
+
   return (
-    <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+    <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-16" aria-labelledby="specialty-faq-heading">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:gap-12">
         <div>
           <span className="text-sm font-semibold text-[#1d8a84]">{eyebrow}</span>
-          <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#222529] sm:text-4xl">{title}</h2>
+          <h2 id="specialty-faq-heading" className="mt-3 text-3xl font-semibold leading-tight text-[#222529] sm:text-4xl">{title}</h2>
         </div>
         <div className="grid gap-3">
           {faqs.map(([question, answer]) => (
-            <details className="group rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_8px_20px_rgba(24,31,52,0.03)]" key={question}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-[#222529]">
-                <span>{question}</span>
-                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-[#effbf8] text-[#1d8a84] transition-transform group-open:rotate-45">+</span>
-              </summary>
+            <article className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_8px_20px_rgba(24,31,52,0.03)]" key={question}>
+              <h3 className="text-base font-semibold text-[#222529]">{geoT("faq.questionPrefix")} {question}</h3>
               <p className="mt-3 text-sm leading-6 text-[#69717f]">{answer}</p>
-            </details>
+            </article>
           ))}
         </div>
       </div>
@@ -946,6 +1001,33 @@ function SpecialtyFaqSection({ eyebrow, title, faqs }: { eyebrow: string; title:
 
 function JsonLd({ data }: { data: unknown }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
+}
+
+function VisibleBreadcrumb({ locale, slug, current, currentSlug }: { locale: Locale; slug: PageSlug; current?: string; currentSlug?: PageSlug }) {
+  const geoT = useTranslations("geo");
+  const brand = useTranslations()("brand");
+  const labelSlug = currentSlug ?? slug;
+  const currentLabel = current ?? geoT(`pageLabels.${labelSlug}`);
+
+  return (
+    <nav className="border-b border-gray-100 bg-white px-4 py-3 sm:px-6 lg:px-8" aria-label={geoT("breadcrumb.ariaLabel")}>
+      <ol className="mx-auto flex max-w-7xl flex-wrap items-center gap-2 text-sm text-[#69717f]">
+        <li>
+          <Link className="font-medium text-[#1d8a84] hover:text-[#176f6a]" href={localizedPath(locale)}>
+            {brand}
+          </Link>
+        </li>
+        <li aria-hidden="true" className="text-gray-300">/</li>
+        <li>
+          <Link className="font-medium text-[#1d8a84] hover:text-[#176f6a]" href={localizedPath(locale, slug)}>
+            {geoT(`pageLabels.${slug}`)}
+          </Link>
+        </li>
+        <li aria-hidden="true" className="text-gray-300">/</li>
+        <li className="max-w-full truncate text-[#222529]" aria-current="page">{currentLabel}</li>
+      </ol>
+    </nav>
+  );
 }
 
 function buildBreadcrumbSchema(locale: Locale, slug: PageSlug, name: string) {

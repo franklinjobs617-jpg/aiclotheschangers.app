@@ -43,12 +43,6 @@ export default function middleware(request: NextRequest) {
       url.pathname = restPath || "/";
       return NextResponse.redirect(url, 301);
     }
-
-    if (locale !== routing.defaultLocale && restPath && restPath !== "/" && restPath !== "/editor") {
-      const url = request.nextUrl.clone();
-      url.pathname = restPath;
-      return NextResponse.redirect(url, 307);
-    }
   }
 
   if (/\/{2,}/.test(pathname)) {

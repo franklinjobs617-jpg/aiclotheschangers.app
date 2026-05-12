@@ -558,5 +558,31 @@
     "previewOnly": "当前使用本地演示结果展示布局，生成 API 接入后会替换为真实结果。",
     "localDelete": "已清除本地预览。",
     "feedbackThanks": "感谢反馈。正式工作流会接入反馈收集。"
+  },
+  "geo": {
+    "breadcrumb": {
+      "ariaLabel": "?????"
+    },
+    "pageLabels": {
+      "virtual-try-on-clothes": "????",
+      "plus-size-virtual-try-on": "??????",
+      "mens-ai-clothes-changer": "?? AI ??",
+      "pricing": "??",
+      "about-us": "????",
+      "privacy-policy": "????",
+      "terms-of-service": "????",
+      "editor": "???"
+    },
+    "pricingComparison": {
+      "eyebrow": "????",
+      "title": "???????????????",
+      "plan": "??",
+      "price": "??",
+      "credits": "??",
+      "bestFor": "????"
+    },
+    "faq": {
+      "questionPrefix": "问："
+    }
   }
 }

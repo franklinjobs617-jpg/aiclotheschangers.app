@@ -42,16 +42,14 @@ export function absoluteLocalizedUrl(locale: Locale, slug: PageSlug = "") {
   return `${baseUrl}${localizedPath(locale, slug)}`;
 }
 
-export function alternatesFor(slug: PageSlug = "", isMultilingual = slug === "") {
+export function alternatesFor(slug: PageSlug = "") {
   const languages: Record<string, string> = {
     en: absoluteLocalizedUrl("en", slug),
     "x-default": absoluteLocalizedUrl("en", slug)
   };
 
-  if (isMultilingual) {
-    for (const locale of locales) {
-      languages[locale] = absoluteLocalizedUrl(locale, slug);
-    }
+  for (const locale of locales) {
+    languages[locale] = absoluteLocalizedUrl(locale, slug);
   }
 
   return languages;

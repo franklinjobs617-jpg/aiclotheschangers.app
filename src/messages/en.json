@@ -58,7 +58,6 @@
       "text": "Plus-size and men's try-on paths are treated as first-class product flows, not afterthoughts."
     }
   },
-
   "howSteps": {
     "upload": {
       "title": "Upload a person photo",
@@ -625,8 +624,8 @@
     "newOutfit": "New outfit",
     "regenerate": "Regenerate",
     "feedback": "Feedback",
-    "delete": "Delete"
-    ,"progress": {
+    "delete": "Delete",
+    "progress": {
       "identify": "Identifying garment details...",
       "light": "Balancing light and shadows...",
       "fabric": "Optimizing fabric texture...",
@@ -643,5 +642,31 @@
     "previewOnly": "Preview layout using local demo result until the generation API is connected.",
     "localDelete": "Preview cleared locally.",
     "feedbackThanks": "Thanks. Feedback collection will be connected with the production workflow."
+  },
+  "geo": {
+    "breadcrumb": {
+      "ariaLabel": "Breadcrumb"
+    },
+    "pageLabels": {
+      "virtual-try-on-clothes": "Virtual Try On Clothes",
+      "plus-size-virtual-try-on": "Plus Size Virtual Try-On",
+      "mens-ai-clothes-changer": "Men's AI Clothes Changer",
+      "pricing": "Pricing",
+      "about-us": "About Us",
+      "privacy-policy": "Privacy Policy",
+      "terms-of-service": "Terms of Service",
+      "editor": "Editor"
+    },
+    "pricingComparison": {
+      "eyebrow": "Plan comparison",
+      "title": "Price, credits, and limits in one table",
+      "plan": "Plan",
+      "price": "Price",
+      "credits": "Credits",
+      "bestFor": "Best for"
+    },
+    "faq": {
+      "questionPrefix": "Q:"
+    }
   }
 }
