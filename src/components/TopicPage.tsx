@@ -709,10 +709,7 @@ function TopicHeroPanel({ locale, slug }: { locale: Locale; slug: keyof typeof s
   return (
     <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-[#f5f6f8] shadow-[0_18px_48px_rgba(24,31,52,0.08)]">
       <Image src={data.heroImage} alt={data.heroAlt[locale]} width={1536} height={864} className="h-auto w-full object-cover" priority />
-      <div className="absolute left-5 top-5 w-44 rounded-2xl border border-white/80 bg-white/90 p-4 shadow-[0_16px_42px_rgba(24,31,52,0.12)] backdrop-blur">
-        <span className="text-xs font-semibold text-[#1d8a84]">{t("eyebrow")}</span>
-        <strong className="mt-1 block text-lg font-semibold leading-snug text-[#222529]">{t("stat")}</strong>
-      </div>
+     
       <div className="absolute bottom-5 right-5 flex items-center gap-3 rounded-2xl border border-white/80 bg-white/90 p-2 shadow-[0_16px_42px_rgba(24,31,52,0.12)] backdrop-blur">
         <Image src={data.accentImage} alt="" width={84} height={84} className="size-14 rounded-xl object-cover" />
         <Link href={localizedPath(locale, "editor")} className="pr-2 text-sm font-semibold text-[#1d8a84]">{t("cta")}</Link>

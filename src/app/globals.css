@@ -620,7 +620,9 @@ img {
   width: 100%;
   height: 236px;
   object-fit: contain;
-  background: #f7f8fa;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(255, 255, 255, 0.72), transparent 36%),
+    linear-gradient(180deg, #ddd2c9 0%, #e4dbd3 58%, #d8cec4 100%);
 }
 
 .step-content {
