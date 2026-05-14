@@ -348,6 +348,47 @@
         "question": "Can I cancel anytime?",
         "answer": "Yes. Cancellation is easy to find and takes effect at the end of the current billing period."
       }
+    },
+    "choose": {
+      "eyebrow": "How to choose",
+      "title": "Choose by usage, not by pressure",
+      "body": "Pricing should help users decide: test quality for free, buy a small pack for occasional use, and move to monthly only when try-on becomes part of a regular workflow.",
+      "cards": {
+        "testing": {
+          "title": "Testing the quality",
+          "text": "Start with the free credits. Use one clear front-facing photo and compare 2-3 outfits for face preservation, shoulder line, waist placement, and garment edges."
+        },
+        "occasional": {
+          "title": "Trying a few more looks",
+          "text": "Use the one-time credit pack for occasional shopping, profile updates, or content checks without starting a subscription."
+        },
+        "regular": {
+          "title": "Creating regularly",
+          "text": "Choose a monthly plan. Basic fits steady weekly use; Pro is better for frequent generations and HD downloads."
+        }
+      }
+    },
+    "creditRules": {
+      "eyebrow": "Credits explained",
+      "title": "Preview first, then decide if HD is worth it",
+      "body": "Users should know how try-ons, HD downloads, and failure refunds work before checkout. The visible explanation should match the credit behavior inside the account.",
+      "cards": {
+        "standard": {
+          "title": "Standard try-on",
+          "value": "1 credit",
+          "text": "Use this first to judge silhouette, color, style, and overall outfit direction."
+        },
+        "hd": {
+          "title": "HD download",
+          "value": "+1 credit",
+          "text": "Unlock higher quality only after the preview is useful, not before."
+        },
+        "failed": {
+          "title": "System failure",
+          "value": "Refunded",
+          "text": "Server failures, timeouts, or unusable delivery should not consume credits."
+        }
+      }
     }
   },
   "specialtyPages": {
@@ -367,6 +408,93 @@
       "related": {
         "1": "Men's AI Clothes Changer",
         "2": "Virtual Try On Clothes"
+      },
+      "heroAlt": "Plus size virtual try-on before and after comparison with realistic green dress drape",
+      "intent": {
+        "eyebrow": "What users need",
+        "title": "What plus size users need before trusting a virtual fitting room",
+        "text": "A useful plus size try-on page should help users see body representation, understand photo quality, and know the limits before checkout.",
+        "cards": {
+          "representation": {
+            "title": "Body representation",
+            "text": "Use plus size and curvy model paths so users are not forced to infer fit from one narrow body type."
+          },
+          "drape": {
+            "title": "Drape and silhouette",
+            "text": "Judge sleeve length, waist placement, and garment fall before buying or styling."
+          },
+          "photo": {
+            "title": "Photo quality guidance",
+            "text": "Front-facing full-body photos in natural light make virtual try-on more useful."
+          }
+        }
+      },
+      "guide": {
+        "eyebrow": "Photo guide",
+        "title": "What makes a plus size virtual try-on easier to trust",
+        "text": "A helpful preview needs more than a clothing swap. It should preserve the person, show how fabric falls over curves, and make the limits clear before a user spends credits.",
+        "cards": {
+          "fullBody": {
+            "title": "Use a full-body front photo",
+            "text": "Keep shoulders, waist, hips, and hem visible. Cropped mirror photos make sleeve length and drape harder to judge."
+          },
+          "shadows": {
+            "title": "Avoid heavy shadows",
+            "text": "Natural light helps the model separate body shape from clothing folds and background noise."
+          },
+          "goal": {
+            "title": "Pick one garment goal",
+            "text": "Test a dress, jacket, or top clearly first. Mixing too many garment references can make the preview less reliable."
+          },
+          "direction": {
+            "title": "Treat it as fit direction",
+            "text": "Use the output to compare silhouette and styling, not as a final size guarantee."
+          }
+        }
+      },
+      "check": {
+        "eyebrow": "Result checklist",
+        "title": "Look at the parts that change purchase confidence",
+        "cards": {
+          "shoulders": {
+            "title": "Shoulder line",
+            "text": "The shoulder seam should sit naturally instead of sliding too far inward or outward."
+          },
+          "waist": {
+            "title": "Waist placement",
+            "text": "Check whether belts, seams, and dress shape land where you expect on your body."
+          },
+          "length": {
+            "title": "Sleeve and hem length",
+            "text": "Compare sleeve ending, dress length, and pant break against the original pose."
+          },
+          "drape": {
+            "title": "Fabric drape",
+            "text": "Look for believable folds instead of a flat sticker-like garment."
+          }
+        }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Plus size virtual try-on questions users ask before uploading",
+        "items": {
+          "guarantee": {
+            "question": "Is plus size virtual try-on a size guarantee?",
+            "answer": "No. It is a visual preview for silhouette, styling direction, fabric drape, and photo planning. Always check the retailer's size chart, measurements, and return policy before buying."
+          },
+          "photo": {
+            "question": "What photo works best for curvy or plus size try-on?",
+            "answer": "Use a clear front-facing full-body photo in natural light. Keep shoulders, waist, hips, legs, and garment edges visible so the preview can map the outfit more reliably."
+          },
+          "model": {
+            "question": "Can I use a plus size model instead of my own photo?",
+            "answer": "Yes. You can start with built-in plus size model examples when you want to compare outfit direction quickly, then upload your own photo for a more personal preview."
+          },
+          "result": {
+            "question": "What should I check in the result?",
+            "answer": "Look at shoulder line, waist placement, sleeve length, hem length, and fabric folds. These details are more useful than judging the image from a small thumbnail."
+          }
+        }
       }
     },
     "mens-ai-clothes-changer": {
@@ -385,6 +513,93 @@
       "related": {
         "1": "Plus Size Virtual Try-On",
         "2": "Virtual Try On Clothes"
+      },
+      "heroAlt": "Men's AI clothes changer before and after comparison from T-shirt to blazer outfit",
+      "mensCta": "Choose a men's model",
+      "intent": {
+        "title": "Men's try-on intent is practical: shirts, jackets, suits, and profile photos",
+        "text": "The page is written for users comparing everyday outfits, workwear, and cleaner profile looks, not just broad fashion effects.",
+        "cards": {
+          "workwear": {
+            "title": "Workwear preview",
+            "text": "Test shirts, jackets, and cleaner looks before a profile update or shoot."
+          },
+          "streetwear": {
+            "title": "Streetwear check",
+            "text": "Compare casual layers and silhouettes quickly with a consistent model photo."
+          },
+          "shopping": {
+            "title": "Shopping decision",
+            "text": "Use a garment reference to decide whether the color and fit direction are worth trying."
+          }
+        }
+      },
+      "guide": {
+        "eyebrow": "Photo guide",
+        "title": "How to get a cleaner men's outfit preview",
+        "text": "Men's try-on pages should answer practical questions: does the jacket sharpen the profile, does the shirt length work, and does the outfit feel natural enough for shopping or a profile photo?",
+        "cards": {
+          "pose": {
+            "title": "Use a simple pose",
+            "text": "A straight or slightly angled pose makes blazers, shirts, and trousers easier to align."
+          },
+          "torso": {
+            "title": "Keep the torso visible",
+            "text": "Profile crops can work, but full upper-body photos give better reads on jacket length and shirt fit."
+          },
+          "occasion": {
+            "title": "Match the occasion",
+            "text": "Try workwear, streetwear, or profile looks separately so the result answers one clear intent."
+          },
+          "proportion": {
+            "title": "Compare color and proportion",
+            "text": "Check whether the garment color works with skin tone, background, and body proportion."
+          }
+        }
+      },
+      "check": {
+        "eyebrow": "Result checklist",
+        "title": "What to compare before you download or regenerate",
+        "cards": {
+          "shoulders": {
+            "title": "Blazer shoulders",
+            "text": "A good result should keep the jacket structured without making the body look stiff."
+          },
+          "shirt": {
+            "title": "Shirt length",
+            "text": "Check whether the shirt tucks, hangs, or layers in a believable way."
+          },
+          "color": {
+            "title": "Trouser or layer color",
+            "text": "Make sure the generated outfit still fits the photo lighting and background."
+          },
+          "face": {
+            "title": "Face and posture",
+            "text": "The outfit should change without turning the person into someone else."
+          }
+        }
+      },
+      "faq": {
+        "eyebrow": "FAQ",
+        "title": "Men's AI clothes changer questions before you try a look",
+        "items": {
+          "profile": {
+            "question": "Can I use it for profile photos?",
+            "answer": "Yes. Men's try-on is useful for testing shirts, jackets, and cleaner profile looks before reshooting or updating an avatar."
+          },
+          "outfits": {
+            "question": "What men's outfits work best?",
+            "answer": "Simple shirts, blazers, jackets, suits, streetwear layers, and clean workwear usually work best because the garment structure is easy to compare."
+          },
+          "photo": {
+            "question": "Should I upload a full-body or upper-body photo?",
+            "answer": "For shirts and jackets, an upper-body photo can work. For suits, trousers, or full outfits, a full-body photo gives a better read on proportion and length."
+          },
+          "face": {
+            "question": "Will the AI change my face?",
+            "answer": "The product goal is to preserve face, posture, and identity while changing the outfit area. Clear lighting and a simple pose improve consistency."
+          }
+        }
       }
     }
   },
@@ -412,7 +627,8 @@
       },
       "technology": {
         "label": "The Technology Behind the Result",
-        "title": "Keeping the complexity for us, and the simplicity for you"
+        "title": "Keeping the complexity for us, and the simplicity for you",
+        "body": "We explain how uploaded photos are handled, why AI-assisted generation is useful, and where the product should not be used. Users should understand the workflow before paying, not after."
       },
       "privacy": {
         "label": "Your Privacy is Non-Negotiable",
@@ -439,6 +655,24 @@
         "title": "Technical Stability",
         "text": "We keep working on the frustrating basics too, including mobile upload handling, clearer progress, and a simpler generation experience."
       }
+    },
+    "trustBuilder": {
+      "eyebrow": "Who, How, Why",
+      "title": "How we build user trust",
+      "cards": {
+        "who": {
+          "title": "Who",
+          "text": "Maintained by Buildwithtime, focused on turning AI tools into clear, testable, explainable products."
+        },
+        "how": {
+          "title": "How",
+          "text": "AI is used for outfit preview generation, and the product distinguishes local demo previews from production API results."
+        },
+        "why": {
+          "title": "Why",
+          "text": "To help shoppers, creators, and styling users make better visual decisions before buying, reshooting, or upgrading."
+        }
+      }
     }
   },
   "topicPages": {
@@ -451,7 +685,68 @@
       "bullet1": "Upload your own photo",
       "bullet2": "Try a reference clothing image",
       "bullet3": "Compare different outfit styles",
-      "bullet4": "Preview before paying for more credits"
+      "bullet4": "Preview before paying for more credits",
+      "detail": {
+        "cta": "Open try-on editor",
+        "ctaNote": "See the look before buying",
+        "heroAlt": "AI virtual try-on before and after comparison",
+        "workflowAlt": "AI clothes try-on workflow example",
+        "overlayEyebrow": "Before / After",
+        "overlayTitle": "A visual preview for shopping decisions",
+        "howTo": {
+          "name": "How to virtually try on clothes online",
+          "steps": {
+            "upload": "Upload a photo",
+            "choose": "Choose a clothing source",
+            "compare": "Compare results"
+          }
+        },
+        "intent": {
+          "eyebrow": "User intent",
+          "title": "Virtual try-on should solve uncertainty before purchase",
+          "cards": {
+            "shopping": {
+              "title": "Shopping confidence",
+              "text": "Upload a front-facing photo and garment image to judge color, silhouette, and overall style before buying."
+            },
+            "creator": {
+              "title": "Creator planning",
+              "text": "Test styling directions quickly before spending time on a real shoot."
+            },
+            "commerce": {
+              "title": "Commerce previews",
+              "text": "Explain clothing outcomes visually instead of relying only on size charts."
+            }
+          }
+        },
+        "practical": {
+          "eyebrow": "Practical tips",
+          "title": "Better photos make try-on decisions more useful",
+          "related": {
+            "plusSize": "Plus Size Virtual Try-On",
+            "men": "Men's AI Clothes Changer"
+          }
+        },
+        "judge": {
+          "eyebrow": "How to judge results",
+          "title": "A useful virtual try-on result is something you compare",
+          "body": "A trustworthy page should explain what users can evaluate and where AI preview has limits. Virtual try-on is useful for styling direction, but it is not a final size guarantee.",
+          "cards": {
+            "identity": {
+              "title": "Check identity first",
+              "text": "The face, pose, and body proportions should still feel like the original person."
+            },
+            "edges": {
+              "title": "Inspect garment edges",
+              "text": "Collars, cuffs, waistlines, and hems are the areas most likely to reveal a weak result."
+            },
+            "useCase": {
+              "title": "Judge by the use case",
+              "text": "Shopping previews need outfit direction, profile photos need polish, and commerce images need clarity."
+            }
+          }
+        }
+      }
     },
     "plus-size-virtual-try-on": {
       "eyebrow": "Plus size virtual try-on",
@@ -497,7 +792,29 @@
       "bullet1": "Encrypted processing",
       "bullet2": "Automatic deletion after try-on",
       "bullet3": "Usage rules for unsafe requests",
-      "bullet4": "Privacy and billing handled from one account flow"
+      "bullet4": "Privacy and billing handled from one account flow",
+      "legal": {
+        "asideTitle": "Privacy promise",
+        "summaryTitle": "What matters most for users",
+        "sections": {
+          "uploads": {
+            "title": "Uploaded photos",
+            "text": "Images are used to complete the try-on workflow. After production API integration, uploads are deleted after processing."
+          },
+          "account": {
+            "title": "Account and credits",
+            "text": "Login data is used to maintain credits, plan status, and billing state, not to sell personal information."
+          },
+          "safety": {
+            "title": "Safety review",
+            "text": "Unsafe, explicit, or abusive uploads and prompts may be blocked before generation."
+          },
+          "deletion": {
+            "title": "Deletion requests",
+            "text": "The account area will include a Delete All My Data entry for removable personal data."
+          }
+        }
+      }
     },
     "terms-of-service": {
       "eyebrow": "Terms",
@@ -509,7 +826,29 @@
       "bullet1": "User owns or controls uploaded content",
       "bullet2": "No fraud or explicit misuse",
       "bullet3": "Clear renewal and cancellation terms",
-      "bullet4": "Failed system generations can be refunded"
+      "bullet4": "Failed system generations can be refunded",
+      "legal": {
+        "asideTitle": "Usage rules",
+        "summaryTitle": "Transparent billing principle",
+        "sections": {
+          "rights": {
+            "title": "Upload rights",
+            "text": "Users may only upload photos and garment references they own or have permission to use."
+          },
+          "prohibited": {
+            "title": "Prohibited use",
+            "text": "Fraud, impersonation, explicit content, copyright abuse, and attempts to bypass safety rules are not allowed."
+          },
+          "credits": {
+            "title": "Credits and failed jobs",
+            "text": "System failures may be refunded; user cancellation or policy-violating requests may not be refundable."
+          },
+          "cancellation": {
+            "title": "Subscription cancellation",
+            "text": "Monthly plans should provide a clearly visible cancellation path."
+          }
+        }
+      }
     }
   },
   "footer": {
