@@ -55,13 +55,12 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                   <span className="header-user-name">{user.name || user.email}</span>
                   <span className="header-user-email">{user.email}</span>
                 </span>
-                <span className="header-credits">{user.credits ?? 0}</span>
                 <ChevronDown size={15} className="header-account-chevron" />
               </button>
               <div className="header-account-menu" role="menu">
                 <div className="header-account-summary">
                   <strong>{user.name || user.email}</strong>
-                  <span>{authT("creditsAvailable", { count: user.credits ?? 0 })}</span>
+                  <span>{user.email}</span>
                 </div>
                 <button type="button" onClick={logout} role="menuitem">
                   <LogOut size={16} />
@@ -109,7 +108,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
                   />
                   <div>
                     <strong>{user.name || user.email}</strong>
-                    <span>{authT("creditsAvailable", { count: user.credits ?? 0 })}</span>
+                    <span>{user.email}</span>
                   </div>
                 </div>
               ) : null}

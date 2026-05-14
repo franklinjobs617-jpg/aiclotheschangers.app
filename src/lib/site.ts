@@ -39,7 +39,7 @@ export function localizedPath(locale: Locale, slug: PageSlug = "") {
 }
 
 export function absoluteLocalizedUrl(locale: Locale, slug: PageSlug = "") {
-  return `${baseUrl}${localizedPath(locale, slug)}`;
+  return new URL(localizedPath(locale, slug), `${baseUrl}/`).toString();
 }
 
 export function alternatesFor(slug: PageSlug = "") {

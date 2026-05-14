@@ -277,16 +277,6 @@ img {
   line-height: 1.15;
 }
 
-.header-credits {
-  flex: 0 0 auto;
-  border-radius: 999px;
-  background: #effbf8;
-  padding: 4px 8px;
-  color: #1d8a84;
-  font-size: 12px;
-  font-weight: 800;
-}
-
 .header-account-chevron {
   flex: 0 0 auto;
   color: #9aa3b2;
@@ -348,9 +338,13 @@ img {
 }
 
 .header-account-summary span {
-  color: #1d8a84;
+  max-width: 184px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #7b8494;
   font-size: 12px;
-  font-weight: 750;
+  font-weight: 500;
 }
 
 .header-account-menu button {
@@ -423,7 +417,8 @@ img {
 .mobile-drawer {
   margin-left: auto;
   width: min(380px, 100%);
-  min-height: 100%;
+  min-height: 100dvh;
+  overflow-y: auto;
   background: #fff;
   padding: 18px;
 }
@@ -486,9 +481,13 @@ img {
 
 .mobile-user span {
   margin-top: 2px;
-  color: #1d8a84;
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #7b8494;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 500;
 }
 
 .mobile-create {
@@ -4341,7 +4340,9 @@ img {
   }
 
   .mobile-drawer {
-    width: min(100% - 24px, 360px);
+    width: 100%;
+    max-width: none;
+    padding: 18px 14px 22px;
   }
 
   .section-head h2,
