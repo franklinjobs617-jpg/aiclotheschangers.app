@@ -18,7 +18,8 @@
     "title": "AI换装工具，生成更真实的虚拟试穿效果",
     "subtitle": "上传人物照片，选择服装来源或模特体型，在付费前先预览可信的 AI 试穿结果。",
     "upload": "上传并进入编辑器",
-    "drop": "也可以拖拽图片、粘贴图片或 URL",
+    "openingEditor": "正在进入编辑器...",
+    "drop": "拖拽图片到这里，点击任意位置，或直接粘贴复制的图片",
     "samples": "试试这些示例",
     "editorNote": "上传后进入编辑器，在那里选择服装、选择模特并生成效果。",
     "openEditor": "进入编辑器开始试穿",
@@ -201,68 +202,146 @@
       "name": "免费试用",
       "price": "$0",
       "period": "开始",
-      "description": "注册后获得 10 次免费额度，先体验真实虚拟试穿效果再选择套餐。",
+      "description": "每个新用户或浏览器初始共有 10 次试用额度，先体验真实虚拟试穿效果再选择套餐。",
       "cta": "免费开始",
       "credits": "10 次免费额度"
     },
     "starter": {
-      "name": "按量付费",
-      "price": "$0.99",
-      "period": "一次性",
-      "description": "低风险的额度包，无需订阅，获得第一个满意效果后可以多试几次。",
-      "cta": "购买额度",
-      "credits": "10 次额度"
+      "name": "Standard",
+      "price": "$9.9",
+      "monthlyPrice": "$15.9",
+      "yearlyPrice": "$9.9",
+      "period": "月",
+      "monthlyBilling": "按月计费",
+      "yearlyBilling": "按年计费 $119",
+      "description": "适合稳定个人试穿，在购物前用足够额度比较更多穿搭效果。",
+      "cta": "选择 Standard",
+      "credits": "每月 200 次额度"
     },
     "creator": {
-      "name": "基础月付",
-      "price": "$7.99",
+      "name": "Professional",
+      "price": "$24.9",
+      "monthlyPrice": "$34.9",
+      "yearlyPrice": "$24.9",
       "period": "月",
-      "description": "每月订阅方案，适合常规试穿工作流，获得更多每月额度。",
-      "cta": "获取基础套餐",
-      "credits": "每月 100 次额度"
+      "monthlyBilling": "按月计费",
+      "yearlyBilling": "按年计费 $299",
+      "description": "适合创作者、造型师和团队，提供更快生成和更高质量输出。",
+      "cta": "立即获取 Pro",
+      "credits": "每月 600 次额度"
     },
     "pro": {
-      "name": "专业月付",
-      "price": "$14.99",
-      "period": "月",
-      "description": "适合高频用户，每月大量试穿和高清下载需求。",
-      "cta": "升级专业版",
-      "credits": "每月 300 次额度"
+      "name": "一次性额度包",
+      "price": "$29.9",
+      "period": "一次性",
+      "billing": "无需订阅，额度不会过期。",
+      "description": "适合不想订阅、但短期项目需要更多生成次数的用户。",
+      "cta": "购买额度",
+      "credits": "共 200 次额度"
     }
   },
   "pricingPage": {
-    "heroTitle": "真实试穿的简单价格",
-    "heroBody": "先用 $0.99 轻量额度包继续测试更多造型，只有在经常使用时再选择月度套餐。",
-    "heroHighlight": "按量付费是最稳妥的开始方式。",
-    "yearlyLabel": "一次性额度",
-    "monthlyLabel": "月度套餐",
-    "featuredBadge": "最佳入门",
-    "topupLabel": "也可以单独加购额度",
-    "topupFootnote": "1 次 AI 试穿消耗 1 credit。",
+    "heroTitle": "准备好改造你的衣橱了吗？",
+    "heroBody": "为创作者、模特、购物用户和电商团队提供灵活的 AI 换装价格方案。",
+    "heroHighlight": "当虚拟试穿成为固定流程时，年付更省。",
+    "yearlyLabel": "年付",
+    "monthlyLabel": "月付",
+    "yearlySave": "省 38%",
+    "featuredBadge": "热门方案",
+    "topupLabel": "需要更多额度？",
+    "topupTitle": "随时加购额度",
+    "topupBody": "适合临时高强度项目。不需要更换套餐，也不会绑定额外订阅。",
+    "topupCta": "选择",
+    "topupUnit": "额度",
+    "topupFootnote": "如果每月都大量生成，订阅会更划算。",
     "planBenefits": {
       "free": {
-        "1": "注册后获得 10 次免费额度",
+        "1": "初始共 10 次试用额度",
         "2": "移动端上传自动修正",
         "3": "包含大码和男装的模特库",
         "4": "标准下载"
       },
       "starter": {
-        "1": "10 次一次性额度",
-        "2": "无订阅续费",
-        "3": "免费预览后继续测试",
-        "4": "适合偶尔使用"
+        "1": "每月 200 次额度",
+        "2": "HD 照片质量",
+        "3": "无水印",
+        "4": "标准生成速度"
       },
       "creator": {
-        "1": "每月 100 次额度",
-        "2": "支持 HD 解锁",
-        "3": "可重新生成和切换模特",
-        "4": "可随时取消"
+        "1": "每月 600 次额度",
+        "2": "4K 超清质量",
+        "3": "优先生成速度",
+        "4": "更适合反复测试多套造型"
       },
       "pro": {
-        "1": "每月 300 次额度",
-        "2": "包含 HD 下载",
-        "3": "适合反复测试多套造型",
-        "4": "面向高频试穿用户"
+        "1": "共 200 次额度",
+        "2": "包含 Standard 功能",
+        "3": "无订阅续费",
+        "4": "适合只需要项目额度包的用户"
+      }
+    },
+    "topups": {
+      "starter": {
+        "label": "入门",
+        "credits": "60",
+        "price": "$9.9"
+      },
+      "value": {
+        "label": "最划算",
+        "credits": "200",
+        "price": "$29.9"
+      },
+      "growth": {
+        "label": "成长",
+        "credits": "500",
+        "price": "$59.9"
+      },
+      "business": {
+        "label": "商务",
+        "credits": "1000",
+        "price": "$99.9"
+      }
+    },
+    "comparison": {
+      "eyebrow": "套餐对比",
+      "title": "付款前清楚比较真实优势",
+      "body": "中间套餐高亮，是因为它更适合长期使用：更多月度额度、更高清输出、更快生成速度，并且适合反复测试不同搭配。",
+      "feature": "对比项",
+      "labels": {
+        "price": "价格",
+        "credits": "额度",
+        "quality": "输出质量",
+        "watermark": "水印",
+        "speed": "生成速度",
+        "renewal": "续费方式",
+        "bestFor": "适合人群"
+      },
+      "rows": {
+        "quality": {
+          "starter": "HD 照片质量",
+          "creator": "4K 超清质量",
+          "pro": "HD 照片质量"
+        },
+        "watermark": {
+          "starter": "无水印",
+          "creator": "无水印",
+          "pro": "无水印"
+        },
+        "speed": {
+          "starter": "标准队列",
+          "creator": "优先队列",
+          "pro": "标准队列"
+        },
+        "renewal": {
+          "starter": "按月续费",
+          "creator": "按月续费",
+          "pro": "无订阅"
+        },
+        "bestFor": {
+          "starter": "个人购物和常规穿搭检查",
+          "creator": "创作者、造型师和高频试穿用户",
+          "pro": "一次性项目或偶尔加购额度"
+        }
       }
     },
     "trustNotes": {
@@ -304,11 +383,11 @@
     "faqs": {
       "freeCredits": {
         "question": "免费可以获得多少额度？",
-        "answer": "新用户注册后获得 10 次免费额度，可先测试真实虚拟试穿质量。"
+        "answer": "每个新用户或浏览器初始共有 10 次试用额度。登录不会再额外赠送一份欢迎额度。"
       },
       "hdExtra": {
         "question": "HD 下载需要额外消耗吗？",
-        "answer": "Pro 月付包含 HD 下载。其他套餐可使用额度解锁 HD。"
+        "answer": "Standard 包含 HD 照片质量，Professional 更侧重 4K 高质量输出和优先生成速度。"
       },
       "failedJobs": {
         "question": "失败生成会消耗额度吗？",
@@ -330,7 +409,7 @@
       "cards": {
         "testing": {
           "title": "只是想测试效果",
-          "text": "先用免费额度。用同一张清晰正面照测试 2-3 套衣服，重点看脸部保留、肩线、腰线和服装边缘。"
+          "text": "先用初始试用额度。用同一张清晰正面照测试 2-3 套衣服，重点看脸部保留、肩线、腰线和服装边缘。"
         },
         "occasional": {
           "title": "偶尔多试几套",
@@ -338,7 +417,7 @@
         },
         "regular": {
           "title": "经常做搭配或素材",
-          "text": "选择月度套餐。Basic 更适合稳定周频使用；Pro 适合频繁生成和高清下载。"
+          "text": "选择月度套餐。Standard 适合稳定周频使用；Professional 更适合频繁生成、更高质量和优先速度。"
         }
       }
     },
@@ -756,6 +835,7 @@
       "legal": {
         "asideTitle": "隐私承诺",
         "summaryTitle": "对用户最重要的事",
+        "contact": "如有隐私问题，请联系",
         "sections": {
           "uploads": {
             "title": "上传照片",
@@ -790,6 +870,7 @@
       "legal": {
         "asideTitle": "使用规则",
         "summaryTitle": "透明计费原则",
+        "contact": "如有条款或账单问题，请联系",
         "sections": {
           "rights": {
             "title": "上传权利",
@@ -981,6 +1062,9 @@
     "sloganLabel": "品牌标语",
     "slogan": "真实 AI 换装工具：无需先付费，也能体验可信的虚拟试穿。",
     "aboutLabel": "关于我们：aiclotheschangers.app",
+    "contact": {
+      "label": "联系邮箱"
+    },
     "sidebar": {
       "redefining": "重新定义",
       "mission": "使命",

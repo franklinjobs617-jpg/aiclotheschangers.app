@@ -18,7 +18,8 @@
     "title": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall",
     "subtitle": "Use the AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men, preview realistic fabric textures, and start free before choosing a plan.",
     "upload": "Upload and continue in editor",
-    "drop": "Or drop image here, paste image or URL",
+    "openingEditor": "Opening editor...",
+    "drop": "Drop an image here, click anywhere, or paste a copied image",
     "samples": "Try with one of these",
     "editorNote": "Uploads open the editor so you can pick clothes, choose a model, and generate there.",
     "openEditor": "Start Try-On in editor",
@@ -227,68 +228,146 @@
       "name": "Free Trial",
       "price": "$0",
       "period": "start",
-      "description": "Get 10 free credits after sign up to test realistic virtual try-on quality before choosing a plan.",
+      "description": "Each new user or browser starts with 10 total trial credits to test realistic virtual try-on quality before choosing a plan.",
       "cta": "Start free",
       "credits": "10 free credits"
     },
     "starter": {
-      "name": "Pay As You Go",
-      "price": "$0.99",
-      "period": "one-time",
-      "description": "A low-risk credit pack for a few more outfit tests after the first useful result. No subscription.",
-      "cta": "Buy credits",
-      "credits": "10 credits"
+      "name": "Standard",
+      "price": "$9.9",
+      "monthlyPrice": "$15.9",
+      "yearlyPrice": "$9.9",
+      "period": "mo",
+      "monthlyBilling": "Billed monthly",
+      "yearlyBilling": "Billed $119 annually",
+      "description": "For steady personal try-on with enough credits to compare outfits before shopping.",
+      "cta": "Choose Standard",
+      "credits": "200 credits/mo"
     },
     "creator": {
-      "name": "Basic Monthly",
-      "price": "$7.99",
-      "period": "month",
-      "description": "A simple monthly subscription for regular try-on workflows with more credits per month.",
-      "cta": "Get Basic Plan",
-      "credits": "100 credits/month"
+      "name": "Professional",
+      "price": "$24.9",
+      "monthlyPrice": "$34.9",
+      "yearlyPrice": "$24.9",
+      "period": "mo",
+      "monthlyBilling": "Billed monthly",
+      "yearlyBilling": "Billed $299 annually",
+      "description": "For creators, stylists, and teams that need faster generation and higher quality output.",
+      "cta": "Get Pro Now",
+      "credits": "600 credits/mo"
     },
     "pro": {
-      "name": "Pro Monthly",
-      "price": "$14.99",
-      "period": "month",
-      "description": "For power users who need high volume try-ons and HD downloads every month.",
-      "cta": "Upgrade to Pro",
-      "credits": "300 credits/month"
+      "name": "One-time Pack",
+      "price": "$29.9",
+      "period": "one-time",
+      "billing": "No subscription required. Credits never expire.",
+      "description": "A one-time credit pack for heavier projects when you do not want a subscription.",
+      "cta": "Buy Credits",
+      "credits": "200 credits total"
     }
   },
   "pricingPage": {
-    "heroTitle": "Simple Pricing for Real Outfit Tests",
-    "heroBody": "Start with the lightweight $0.99 credit pack for extra outfit tests, then move to monthly only when you use try-on regularly.",
-    "heroHighlight": "Pay as you go is the safest starting point.",
-    "yearlyLabel": "One-time credits",
-    "monthlyLabel": "Monthly plans",
-    "featuredBadge": "Best starter",
-    "topupLabel": "Or top up credits",
-    "topupFootnote": "1 AI try-on costs 1 credit.",
+    "heroTitle": "Ready to Transform Your Wardrobe?",
+    "heroBody": "Flexible plans for creators, models, shoppers, and e-commerce teams who need realistic AI clothes changing.",
+    "heroHighlight": "Save more with yearly billing when try-on becomes part of your workflow.",
+    "yearlyLabel": "Yearly",
+    "monthlyLabel": "Monthly",
+    "yearlySave": "SAVE 38%",
+    "featuredBadge": "Most popular",
+    "topupLabel": "Need a boost?",
+    "topupTitle": "Top up credits anytime",
+    "topupBody": "Perfect for heavy projects. No strings attached, and you can add credits without changing your plan.",
+    "topupCta": "Select",
+    "topupUnit": "Credits",
+    "topupFootnote": "Subscriptions save more when you generate every month.",
     "planBenefits": {
       "free": {
-        "1": "10 free credits after sign up",
+        "1": "10 total trial credits",
         "2": "Mobile upload auto-fix",
         "3": "10+ models including plus size and men",
         "4": "Standard download"
       },
       "starter": {
-        "1": "10 one-time credits",
-        "2": "No subscription renewal",
-        "3": "Use after the free preview",
-        "4": "Good for occasional tests"
+        "1": "200 credits / mo",
+        "2": "HD photo quality",
+        "3": "No watermark",
+        "4": "Standard generation speed"
       },
       "creator": {
-        "1": "100 credits per month",
-        "2": "HD unlock available",
-        "3": "Regenerate and try another model",
-        "4": "Cancel anytime"
+        "1": "600 credits / mo",
+        "2": "4K ultra quality",
+        "3": "Priority generation speed",
+        "4": "More room for repeat try-on testing"
       },
       "pro": {
-        "1": "300 credits per month",
-        "2": "HD downloads included",
-        "3": "More room for repeat outfit testing",
-        "4": "Built for frequent try-on use"
+        "1": "200 credits total",
+        "2": "All Standard features",
+        "3": "No subscription renewal",
+        "4": "Best when you only need a project pack"
+      }
+    },
+    "topups": {
+      "starter": {
+        "label": "Starter",
+        "credits": "60",
+        "price": "$9.9"
+      },
+      "value": {
+        "label": "Best value",
+        "credits": "200",
+        "price": "$29.9"
+      },
+      "growth": {
+        "label": "Growth",
+        "credits": "500",
+        "price": "$59.9"
+      },
+      "business": {
+        "label": "Business",
+        "credits": "1000",
+        "price": "$99.9"
+      }
+    },
+    "comparison": {
+      "eyebrow": "Plan comparison",
+      "title": "Compare the real advantages before checkout",
+      "body": "The middle plan is highlighted because it gives the strongest monthly value: more credits, higher output quality, faster generation, and no watermark for repeated try-on workflows.",
+      "feature": "Feature",
+      "labels": {
+        "price": "Price",
+        "credits": "Credits",
+        "quality": "Output quality",
+        "watermark": "Watermark",
+        "speed": "Generation speed",
+        "renewal": "Renewal",
+        "bestFor": "Best for"
+      },
+      "rows": {
+        "quality": {
+          "starter": "HD photo quality",
+          "creator": "4K ultra quality",
+          "pro": "HD photo quality"
+        },
+        "watermark": {
+          "starter": "No watermark",
+          "creator": "No watermark",
+          "pro": "No watermark"
+        },
+        "speed": {
+          "starter": "Standard queue",
+          "creator": "Priority queue",
+          "pro": "Standard queue"
+        },
+        "renewal": {
+          "starter": "Renews monthly",
+          "creator": "Renews monthly",
+          "pro": "No subscription"
+        },
+        "bestFor": {
+          "starter": "Personal shopping and regular outfit checks",
+          "creator": "Creators, stylists, and frequent try-on testing",
+          "pro": "A one-time project or occasional top-up"
+        }
       }
     },
     "trustNotes": {
@@ -330,11 +409,11 @@
     "faqs": {
       "freeCredits": {
         "question": "How many credits do I get for free?",
-        "answer": "New users get 10 free credits after sign up to test real virtual try-on quality before buying more."
+        "answer": "Each new user or browser starts with 10 total trial credits. Logging in does not add another welcome credit balance."
       },
       "hdExtra": {
         "question": "Is HD download extra?",
-        "answer": "HD downloads are included in the Pro Monthly plan. Other plans use credits for HD unlock."
+        "answer": "Standard includes HD photo quality, while Professional is positioned for higher-quality 4K output and priority generation."
       },
       "failedJobs": {
         "question": "Do failed generations consume credits?",
@@ -356,7 +435,7 @@
       "cards": {
         "testing": {
           "title": "Testing the quality",
-          "text": "Start with the free credits. Use one clear front-facing photo and compare 2-3 outfits for face preservation, shoulder line, waist placement, and garment edges."
+          "text": "Start with the initial trial credits. Use one clear front-facing photo and compare 2-3 outfits for face preservation, shoulder line, waist placement, and garment edges."
         },
         "occasional": {
           "title": "Trying a few more looks",
@@ -364,7 +443,7 @@
         },
         "regular": {
           "title": "Creating regularly",
-          "text": "Choose a monthly plan. Basic fits steady weekly use; Pro is better for frequent generations and HD downloads."
+          "text": "Choose a monthly plan. Standard fits steady weekly use; Professional is better for frequent generations, higher quality, and priority speed."
         }
       }
     },
@@ -669,6 +748,9 @@
     "sloganLabel": "Brand Slogan",
     "slogan": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall.",
     "aboutLabel": "About Us: aiclotheschangers.app",
+    "contact": {
+      "label": "Contact"
+    },
     "sidebar": {
       "redefining": "Redefining",
       "mission": "Mission",
@@ -878,6 +960,7 @@
       "legal": {
         "asideTitle": "Privacy promise",
         "summaryTitle": "What matters most for users",
+        "contact": "For privacy questions, contact",
         "sections": {
           "uploads": {
             "title": "Uploaded photos",
@@ -912,6 +995,7 @@
       "legal": {
         "asideTitle": "Usage rules",
         "summaryTitle": "Transparent billing principle",
+        "contact": "For terms or billing questions, contact",
         "sections": {
           "rights": {
             "title": "Upload rights",

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import {
   BadgeCheck,
   CheckCircle2,
@@ -17,6 +18,9 @@ import {
   type Locale,
   type PageSlug,
 } from "@/lib/site";
+import { useAuth } from "@/context/AuthContext";
+import { plans } from "@/config/plans";
+import { startCheckout } from "@/lib/checkout";
 
 const heroImages = [
   {
@@ -326,6 +330,15 @@ function AboutPageContent({ locale }: { locale: Locale }) {
                 <p className="mt-3 text-base leading-7 text-[#69717f]">
                   {t("sections.join.body")}
                 </p>
+                <p className="mt-3 text-sm leading-6 text-[#69717f]">
+                  {t("contact.label")}{" "}
+                  <a
+                    className="font-semibold text-[#1d8a84] underline-offset-4 hover:underline"
+                    href="mailto:admin@aiclotheschangers.app"
+                  >
+                    admin@aiclotheschangers.app
+                  </a>
+                </p>
               </div>
               <Link
                 className={`${darkCtaClass} shrink-0`}
@@ -378,7 +391,39 @@ function PricingPage({ locale }: { locale: Locale }) {
   const commonT = useTranslations("common");
   const pricingPageT = useTranslations("pricingPage");
   const geoT = useTranslations("geo");
+  const { openLoginModal } = useAuth();
+  const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+
+  const handleCheckout = async (planId: string) => {
+    const plan = plans[planId as keyof typeof plans];
+    if (!plan) return;
+    setCheckoutLoading(planId);
+    try {
+      await startCheckout(plan, openLoginModal);
+    } catch (err) {
+      console.error("Checkout failed:", err);
+      alert("Checkout failed. Please try again.");
+    } finally {
+      setCheckoutLoading(null);
+    }
+  };
+
+  const topupPlanMap: Record<string, string> = {
+    starter: "close_starter",
+    value: "close_best_value",
+    growth: "close_growth",
+    business: "close_business",
+  };
+
+  const getSubscriptionPlanId = (planKey: string, cycle: "monthly" | "yearly"): string => {
+    if (planKey === "starter") return cycle === "yearly" ? "close_standard_yearly" : "close_standard_monthly";
+    if (planKey === "creator") return cycle === "yearly" ? "close_professional_yearly" : "close_professional_monthly";
+    if (planKey === "pro") return "close_business";
+    return "";
+  };
   const planKeys = ["starter", "creator", "pro"] as const;
+  const topupKeys = ["starter", "value", "growth", "business"] as const;
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("yearly");
   const trustNoteKeys = ["freeCredits", "refunds", "privacy"] as const;
   const securityKeys = [
     "stripeFirst",
@@ -394,6 +439,7 @@ function PricingPage({ locale }: { locale: Locale }) {
     "renewal",
     "cancel",
   ] as const;
+  const advantageRowKeys = ["price", "credits", "quality", "watermark", "speed", "renewal", "bestFor"] as const;
   const chooseKeys = ["testing", "occasional", "regular"] as const;
   const creditRuleKeys = ["standard", "hd", "failed"] as const;
   const pricingFaqs = faqKeys.map(
@@ -403,13 +449,17 @@ function PricingPage({ locale }: { locale: Locale }) {
         pricingPageT(`faqs.${key}.answer`),
       ] as const
   );
-  const pricingRows = planKeys.map((key) => ({
-    key,
-    plan: t(`${key}.name`),
-    price: `${t(`${key}.price`)}/${t(`${key}.period`)}`,
-    credits: t(`${key}.credits`),
-    bestFor: pricingPageT(`planBenefits.${key}.4`),
-  }));
+  const planPrice = (key: typeof planKeys[number]) =>
+    key === "pro" ? t(`${key}.price`) : t(`${key}.${billingCycle}Price`);
+  const billingDescription = (key: typeof planKeys[number]) =>
+    key === "pro" ? t(`${key}.billing`) : t(`${key}.${billingCycle}Billing`);
+  const comparisonValue = (row: typeof advantageRowKeys[number], plan: typeof planKeys[number]) => {
+    if (row === "price") {
+      return plan === "pro" ? t(`${plan}.price`) : `${t(`${plan}.${billingCycle}Price`)}/${t(`${plan}.period`)}`;
+    }
+    if (row === "credits") return t(`${plan}.credits`);
+    return pricingPageT(`comparison.rows.${row}.${plan}`);
+  };
   const schema = [
     buildBreadcrumbSchema(locale, "pricing", t("title")),
     buildPageSchema(
@@ -429,21 +479,33 @@ function PricingPage({ locale }: { locale: Locale }) {
         {
           "@type": "Offer",
           name: t("starter.name"),
-          price: "0.99",
+          price: "9.9",
           priceCurrency: "USD",
           description: t("starter.description"),
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: "9.9",
+            priceCurrency: "USD",
+            billingDuration: "P1Y",
+          },
         },
         {
           "@type": "Offer",
           name: t("creator.name"),
-          price: "7.99",
+          price: "24.9",
           priceCurrency: "USD",
           description: t("creator.description"),
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: "24.9",
+            priceCurrency: "USD",
+            billingDuration: "P1Y",
+          },
         },
         {
           "@type": "Offer",
           name: t("pro.name"),
-          price: "14.99",
+          price: "29.9",
           priceCurrency: "USD",
           description: t("pro.description"),
         },
@@ -473,15 +535,24 @@ function PricingPage({ locale }: { locale: Locale }) {
           >
             <button
               type="button"
-              className="min-w-0 rounded-full px-2 text-sm font-medium leading-5 text-[#1d8a84] sm:px-3"
+              className={`min-w-0 rounded-full px-2 text-sm font-medium leading-5 transition-colors sm:px-3 ${
+                billingCycle === "monthly" ? "bg-white text-[#222529] shadow-sm" : "text-[#1d8a84]"
+              }`}
+              onClick={() => setBillingCycle("monthly")}
             >
-              {pricingPageT("yearlyLabel")}
+              {pricingPageT("monthlyLabel")}
             </button>
             <button
               type="button"
-              className="min-w-0 rounded-full bg-white px-2 text-sm font-medium leading-5 text-[#222529] shadow-sm sm:px-3"
+              className={`min-w-0 rounded-full px-2 text-sm font-medium leading-5 transition-colors sm:px-3 ${
+                billingCycle === "yearly" ? "bg-white text-[#222529] shadow-sm" : "text-[#1d8a84]"
+              }`}
+              onClick={() => setBillingCycle("yearly")}
             >
-              {pricingPageT("monthlyLabel")}
+              {pricingPageT("yearlyLabel")}
+              <span className="ml-1 rounded-full bg-emerald-50 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700">
+                {pricingPageT("yearlySave")}
+              </span>
             </button>
           </div>
         </div>
@@ -492,7 +563,7 @@ function PricingPage({ locale }: { locale: Locale }) {
           {planKeys.map((key) => (
             <article
               className={`relative mx-auto flex w-full max-w-[22rem] min-w-0 flex-col rounded-2xl border bg-white p-5 sm:max-w-none sm:p-6 ${
-                key === "starter"
+                key === "creator"
                   ? "border-[#23a7a0] shadow-[0_18px_48px_rgba(0,205,176,0.14)] md:-translate-y-3"
                   : "border-gray-200"
               }`}
@@ -502,7 +573,7 @@ function PricingPage({ locale }: { locale: Locale }) {
                 <h2 className="min-w-0 text-xl font-semibold leading-snug text-[#222529]">
                   {t(`${key}.name`)}
                 </h2>
-                {key === "starter" ? (
+                {key === "creator" ? (
                   <span className="shrink-0 rounded-full bg-[#222529] px-3 py-1 text-xs font-semibold text-white">
                     {pricingPageT("featuredBadge")}
                   </span>
@@ -513,15 +584,27 @@ function PricingPage({ locale }: { locale: Locale }) {
               </p>
               <div className="mt-4 flex items-end gap-1">
                 <strong className="text-4xl font-semibold text-[#222529]">
-                  {t(`${key}.price`)}
+                  {planPrice(key)}
                 </strong>
-                <span className="pb-1 text-sm text-[#69717f]">
-                  /{t(`${key}.period`)}
-                </span>
+                {key === "pro" ? null : (
+                  <span className="pb-1 text-sm text-[#69717f]">
+                    /{t(`${key}.period`)}
+                  </span>
+                )}
               </div>
-              <Link className={`${darkCtaClass} mt-5 w-full px-4`} href="#">
-                {t(`${key}.cta`)}
-              </Link>
+              <p className="mt-2 text-sm font-semibold text-emerald-700 underline decoration-emerald-200 underline-offset-4">
+                {billingDescription(key)}
+              </p>
+              <button
+                className={`${darkCtaClass} mt-5 w-full px-4`}
+                style={{ color: "#ffffff" }}
+                onClick={() => handleCheckout(getSubscriptionPlanId(key, billingCycle))}
+                disabled={checkoutLoading === getSubscriptionPlanId(key, billingCycle)}
+              >
+                {checkoutLoading === getSubscriptionPlanId(key, billingCycle)
+                  ? "Processing..."
+                  : t(`${key}.cta`)}
+              </button>
               <div className="mt-4 rounded-lg bg-[#effbf8] px-3 py-2 text-sm font-semibold text-[#1d8a84]">
                 {t(`${key}.credits`)}
               </div>
@@ -546,46 +629,114 @@ function PricingPage({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <section className="w-full max-w-full overflow-hidden px-4 pb-14 sm:px-6 lg:px-8">
+        <div className="mx-auto w-full max-w-6xl rounded-3xl border border-gray-200 bg-[#fbfcfd] p-5 sm:p-8">
+          <div className="mx-auto mb-8 max-w-3xl text-center">
+            <span className="text-sm font-semibold text-[#1d8a84]">
+              {pricingPageT("topupLabel")}
+            </span>
+            <h2 className="mt-2 text-2xl font-semibold leading-tight text-[#222529] sm:text-3xl">
+              {pricingPageT("topupTitle")}
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-[#69717f] sm:text-base">
+              {pricingPageT("topupBody")}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {topupKeys.map((key) => (
+              <article
+                className={`rounded-2xl border bg-white p-5 text-center shadow-[0_10px_24px_rgba(24,31,52,0.035)] ${
+                  key === "value" ? "border-[#23a7a0] ring-2 ring-[#23a7a0]/10" : "border-gray-200"
+                }`}
+                key={key}
+              >
+                <span className={`text-xs font-black uppercase tracking-widest ${key === "value" ? "text-[#1d8a84]" : "text-[#8b94a3]"}`}>
+                  {pricingPageT(`topups.${key}.label`)}
+                </span>
+                <div className="mt-3 text-4xl font-semibold leading-none text-[#222529]">
+                  {pricingPageT(`topups.${key}.credits`)}
+                </div>
+                <div className="mt-1 text-xs font-bold uppercase tracking-widest text-[#1d8a84]">
+                  {pricingPageT("topupUnit")}
+                </div>
+                <div className="mt-5 text-2xl font-semibold text-[#222529]">
+                  {pricingPageT(`topups.${key}.price`)}
+                </div>
+                <button
+                  className="mt-5 inline-flex min-h-10 w-full items-center justify-center rounded-lg px-4 text-sm font-semibold transition-colors"
+                  style={
+                    key === "value"
+                      ? { color: "#ffffff", backgroundColor: "#222529" }
+                      : { color: "#222529", backgroundColor: "#ffffff", border: "1px solid #e5e7eb" }
+                  }
+                  onClick={() => handleCheckout(topupPlanMap[key])}
+                  disabled={checkoutLoading === topupPlanMap[key]}
+                >
+                  {checkoutLoading === topupPlanMap[key]
+                    ? "Processing..."
+                    : pricingPageT("topupCta")}
+                </button>
+              </article>
+            ))}
+          </div>
+          <p className="mt-5 text-center text-xs font-semibold uppercase tracking-widest text-[#8b94a3]">
+            {pricingPageT("topupFootnote")}
+          </p>
+        </div>
+      </section>
+
       <section className="px-4 pb-14 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-6xl">
           <div className="mb-5">
             <span className="text-sm font-semibold text-[#1d8a84]">
-              {geoT("pricingComparison.eyebrow")}
+              {pricingPageT("comparison.eyebrow")}
             </span>
             <h2 className="mt-2 text-2xl font-semibold leading-tight text-[#222529] sm:text-3xl">
-              {geoT("pricingComparison.title")}
+              {pricingPageT("comparison.title")}
             </h2>
+            <p className="mt-3 max-w-3xl text-sm leading-6 text-[#69717f] sm:text-base">
+              {pricingPageT("comparison.body")}
+            </p>
           </div>
           <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-[0_10px_24px_rgba(24,31,52,0.035)]">
             <table className="w-full min-w-[720px] border-collapse text-left text-sm">
               <thead className="bg-[#fbfcfd] text-[#222529]">
                 <tr>
                   <th scope="col" className="px-5 py-4 font-semibold">
-                    {geoT("pricingComparison.plan")}
+                    {pricingPageT("comparison.feature")}
                   </th>
-                  <th scope="col" className="px-5 py-4 font-semibold">
-                    {geoT("pricingComparison.price")}
-                  </th>
-                  <th scope="col" className="px-5 py-4 font-semibold">
-                    {geoT("pricingComparison.credits")}
-                  </th>
-                  <th scope="col" className="px-5 py-4 font-semibold">
-                    {geoT("pricingComparison.bestFor")}
-                  </th>
+                  {planKeys.map((key) => (
+                    <th
+                      scope="col"
+                      className={`px-5 py-4 font-semibold ${key === "creator" ? "bg-[#effbf8] text-[#1d8a84]" : ""}`}
+                      key={key}
+                    >
+                      <span className="flex items-center gap-2">
+                        {t(`${key}.name`)}
+                        {key === "creator" ? (
+                          <span className="rounded-full bg-[#222529] px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
+                            {pricingPageT("featuredBadge")}
+                          </span>
+                        ) : null}
+                      </span>
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 text-[#47505f]">
-                {pricingRows.map((row) => (
-                  <tr key={row.key}>
-                    <th
-                      scope="row"
-                      className="px-5 py-4 font-semibold text-[#222529]"
-                    >
-                      {row.plan}
+                {advantageRowKeys.map((row) => (
+                  <tr key={row}>
+                    <th scope="row" className="w-[190px] px-5 py-4 font-semibold text-[#222529]">
+                      {pricingPageT(`comparison.labels.${row}`)}
                     </th>
-                    <td className="px-5 py-4">{row.price}</td>
-                    <td className="px-5 py-4">{row.credits}</td>
-                    <td className="px-5 py-4">{row.bestFor}</td>
+                    {planKeys.map((key) => (
+                      <td
+                        className={`px-5 py-4 leading-6 ${key === "creator" ? "bg-[#f7fffd] font-semibold text-[#222529]" : ""}`}
+                        key={key}
+                      >
+                        {comparisonValue(row, key)}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -1071,6 +1222,15 @@ function LegalPageContent({
               </p>
               <p className="mt-3 text-base leading-7 text-[#69717f]">
                 {t("body3")}
+              </p>
+              <p className="mt-4 text-sm leading-6 text-[#69717f]">
+                {t("legal.contact")}{" "}
+                <a
+                  className="font-semibold text-[#1d8a84] underline-offset-4 hover:underline"
+                  href="mailto:admin@aiclotheschangers.app"
+                >
+                  admin@aiclotheschangers.app
+                </a>
               </p>
             </div>
           </div>

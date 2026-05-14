@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
+import StripePaymentClient from "./StripePaymentClient";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false }
@@ -6,13 +8,14 @@ export const metadata: Metadata = {
 
 export default function StripePaymentPage() {
   return (
-    <section className="section">
-      <div className="container narrow" style={{ textAlign: "center", padding: "120px 0" }}>
-        <h1>Processing Payment...</h1>
-        <p style={{ color: "var(--muted)", marginTop: "16px" }}>
-          Please wait while we confirm your payment.
-        </p>
-      </div>
-    </section>
+    <Suspense
+      fallback={
+        <section className="flex min-h-[60vh] flex-col items-center justify-center px-4">
+          <h1 className="text-2xl font-semibold text-[#222529]">Loading...</h1>
+        </section>
+      }
+    >
+      <StripePaymentClient />
+    </Suspense>
   );
 }

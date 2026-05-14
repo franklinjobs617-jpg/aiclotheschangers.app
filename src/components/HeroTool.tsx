@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Upload } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EDITOR_MODELS } from "@/lib/editorModels";
 import { localizedPath, type Locale } from "@/lib/site";
 
@@ -61,40 +61,44 @@ export function HeroTool({ locale }: { locale: Locale }) {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragover, setDragover] = useState(false);
+  const [isOpening, setIsOpening] = useState(false);
 
-  const navigateToEditor = () => {
+  const navigateToEditor = useCallback(() => {
     router.push(localizedPath(locale, "editor"));
-  };
+  }, [locale, router]);
 
   const selectModelAndOpenEditor = (src: string) => {
     sessionStorage.setItem("editor-selected-model", src);
     navigateToEditor();
   };
 
-  const handleFile = (file: File) => {
+  const handleFile = useCallback((file: File) => {
+    if (!file.type.startsWith("image/")) return;
+    setIsOpening(true);
     const reader = new FileReader();
-    reader.onload = async (e) => {
+    reader.onload = (e) => {
       const result = e.target?.result;
       if (typeof result === "string") {
         sessionStorage.setItem("editor-upload-photo", result);
-        try {
-          const response = await fetch("/api/uploads/r2", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ image: result, kind: "model" }),
-          });
-          const data = await response.json().catch(() => ({}));
-          if (response.ok && typeof data?.url === "string") {
-            sessionStorage.setItem("editor-upload-photo", data.url);
-          }
-        } catch {
-          // The editor can still show the local preview and upload again before generation.
-        }
         navigateToEditor();
       }
     };
+    reader.onerror = () => setIsOpening(false);
     reader.readAsDataURL(file);
-  };
+  }, [navigateToEditor]);
+
+  useEffect(() => {
+    const handlePaste = (event: ClipboardEvent) => {
+      const imageFile = Array.from(event.clipboardData?.files || []).find((file) => file.type.startsWith("image/"));
+      if (imageFile) {
+        event.preventDefault();
+        handleFile(imageFile);
+      }
+    };
+
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, [handleFile]);
 
   return (
     <section className="hero-section">
@@ -121,14 +125,29 @@ export function HeroTool({ locale }: { locale: Locale }) {
               if (file && file.type.startsWith("image/")) handleFile(file);
             }}
           >
-            <div className={`upload-dropzone ${dragover ? "dragover" : ""}`}>
+            <div
+              className={`upload-dropzone ${dragover ? "dragover" : ""} ${isOpening ? "dragover" : ""}`}
+              role="button"
+              tabIndex={0}
+              onClick={(event) => {
+                if ((event.target as HTMLElement).closest("button")) return;
+                fileInputRef.current?.click();
+              }}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  fileInputRef.current?.click();
+                }
+              }}
+            >
               <button
                 type="button"
                 className="upload-main-button"
+                disabled={isOpening}
                 onClick={() => fileInputRef.current?.click()}
               >
                 <Upload size={30} />
-                {t("upload")}
+                {isOpening ? t("openingEditor") : t("upload")}
               </button>
               <p>{t("drop")}</p>
               <input
