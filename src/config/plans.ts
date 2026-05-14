@@ -42,7 +42,7 @@ export const plans: Record<PlanId, PlanConfig> = {
     credits: 200,
     value: 9.9,
     currency: "USD",
-    stripePriceId: "price_1TWuZC8mZdtey8u28wafMPv9",
+    stripePriceId: "price_1TWwhW8mZdtey8u2azjUtN9O",
     itemVariant: "yearly"
   },
   close_professional_monthly: {
@@ -64,7 +64,7 @@ export const plans: Record<PlanId, PlanConfig> = {
     credits: 600,
     value: 199,
     currency: "USD",
-    stripePriceId: "price_1TWuai8mZdtey8u2txmf7lKC",
+    stripePriceId: "price_1TWwiq8mZdtey8u2t2jLwffO",
     itemVariant: "yearly"
   },
   close_starter: {

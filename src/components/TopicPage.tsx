@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   BadgeCheck,
   CheckCircle2,
@@ -393,6 +393,10 @@ function PricingPage({ locale }: { locale: Locale }) {
   const geoT = useTranslations("geo");
   const { openLoginModal } = useAuth();
   const [checkoutLoading, setCheckoutLoading] = useState<string | null>(null);
+
+  useEffect(() => {
+    setCheckoutLoading(null);
+  }, []);
 
   const handleCheckout = async (planId: string) => {
     const plan = plans[planId as keyof typeof plans];
