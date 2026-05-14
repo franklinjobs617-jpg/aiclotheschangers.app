@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const locale = rawLocale as Locale;
   const t = await getTranslations({ locale, namespace: `topicPages.${slug}` });
 
+  
   return buildMetadata({
     title: `${t("title")} | AIClothesChanger`,
     description: t("description"),
