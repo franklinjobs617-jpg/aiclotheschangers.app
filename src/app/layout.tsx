@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aiclotheschanger.me"),
+  metadataBase: new URL("https://aiclotheschangers.app"),
   icons: {
     icon: "/brand/icon.svg",
     shortcut: "/brand/icon.svg",

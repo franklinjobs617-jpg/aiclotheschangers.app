@@ -1,6 +1,6 @@
 # AI Clothes Changer - 项目开发文档 V1.0
 
-> aiclotheschanger.me | 余味 joyofmay / Buildwithtime时间魔法工坊
+> aiclotheschangers.app | 余味 joyofmay / Buildwithtime时间魔法工坊
 > 2026年5月
 
 ---
@@ -213,13 +213,13 @@ src/
 前端 window.open 弹窗 (600x600)
     → Google OAuth URL:
       client_id:    <Google Client ID>
-      redirect_uri: https://api.aiclotheschanger.me/prod-api/g/callback
+      redirect_uri: https://api.aiclotheschangers.app/prod-api/g/callback
       response_type: code
       scope:        openid email profile
     ↓
 Google 授权 → 重定向到后端回调
     ↓
-后端 (api.aiclotheschanger.me):
+后端 (api.aiclotheschangers.app):
   1. 用授权码换取 access_token
   2. 获取用户信息 (name, email, picture, googleUserId)
   3. 创建/更新数据库用户记录
@@ -329,7 +329,7 @@ export const CREDIT_COSTS = {
 ```
 用户选择计划 / 积分包
     ↓
-前端 POST → https://api.aiclotheschanger.me/prod-api/stripe/getPayUrl
+前端 POST → https://api.aiclotheschangers.app/prod-api/stripe/getPayUrl
   Body: {
     googleUserId: "...",
     type: "clothes_a_monthly",  // 或 payg / b_monthly
@@ -494,7 +494,7 @@ H1:     AI Clothes Changer Designed for Men's Fashion
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "AI Clothes Changer",
-  "url": "https://aiclotheschanger.me",
+  "url": "https://aiclotheschangers.app",
   "operatingSystem": "Web",
   "applicationCategory": "MultimediaApplication",
   "offers": {
@@ -852,7 +852,7 @@ prisma/
 ## 十一、技术执行检查清单
 
 #### 基础设施
-- [ ] 域名: aiclotheschanger.me (EMD 优势)
+- [ ] 域名: aiclotheschangers.app (EMD 优势)
 - [ ] Next.js 16 + TypeScript + Tailwind CSS 项目初始化
 - [ ] Prisma ORM + MySQL 数据库配置
 - [ ] Vercel 部署配置

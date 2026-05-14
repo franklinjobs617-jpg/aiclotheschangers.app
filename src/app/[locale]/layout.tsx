@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const meta = (messages as Record<string, Record<string, string>>)?.metadata;
 
   return {
-    metadataBase: new URL("https://aiclotheschanger.me"),
+    metadataBase: new URL("https://aiclotheschangers.app"),
     title: meta?.title ?? "AI Clothes Changer",
     description: meta?.description ?? ""
   };

@@ -214,6 +214,168 @@ img {
   background: #f5f6f8;
 }
 
+.header-account {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.header-account-trigger {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 286px;
+  padding: 3px 8px 3px 3px;
+  border: 1px solid #e4e7ec;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(24, 31, 52, 0.04);
+  transition: border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+.header-account:hover .header-account-trigger,
+.header-account:focus-within .header-account-trigger {
+  border-color: rgba(35, 167, 160, 0.38);
+  background: #fbfffe;
+  box-shadow: 0 12px 30px rgba(24, 31, 52, 0.08);
+}
+
+.header-avatar {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  object-fit: cover;
+  background: #f2f4f8;
+}
+
+.header-account-copy {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+  text-align: left;
+}
+
+.header-user-name {
+  min-width: 0;
+  max-width: 118px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #303640;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.header-user-email {
+  max-width: 118px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #8a93a3;
+  font-size: 11px;
+  line-height: 1.15;
+}
+
+.header-credits {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: #effbf8;
+  padding: 4px 8px;
+  color: #1d8a84;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.header-account-chevron {
+  flex: 0 0 auto;
+  color: #9aa3b2;
+  transition: transform 0.16s ease;
+}
+
+.header-account:hover .header-account-chevron,
+.header-account:focus-within .header-account-chevron {
+  transform: rotate(180deg);
+}
+
+.header-account-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 120;
+  min-width: 220px;
+  padding: 8px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(20, 24, 40, 0.16);
+  opacity: 0;
+  transform: translateY(-4px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+.header-account::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 100%;
+  height: 12px;
+}
+
+.header-account:hover .header-account-menu,
+.header-account:focus-within .header-account-menu {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.header-account-summary {
+  display: grid;
+  gap: 3px;
+  padding: 9px 10px 10px;
+  border-bottom: 1px solid #eef0f4;
+}
+
+.header-account-summary strong {
+  max-width: 184px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #222529;
+  font-size: 13px;
+}
+
+.header-account-summary span {
+  color: #1d8a84;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.header-account-menu button {
+  width: 100%;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 6px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 10px;
+  color: #3f4654;
+  background: transparent;
+  font-size: 13px;
+  font-weight: 650;
+  text-align: left;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.header-account-menu button:hover {
+  color: #b42318;
+  background: #fff4f2;
+}
+
 .create-link,
 .primary-button,
 .generate-button {
@@ -296,6 +458,37 @@ img {
   display: block;
   padding-left: 16px;
   color: var(--muted);
+}
+
+.mobile-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid #e4e7ec;
+  border-radius: 14px;
+  background: #fbfcfd;
+}
+
+.mobile-user strong,
+.mobile-user span {
+  display: block;
+}
+
+.mobile-user strong {
+  max-width: 250px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #222529;
+  font-size: 14px;
+}
+
+.mobile-user span {
+  margin-top: 2px;
+  color: #1d8a84;
+  font-size: 12px;
+  font-weight: 800;
 }
 
 .mobile-create {
@@ -2430,8 +2623,13 @@ img {
   .desktop-nav,
   .login-link,
   .create-link,
-  .icon-button {
+  .icon-button,
+  .header-account {
     display: none;
+  }
+
+  .header-actions {
+    gap: 8px;
   }
 
   .menu-button {

@@ -675,8 +675,8 @@
     "about-us": {
       "eyebrow": "关于",
       "title": "重新定义虚拟试衣间",
-      "description": "aiclotheschanger.me 让时尚技术更易用、更透明、更真实，提供无付费墙的真实虚拟试穿。",
-      "body1": "在 aiclotheschanger.me，我们相信时尚技术应该是易用的、透明的，最重要的是真实的。",
+      "description": "aiclotheschangers.app 让时尚技术更易用、更透明、更真实，提供无付费墙的真实虚拟试穿。",
+      "body1": "在 aiclotheschangers.app，我们相信时尚技术应该是易用的、透明的，最重要的是真实的。",
       "body2": "我们的使命是质量优先，信任始终。我们专注于高保真 AI 换装技术，让用户先看到质量再选择套餐。",
       "body3": "复杂留给我们，简单留给用户。产品体验优先支持大码和男装路径、稳定生成和隐私优先处理。"
     },
@@ -783,7 +783,10 @@
     "loginTitle": "登录以继续",
     "loginButton": "使用 Google 登录",
     "loginHint": "获取 10 次免费额度",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "signedInAccount": "已登录账户",
+    "signedInUser": "已登录用户",
+    "creditsAvailable": "剩余 {count} 次额度"
   },
   "editor": {
     "step1": "选择模特",
@@ -908,7 +911,7 @@
   "aboutPage": {
     "sloganLabel": "品牌标语",
     "slogan": "真实 AI 换装工具：无需先付费，也能体验可信的虚拟试穿。",
-    "aboutLabel": "关于我们：aiclotheschanger.me",
+    "aboutLabel": "关于我们：aiclotheschangers.app",
     "sidebar": {
       "redefining": "重新定义",
       "mission": "使命",
@@ -919,7 +922,7 @@
     "sections": {
       "redefining": {
         "title": "重新定义虚拟试衣间",
-        "body": "在 aiclotheschanger.me，我们相信时尚技术应该易用、透明，并且足够真实。我们看到太多工具要求用户先付费才能看到一个结果，所以决定做一个更可信的方式。"
+        "body": "在 aiclotheschangers.app，我们相信时尚技术应该易用、透明，并且足够真实。我们看到太多工具要求用户先付费才能看到一个结果，所以决定做一个更可信的方式。"
       },
       "mission": {
         "label": "我们的使命",

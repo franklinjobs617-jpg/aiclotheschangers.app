@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, LogOut, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { localizedPath, type Locale } from "@/lib/site";
@@ -11,8 +11,9 @@ import { useAuth } from "@/context/AuthContext";
 export function SiteHeader({ locale }: { locale: Locale }) {
   const [open, setOpen] = useState(false);
   const t = useTranslations("nav");
+  const authT = useTranslations("auth");
   const brand = useTranslations()("brand");
-  const { openLoginModal } = useAuth();
+  const { user, openLoginModal, logout } = useAuth();
   const navItems = [
     [t("tryOn"), localizedPath(locale)],
     [t("plusSize"), localizedPath(locale, "plus-size-virtual-try-on")],
@@ -40,9 +41,39 @@ export function SiteHeader({ locale }: { locale: Locale }) {
         </nav>
 
         <div className="header-actions">
-          <button type="button" className="login-link" onClick={openLoginModal}>
-            {t("login")}
-          </button>
+          {user ? (
+            <div className="header-account" aria-label={authT("signedInAccount")}>
+              <button type="button" className="header-account-trigger" aria-haspopup="menu">
+                <Image
+                  src={user.picture || "/brand/icon.svg"}
+                  alt={user.name || user.email || authT("signedInUser")}
+                  width={34}
+                  height={34}
+                  className="header-avatar"
+                />
+                <span className="header-account-copy">
+                  <span className="header-user-name">{user.name || user.email}</span>
+                  <span className="header-user-email">{user.email}</span>
+                </span>
+                <span className="header-credits">{user.credits ?? 0}</span>
+                <ChevronDown size={15} className="header-account-chevron" />
+              </button>
+              <div className="header-account-menu" role="menu">
+                <div className="header-account-summary">
+                  <strong>{user.name || user.email}</strong>
+                  <span>{authT("creditsAvailable", { count: user.credits ?? 0 })}</span>
+                </div>
+                <button type="button" onClick={logout} role="menuitem">
+                  <LogOut size={16} />
+                  {authT("logout")}
+                </button>
+              </div>
+            </div>
+          ) : (
+            <button type="button" className="login-link" onClick={openLoginModal}>
+              {t("login")}
+            </button>
+          )}
           <Link href={localizedPath(locale, "editor")} className="create-link">
             {t("create")}
           </Link>
@@ -67,21 +98,49 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               </button>
             </div>
             <div className="mobile-links">
+              {user ? (
+                <div className="mobile-user">
+                  <Image
+                    src={user.picture || "/brand/icon.svg"}
+                    alt={user.name || user.email || authT("signedInUser")}
+                    width={40}
+                    height={40}
+                    className="header-avatar"
+                  />
+                  <div>
+                    <strong>{user.name || user.email}</strong>
+                    <span>{authT("creditsAvailable", { count: user.credits ?? 0 })}</span>
+                  </div>
+                </div>
+              ) : null}
               {navItems.map(([label, href]) => (
                 <Link href={href} key={href} onClick={() => setOpen(false)}>
                   {label}
                 </Link>
               ))}
-              <button
-                type="button"
-                className="mobile-login"
-                onClick={() => {
-                  setOpen(false);
-                  openLoginModal();
-                }}
-              >
-                {t("login")}
-              </button>
+              {user ? (
+                <button
+                  type="button"
+                  className="mobile-login"
+                  onClick={() => {
+                    setOpen(false);
+                    logout();
+                  }}
+                >
+                  {authT("logout")}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="mobile-login"
+                  onClick={() => {
+                    setOpen(false);
+                    openLoginModal();
+                  }}
+                >
+                  {t("login")}
+                </button>
+              )}
               <Link href={localizedPath(locale, "editor")} className="mobile-create" onClick={() => setOpen(false)}>
                 {t("create")}
               </Link>

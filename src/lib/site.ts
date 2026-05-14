@@ -1,4 +1,4 @@
-export const baseUrl = "https://aiclotheschanger.me";
+export const baseUrl = "https://aiclotheschangers.app";
 
 export const locales = ["en", "zh"] as const;
 

@@ -17,7 +17,7 @@ const intlMiddleware = createMiddleware({
 export default function middleware(request: NextRequest) {
   const host = request.headers.get("x-forwarded-host") ?? request.headers.get("host") ?? "";
   const proto = request.headers.get("x-forwarded-proto") ?? request.nextUrl.protocol.replace(":", "");
-  const canonicalHost = "aiclotheschanger.me";
+  const canonicalHost = "aiclotheschangers.app";
 
   if (host === `www.${canonicalHost}` || (proto === "http" && (host === canonicalHost || host === `www.${canonicalHost}`))) {
     const url = request.nextUrl.clone();

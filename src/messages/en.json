@@ -606,7 +606,7 @@
   "aboutPage": {
     "sloganLabel": "Brand Slogan",
     "slogan": "Realistic AI Clothes Changer: Experience True Virtual Try-On Without the Paywall.",
-    "aboutLabel": "About Us: aiclotheschanger.me",
+    "aboutLabel": "About Us: aiclotheschangers.app",
     "sidebar": {
       "redefining": "Redefining",
       "mission": "Mission",
@@ -617,7 +617,7 @@
     "sections": {
       "redefining": {
         "title": "Redefining the Virtual Fitting Room",
-        "body": "At aiclotheschanger.me, we believe that fashion technology should be accessible, transparent, and, above all, realistic. We observed a market filled with applications that demand payment before showing a single result. We decided to build a better way."
+        "body": "At aiclotheschangers.app, we believe that fashion technology should be accessible, transparent, and, above all, realistic. We observed a market filled with applications that demand payment before showing a single result. We decided to build a better way."
       },
       "mission": {
         "label": "Our Mission",
@@ -638,7 +638,7 @@
       "join": {
         "label": "Join the Fashion Revolution",
         "title": "Your personal, digital wardrobe",
-        "body": "Whether you are a shopper trying to avoid wrong-size returns or a fashion enthusiast exploring new styles, aiclotheschanger.me is your personal, digital wardrobe.",
+        "body": "Whether you are a shopper trying to avoid wrong-size returns or a fashion enthusiast exploring new styles, aiclotheschangers.app is your personal, digital wardrobe.",
         "cta": "Start Try-On"
       }
     },
@@ -773,8 +773,8 @@
     "about-us": {
       "eyebrow": "About",
       "title": "Redefining the Virtual Fitting Room",
-      "description": "aiclotheschanger.me makes fashion technology more accessible, transparent, and realistic with true virtual try-on without the paywall.",
-      "body1": "At aiclotheschanger.me, we believe fashion technology should be accessible, transparent, and above all realistic. We saw a market full of apps that demand payment before showing a single result, so we decided to build a better way.",
+      "description": "aiclotheschangers.app makes fashion technology more accessible, transparent, and realistic with true virtual try-on without the paywall.",
+      "body1": "At aiclotheschangers.app, we believe fashion technology should be accessible, transparent, and above all realistic. We saw a market full of apps that demand payment before showing a single result, so we decided to build a better way.",
       "body2": "Our mission is quality first, trust always. We specialize in high-fidelity AI clothes changer technology that understands how a silk dress drapes, how a denim jacket fits different body types, and why users need to see quality before committing to a plan.",
       "body3": "We keep the complexity for us and the simplicity for you. The product experience focuses on realistic outfit previews, clearer credit flow, plus-size and men's styling paths, and privacy-first processing.",
       "bullet1": "Realistic AI Clothes Changer",
@@ -886,7 +886,10 @@
     "loginTitle": "Sign in to continue",
     "loginButton": "Sign in with Google",
     "loginHint": "Get 10 Free Credits",
-    "logout": "Logout"
+    "logout": "Logout",
+    "signedInAccount": "Signed in account",
+    "signedInUser": "Signed in user",
+    "creditsAvailable": "{count} credits available"
   },
   "editor": {
     "step1": "Choose Model",
