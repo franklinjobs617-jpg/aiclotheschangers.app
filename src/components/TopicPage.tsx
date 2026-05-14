@@ -60,6 +60,7 @@ const outlineLinkClass =
   "inline-flex min-h-10 items-center justify-center rounded-lg border border-gray-200 bg-white px-4 text-sm font-semibold !text-[#1d8a84] transition-colors hover:border-[#23a7a0]/40 hover:bg-[#effbf8]";
 
 const pageShellClass = "overflow-x-hidden bg-white";
+const CONTENT_UPDATED_AT = "2026-05-14";
 
 export function TopicPage({
   locale,
@@ -117,18 +118,27 @@ export function TopicPage({
 
 function AboutPageContent({ locale }: { locale: Locale }) {
   const t = useTranslations("aboutPage");
+  const geoT = useTranslations("geo");
   const technologyKeys = ["realism", "inclusive", "stability"] as const;
   const trustBuilderKeys = ["who", "how", "why"] as const;
+  const principleKeys = ["preview", "limits", "privacy"] as const;
   const sectionKeys = [
     "redefining",
     "mission",
     "technology",
+    "principles",
     "privacy",
     "join",
   ] as const;
   const schema = [
     buildBreadcrumbSchema(locale, "about-us", t("slogan")),
     buildPageSchema(
+      locale,
+      "about-us",
+      t("slogan"),
+      t("sections.redefining.body")
+    ),
+    buildArticleSchema(
       locale,
       "about-us",
       t("slogan"),
@@ -151,6 +161,11 @@ function AboutPageContent({ locale }: { locale: Locale }) {
           <h1 className="mt-3 break-words text-4xl font-semibold leading-tight text-[#222529] sm:text-5xl lg:text-6xl">
             {t("slogan")}
           </h1>
+          <p className="mt-4 text-sm font-medium text-[#69717f]">
+            <time dateTime={CONTENT_UPDATED_AT}>
+              {geoT("updated", { date: CONTENT_UPDATED_AT })}
+            </time>
+          </p>
         </div>
       </section>
 
@@ -231,6 +246,33 @@ function AboutPageContent({ locale }: { locale: Locale }) {
               </div>
             </section>
 
+            <section id="principles" className="border-b border-gray-200 pb-8">
+              <span className="text-sm font-semibold text-[#1d8a84]">
+                {t("principles.eyebrow")}
+              </span>
+              <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#222529] sm:text-4xl">
+                {t("principles.title")}
+              </h2>
+              <p className="mt-4 text-base leading-8 text-[#3f4654]">
+                {t("principles.text")}
+              </p>
+              <div className="mt-6 grid gap-4 md:grid-cols-3">
+                {principleKeys.map((key) => (
+                  <article
+                    className="rounded-2xl border border-gray-200 bg-white p-5 shadow-[0_10px_24px_rgba(24,31,52,0.035)]"
+                    key={key}
+                  >
+                    <h3 className="text-base font-semibold text-[#222529]">
+                      {t(`principles.cards.${key}.title`)}
+                    </h3>
+                    <p className="mt-2 text-sm leading-6 text-[#69717f]">
+                      {t(`principles.cards.${key}.text`)}
+                    </p>
+                  </article>
+                ))}
+              </div>
+            </section>
+
             <section
               id="privacy"
               className="rounded-3xl border border-[#23a7a0]/25 bg-[#f2fffb] p-6"
@@ -300,8 +342,15 @@ function AboutPageContent({ locale }: { locale: Locale }) {
   );
 }
 
-function TopicHero({ slug }: { slug: Exclude<PageSlug, "" | "pricing"> }) {
+function TopicHero({
+  slug,
+  showUpdated = true,
+}: {
+  slug: Exclude<PageSlug, "" | "pricing">;
+  showUpdated?: boolean;
+}) {
   const t = useTranslations(`topicPages.${slug}`);
+  const geoT = useTranslations("geo");
   return (
     <>
       <span className="text-sm font-semibold text-[#23a7a0]">
@@ -313,6 +362,13 @@ function TopicHero({ slug }: { slug: Exclude<PageSlug, "" | "pricing"> }) {
       <p className="mt-4 max-w-full break-words text-base leading-7 text-[#69717f]">
         {t("description")}
       </p>
+      {showUpdated ? (
+        <p className="mt-4 text-sm font-medium text-[#69717f]">
+          <time dateTime={CONTENT_UPDATED_AT}>
+            {geoT("updated", { date: CONTENT_UPDATED_AT })}
+          </time>
+        </p>
+      ) : null}
     </>
   );
 }
@@ -785,7 +841,7 @@ function VirtualTryOnContent({ locale }: { locale: Locale }) {
       <section className="bg-gradient-to-b from-[#f8fafb] to-white px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
           <div className="min-w-0 max-w-2xl">
-            <TopicHero slug="virtual-try-on-clothes" />
+            <TopicHero slug="virtual-try-on-clothes" showUpdated={false} />
             <div className="mt-7 flex flex-wrap items-center gap-4">
               <Link
                 className={darkCtaClass}
@@ -940,6 +996,7 @@ function LegalPageContent({
   slug: "privacy-policy" | "terms-of-service";
 }) {
   const t = useTranslations(`topicPages.${slug}`);
+  const geoT = useTranslations("geo");
   const isPrivacy = slug === "privacy-policy";
   const legalKeys = isPrivacy
     ? (["uploads", "account", "safety", "deletion"] as const)
@@ -947,6 +1004,7 @@ function LegalPageContent({
   const schema = [
     buildBreadcrumbSchema(locale, slug, t("title")),
     buildPageSchema(locale, slug, t("title"), t("description")),
+    buildArticleSchema(locale, slug, t("title"), t("description")),
   ];
 
   return (
@@ -962,6 +1020,11 @@ function LegalPageContent({
           </h1>
           <p className="mx-auto mt-4 max-w-3xl break-words text-base leading-7 text-[#69717f]">
             {t("description")}
+          </p>
+          <p className="mt-4 text-sm font-medium text-[#69717f]">
+            <time dateTime={CONTENT_UPDATED_AT}>
+              {geoT("updated", { date: CONTENT_UPDATED_AT })}
+            </time>
           </p>
         </div>
       </section>
@@ -1005,6 +1068,9 @@ function LegalPageContent({
               </h2>
               <p className="mt-3 text-base leading-7 text-[#69717f]">
                 {t("body2")}
+              </p>
+              <p className="mt-3 text-base leading-7 text-[#69717f]">
+                {t("body3")}
               </p>
             </div>
           </div>
@@ -1074,6 +1140,7 @@ function SpecialtyContent({
   const intentKeys = ["representation", "drape", "photo"] as const;
   const guideKeys = ["fullBody", "shadows", "goal", "direction"] as const;
   const checkKeys = ["shoulders", "waist", "length", "drape"] as const;
+  const comparisonKeys = ["photo", "preview", "limits", "bestFor"] as const;
   const faqKeys = ["guarantee", "photo", "model", "result"] as const;
   const faqCards = faqKeys.map(
     (key) =>
@@ -1085,6 +1152,7 @@ function SpecialtyContent({
   const schema = [
     buildBreadcrumbSchema(locale, slug, t("title")),
     buildPageSchema(locale, slug, t("title"), t("description")),
+    buildArticleSchema(locale, slug, t("title"), t("description")),
     buildFaqSchema(faqCards),
   ];
 
@@ -1227,6 +1295,18 @@ function SpecialtyContent({
         </div>
       </section>
 
+      <SpecialtyComparisonSection
+        eyebrow={specialtyT("comparison.eyebrow")}
+        title={specialtyT("comparison.title")}
+        text={specialtyT("comparison.text")}
+        rows={comparisonKeys.map((key) => ({
+          attribute: specialtyT(`comparison.rows.${key}.attribute`),
+          preview: specialtyT(`comparison.rows.${key}.preview`),
+          use: specialtyT(`comparison.rows.${key}.use`),
+          limit: specialtyT(`comparison.rows.${key}.limit`),
+        }))}
+      />
+
       <section className="bg-[#f7f8fa] px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
           <div className="overflow-hidden rounded-3xl bg-white shadow-[0_18px_48px_rgba(24,31,52,0.08)]">
@@ -1289,6 +1369,7 @@ function MensSpecialtyContent({ locale }: { locale: Locale }) {
   const intentKeys = ["workwear", "streetwear", "shopping"] as const;
   const guideKeys = ["pose", "torso", "occasion", "proportion"] as const;
   const checkKeys = ["shoulders", "shirt", "color", "face"] as const;
+  const comparisonKeys = ["profile", "shirt", "suit", "streetwear"] as const;
   const faqKeys = ["profile", "outfits", "photo", "face"] as const;
   const proofKeys = ["1", "2", "3"] as const;
   const faqCards = faqKeys.map(
@@ -1301,6 +1382,7 @@ function MensSpecialtyContent({ locale }: { locale: Locale }) {
   const schema = [
     buildBreadcrumbSchema(locale, slug, t("title")),
     buildPageSchema(locale, slug, t("title"), t("description")),
+    buildArticleSchema(locale, slug, t("title"), t("description")),
     buildFaqSchema(faqCards),
   ];
 
@@ -1430,6 +1512,18 @@ function MensSpecialtyContent({ locale }: { locale: Locale }) {
         </div>
       </section>
 
+      <SpecialtyComparisonSection
+        eyebrow={specialtyT("comparison.eyebrow")}
+        title={specialtyT("comparison.title")}
+        text={specialtyT("comparison.text")}
+        rows={comparisonKeys.map((key) => ({
+          attribute: specialtyT(`comparison.rows.${key}.attribute`),
+          preview: specialtyT(`comparison.rows.${key}.preview`),
+          use: specialtyT(`comparison.rows.${key}.use`),
+          limit: specialtyT(`comparison.rows.${key}.limit`),
+        }))}
+      />
+
       <section className="bg-[#fbfcfd] px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
           <div>
@@ -1475,6 +1569,76 @@ function MensSpecialtyContent({ locale }: { locale: Locale }) {
       />
       <JsonLd data={schema} />
     </>
+  );
+}
+
+function SpecialtyComparisonSection({
+  eyebrow,
+  title,
+  text,
+  rows,
+}: {
+  eyebrow: string;
+  title: string;
+  text: string;
+  rows: Array<{
+    attribute: string;
+    preview: string;
+    use: string;
+    limit: string;
+  }>;
+}) {
+  const geoT = useTranslations("geo");
+
+  return (
+    <section className="px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-3xl">
+          <span className="text-sm font-semibold text-[#1d8a84]">
+            {eyebrow}
+          </span>
+          <h2 className="mt-3 text-3xl font-semibold leading-tight text-[#222529] sm:text-4xl">
+            {title}
+          </h2>
+          <p className="mt-4 text-base leading-7 text-[#69717f]">{text}</p>
+        </div>
+        <div className="mt-8 overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-[0_10px_24px_rgba(24,31,52,0.035)]">
+          <table className="w-full min-w-[760px] border-collapse text-left text-sm">
+            <thead className="bg-[#fbfcfd] text-[#222529]">
+              <tr>
+                <th scope="col" className="px-5 py-4 font-semibold">
+                  {geoT("comparison.attribute")}
+                </th>
+                <th scope="col" className="px-5 py-4 font-semibold">
+                  {geoT("comparison.preview")}
+                </th>
+                <th scope="col" className="px-5 py-4 font-semibold">
+                  {geoT("comparison.use")}
+                </th>
+                <th scope="col" className="px-5 py-4 font-semibold">
+                  {geoT("comparison.limit")}
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200 text-[#47505f]">
+              {rows.map((row) => (
+                <tr key={row.attribute}>
+                  <th
+                    scope="row"
+                    className="px-5 py-4 font-semibold text-[#222529]"
+                  >
+                    {row.attribute}
+                  </th>
+                  <td className="px-5 py-4">{row.preview}</td>
+                  <td className="px-5 py-4">{row.use}</td>
+                  <td className="px-5 py-4">{row.limit}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   );
 }
 
@@ -1620,6 +1784,33 @@ function buildPageSchema(
     url: absoluteLocalizedUrl(locale, slug),
     isPartOf: {
       "@type": "WebSite",
+      name: "AI Clothes Changer",
+      url: absoluteLocalizedUrl(locale),
+    },
+  };
+}
+
+function buildArticleSchema(
+  locale: Locale,
+  slug: PageSlug,
+  headline: string,
+  description: string
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline,
+    description,
+    url: absoluteLocalizedUrl(locale, slug),
+    datePublished: CONTENT_UPDATED_AT,
+    dateModified: CONTENT_UPDATED_AT,
+    author: {
+      "@type": "Organization",
+      name: "AI Clothes Changer",
+      url: absoluteLocalizedUrl(locale),
+    },
+    publisher: {
+      "@type": "Organization",
       name: "AI Clothes Changer",
       url: absoluteLocalizedUrl(locale),
     },

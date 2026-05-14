@@ -178,7 +178,7 @@ export function LoginModal({ open, onClose }: LoginModalProps) {
 
           {/* Features list */}
           <ul className="mb-8 flex flex-col gap-2.5">
-            <FeatureItem text="Get 10 free try-on credits" />
+            <FeatureItem text="Connect your account credits" />
             <FeatureItem text="Save your try-on history after login" />
             <FeatureItem text="Use one secure Google account" />
           </ul>

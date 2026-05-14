@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "AI Clothes Changer - Virtual Try On Clothes Online for FREE",
-    "description": "Use the best AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men. No hard paywall, get 10 credits free.",
+    "description": "Use the best AI clothes changer to swap outfits in photos instantly. Try 10+ models including plus size and men, preview results first, and buy more credits only when needed.",
     "ogImage": "/og-default.png"
   },
   "brand": "AIClothesChanger",
@@ -23,7 +23,7 @@
     "editorNote": "Uploads open the editor so you can pick clothes, choose a model, and generate there.",
     "openEditor": "Start Try-On in editor",
     "trust": {
-      "free": "10 free credits",
+      "free": "Preview-first flow",
       "privacy": "Encrypted processing",
       "models": "Plus size and men"
     }
@@ -43,7 +43,7 @@
   "trustItems": {
     "tryFirst": {
       "title": "Try first, pay later",
-      "text": "New users get 10 free credits to judge realistic virtual try-on quality before upgrading."
+      "text": "Users can judge realistic virtual try-on quality in a preview-first flow before buying more usage."
     },
     "mobile": {
       "title": "Mobile upload stability",
@@ -116,7 +116,7 @@
     },
     "noPaywall": {
       "title": "No hard paywall",
-      "text": "Many tools demand payment before showing a single result. This flow gives users 10 free credits to judge quality first."
+      "text": "Many tools demand payment before explaining result quality. This flow keeps quality, limits, and credits clearer before upgrade decisions."
     },
     "mobile": {
       "title": "Stable mobile uploads",
@@ -172,7 +172,7 @@
   "faqs": {
     "free": {
       "question": "Is the AI clothes changer free?",
-      "answer": "Yes. New users get 10 free credits so they can test real virtual try-on quality before buying more credits or a paid plan."
+      "answer": "You can start from the editor and preview the workflow before buying more credits or a paid plan. Credit availability depends on the current account and browser usage state."
     },
     "reference": {
       "question": "Can I upload a clothing photo as a reference?",
@@ -395,7 +395,7 @@
     "plus-size-virtual-try-on": {
       "eyebrow": "Plus Size First",
       "stat": "Curvy model path",
-      "cta": "Try free",
+      "cta": "Start try-on",
       "featureTitle": "AI styling for every body shape",
       "featureText": "Use it to compare real styling questions before buying: where the waist sits, how sleeves fall, whether the dress shape feels balanced, and whether the outfit still looks like you.",
       "proofLabel": "Trust path",
@@ -452,6 +452,37 @@
           }
         }
       },
+      "comparison": {
+        "eyebrow": "Decision table",
+        "title": "How to read a plus size try-on result",
+        "text": "The most useful plus size virtual try-on result is not a size promise. It is a structured preview for silhouette, garment balance, and photo planning before you spend more time or credits.",
+        "rows": {
+          "photo": {
+            "attribute": "Best input photo",
+            "preview": "Front-facing full-body image",
+            "use": "Helps map shoulders, waist, hips, and hem",
+            "limit": "Mirror crops and hidden legs reduce reliability"
+          },
+          "preview": {
+            "attribute": "Best result signal",
+            "preview": "Natural drape over curves",
+            "use": "Useful for dress, jacket, and blouse decisions",
+            "limit": "Still compare with real measurements"
+          },
+          "limits": {
+            "attribute": "What it cannot confirm",
+            "preview": "Exact garment size",
+            "use": "Use for style direction before checkout",
+            "limit": "Retailer size charts and return rules still matter"
+          },
+          "bestFor": {
+            "attribute": "Best use case",
+            "preview": "Shopping and styling comparisons",
+            "use": "Compare 2-3 outfit directions on one photo",
+            "limit": "Extreme poses can distort fabric edges"
+          }
+        }
+      },
       "check": {
         "eyebrow": "Result checklist",
         "title": "Look at the parts that change purchase confidence",
@@ -500,7 +531,7 @@
     "mens-ai-clothes-changer": {
       "eyebrow": "Men's Fashion",
       "stat": "Suits and streetwear",
-      "cta": "Try free",
+      "cta": "Start try-on",
       "featureTitle": "A try-on path for men's shirts, suits, and everyday looks",
       "featureText": "Use it for practical decisions: a cleaner profile photo, a sharper workwear look, a casual streetwear check, or a quick comparison before buying a shirt, jacket, or suit.",
       "proofLabel": "Trust path",
@@ -554,6 +585,37 @@
           "proportion": {
             "title": "Compare color and proportion",
             "text": "Check whether the garment color works with skin tone, background, and body proportion."
+          }
+        }
+      },
+      "comparison": {
+        "eyebrow": "Decision table",
+        "title": "Which men's try-on result is useful?",
+        "text": "Men's AI clothes changer pages should help users separate a practical outfit preview from a novelty edit. Compare the result by use case before downloading or regenerating.",
+        "rows": {
+          "profile": {
+            "attribute": "Profile photo",
+            "preview": "Cleaner shirt or jacket",
+            "use": "Tests a sharper avatar before reshooting",
+            "limit": "Face and posture must stay consistent"
+          },
+          "shirt": {
+            "attribute": "Shirt try-on",
+            "preview": "Collar, sleeve, and torso alignment",
+            "use": "Useful for casual and smart-casual shopping",
+            "limit": "Exact size still depends on brand measurements"
+          },
+          "suit": {
+            "attribute": "Suit or blazer",
+            "preview": "Shoulder structure and jacket length",
+            "use": "Good for workwear and event looks",
+            "limit": "Hands, lapels, and cuffs need careful inspection"
+          },
+          "streetwear": {
+            "attribute": "Streetwear layers",
+            "preview": "Color, silhouette, and layering balance",
+            "use": "Compares outfit direction quickly",
+            "limit": "Very loose layers can hide body landmarks"
           }
         }
       },
@@ -611,6 +673,7 @@
       "redefining": "Redefining",
       "mission": "Mission",
       "technology": "Technology",
+      "principles": "Principles",
       "privacy": "Privacy",
       "join": "Join us"
     },
@@ -623,7 +686,7 @@
         "label": "Our Mission",
         "title": "Quality First, Trust Always",
         "body1": "We specialize in high-fidelity AI Clothes Changer technology. Our platform is not just about swapping pixels; it is about understanding how a silk dress drapes or how a denim jacket fits different body types.",
-        "body2": "We are committed to solving the trust gap in the industry by offering a Try First, Pay Later model, giving every user 10 free credits to witness our quality before committing to a plan."
+        "body2": "We are committed to solving the trust gap with a preview-first workflow: users should understand the output quality, generation limits, and credit rules before they buy more usage."
       },
       "technology": {
         "label": "The Technology Behind the Result",
@@ -654,6 +717,25 @@
       "stability": {
         "title": "Technical Stability",
         "text": "We keep working on the frustrating basics too, including mobile upload handling, clearer progress, and a simpler generation experience."
+      }
+    },
+    "principles": {
+      "eyebrow": "Product principles",
+      "title": "What we optimize for before growth",
+      "text": "AI clothes changer pages can rank only if the product is clear enough for users to trust. Our content and interface are written around specific decisions users make before uploading a photo.",
+      "cards": {
+        "preview": {
+          "title": "Preview quality first",
+          "text": "A user should see whether the outfit direction, face preservation, and garment edges are usable before moving deeper into a paid workflow."
+        },
+        "limits": {
+          "title": "Explain limits plainly",
+          "text": "Virtual try-on helps with visual direction, but it does not replace retailer size charts, real tailoring, or return policies."
+        },
+        "privacy": {
+          "title": "Keep uploads accountable",
+          "text": "Uploaded people and clothing images should be handled only for the requested try-on workflow, with clear rules for safety and deletion."
+        }
       }
     },
     "trustBuilder": {
@@ -757,7 +839,7 @@
       "bullet1": "Realistic draping on curves",
       "bullet2": "Plus size model examples",
       "bullet3": "More natural silhouette previews",
-      "bullet4": "10 free credits before paid upgrades"
+      "bullet4": "Preview fit direction before paid upgrades"
     },
     "mens-ai-clothes-changer": {
       "eyebrow": "Men's AI clothes changer",
@@ -768,17 +850,17 @@
       "bullet1": "Try suits, jackets, shirts, and streetwear",
       "bullet2": "Useful for profiles and shopping",
       "bullet3": "Upload photo or clothing reference",
-      "bullet4": "Start free before buying credits"
+      "bullet4": "Preview first before buying credits"
     },
     "about-us": {
       "eyebrow": "About",
       "title": "Redefining the Virtual Fitting Room",
-      "description": "aiclotheschangers.app makes fashion technology more accessible, transparent, and realistic with true virtual try-on without the paywall.",
+      "description": "aiclotheschangers.app makes fashion technology more accessible, transparent, and realistic with preview-first AI virtual try-on.",
       "body1": "At aiclotheschangers.app, we believe fashion technology should be accessible, transparent, and above all realistic. We saw a market full of apps that demand payment before showing a single result, so we decided to build a better way.",
       "body2": "Our mission is quality first, trust always. We specialize in high-fidelity AI clothes changer technology that understands how a silk dress drapes, how a denim jacket fits different body types, and why users need to see quality before committing to a plan.",
       "body3": "We keep the complexity for us and the simplicity for you. The product experience focuses on realistic outfit previews, clearer credit flow, plus-size and men's styling paths, and privacy-first processing.",
       "bullet1": "Realistic AI Clothes Changer",
-      "bullet2": "10 free credits before upgrade",
+      "bullet2": "Preview-first credit flow",
       "bullet3": "Plus-size and men's fashion first",
       "bullet4": "Encrypted photos deleted after processing"
     },
@@ -786,9 +868,9 @@
       "eyebrow": "Privacy",
       "title": "Privacy Policy",
       "description": "Privacy-first principles for uploaded photos, generated results, login, credits, and billing.",
-      "body1": "Uploaded photos are encrypted during processing and automatically deleted from our servers when the try-on is complete.",
-      "body2": "We also maintain content and usage rules to reduce explicit, unsafe, or abusive requests across uploads, prompts, and account activity.",
-      "body3": "",
+      "body1": "Uploaded photos are used to complete the AI clothes changer workflow you request. The privacy goal is to keep person photos, clothing references, generated results, login data, credits, and billing records separated by purpose.",
+      "body2": "We also maintain content and usage rules to reduce explicit, unsafe, abusive, or rights-violating requests across uploads, prompts, and account activity.",
+      "body3": "When deletion controls are available, users should be able to remove eligible uploaded and generated content from their account flow. Some payment records may need to be retained for billing, tax, fraud prevention, or legal compliance.",
       "bullet1": "Encrypted processing",
       "bullet2": "Automatic deletion after try-on",
       "bullet3": "Usage rules for unsafe requests",
@@ -799,11 +881,11 @@
         "sections": {
           "uploads": {
             "title": "Uploaded photos",
-            "text": "Images are used to complete the try-on workflow. After production API integration, uploads are deleted after processing."
+            "text": "Images are used to complete the try-on workflow requested by the user. They should not be reused as public examples without permission."
           },
           "account": {
             "title": "Account and credits",
-            "text": "Login data is used to maintain credits, plan status, and billing state, not to sell personal information."
+            "text": "Login data is used to identify the account, connect the correct project credit account, and recover billing state."
           },
           "safety": {
             "title": "Safety review",
@@ -811,7 +893,7 @@
           },
           "deletion": {
             "title": "Deletion requests",
-            "text": "The account area will include a Delete All My Data entry for removable personal data."
+            "text": "Deletion controls should remove eligible uploaded images, generated results, and account data while preserving records required for legal or billing reasons."
           }
         }
       }
@@ -821,8 +903,8 @@
       "title": "Terms of Service",
       "description": "Rules for lawful uploads, responsible AI use, payments, refunds, cancellation, and credits.",
       "body1": "Users may only upload images they own or have legal permission to use. The service may not be used for commercial fraud, impersonation, explicit content, or copyright infringement.",
-      "body2": "Payments, renewals, cancellations, and credit use are expected to stay clear to the user, and failed system generations can be reviewed for credit adjustment.",
-      "body3": "",
+      "body2": "Payments, renewals, cancellations, and credit use are expected to stay clear to the user. System failures can be reviewed for credit adjustment, while policy-violating requests may not qualify for a refund.",
+      "body3": "AI try-on output is a visual preview for styling and shopping decisions. It is not a guaranteed size recommendation, tailoring instruction, identity verification document, or medical/body assessment.",
       "bullet1": "User owns or controls uploaded content",
       "bullet2": "No fraud or explicit misuse",
       "bullet3": "Clear renewal and cancellation terms",
@@ -841,7 +923,7 @@
           },
           "credits": {
             "title": "Credits and failed jobs",
-            "text": "System failures may be refunded; user cancellation or policy-violating requests may not be refundable."
+            "text": "System failures may be refunded through the project credit account; user cancellation, unusable source photos, or policy-violating requests may not be refundable."
           },
           "cancellation": {
             "title": "Subscription cancellation",
@@ -885,7 +967,7 @@
   "auth": {
     "loginTitle": "Sign in to continue",
     "loginButton": "Sign in with Google",
-    "loginHint": "Get 10 Free Credits",
+    "loginHint": "Continue with your account",
     "logout": "Logout",
     "signedInAccount": "Signed in account",
     "signedInUser": "Signed in user",
@@ -973,7 +1055,7 @@
       "fabric": "Optimizing fabric texture...",
       "finish": "Almost ready..."
     },
-    "loginRequired": "Sign in to use your free credits and generate a try-on.",
+    "loginRequired": "Sign in to connect your account credits and generate a try-on.",
     "comingSoon": "This workspace area is planned. The AI Try-On flow is ready here.",
     "privacyNote": "Use images you have rights to upload. Photos are processed securely; server-side deletion happens after API integration is complete.",
     "pickClothesCta": "Pick clothes first",
@@ -986,6 +1068,7 @@
     "feedbackThanks": "Thanks. Feedback collection will be connected with the production workflow."
   },
   "geo": {
+    "updated": "Updated {date}",
     "breadcrumb": {
       "ariaLabel": "Breadcrumb"
     },
@@ -1006,6 +1089,12 @@
       "price": "Price",
       "credits": "Credits",
       "bestFor": "Best for"
+    },
+    "comparison": {
+      "attribute": "Decision point",
+      "preview": "What to inspect",
+      "use": "Why it helps",
+      "limit": "Limit"
     },
     "faq": {
       "questionPrefix": "Q:"
